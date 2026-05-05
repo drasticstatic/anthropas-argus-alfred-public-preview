@@ -90,12 +90,16 @@ MODEL_HAIKU="nvidia_nim/z-ai/glm4.7"
 
 ## When to Use the Sandbox
 
-- Claude session tokens running low
-- Repetitive or lower-stakes tasks (housekeeping, research drafts, templating)
-- Testing prompts across providers before using Claude quota
-- Background tasks that don't require Claude Sonnet quality
+The proxy works in **any repo** — just launch Claude Code with `ANTHROPIC_BASE_URL=http://localhost:8082 claude` from that directory. Fortuna, Alfred, any repo.
 
-**Don't use for:** Trading analysis, session reviews, behavioral coaching, or anything requiring Fortuna's full context.
+Common use cases:
+- Claude session tokens running low — keep working with no interruption
+- Getting a second perspective from a different model family (Llama, Mistral, Nemotron)
+- Repetitive or bulk tasks (housekeeping, templating, research drafts)
+- Testing prompts before committing Claude quota
+- Comparing model outputs side by side
+
+The proxy is a full backend swap for the session — the client (Claude Code) behaves identically.
 
 ---
 
