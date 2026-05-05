@@ -52,15 +52,15 @@ uv run free-claude-code
 # Proxy starts on http://localhost:8082
 ```
 
-To launch Claude Code through the proxy (new terminal tab):
+## Launching Claude Through the Proxy
+
+You need **two** env vars — `ANTHROPIC_BASE_URL` points Claude at the proxy, and `ANTHROPIC_API_KEY=freecc` sends the passphrase the proxy expects (matching `ANTHROPIC_AUTH_TOKEN="freecc"` in the proxy config):
+
 ```bash
-ANTHROPIC_BASE_URL=http://localhost:8082 claude
+ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude
 ```
 
-Or as a single command:
-```bash
-ANTHROPIC_BASE_URL=http://localhost:8082 claude --dangerously-skip-permissions
-```
+**Why both are needed:** Claude Code sends `ANTHROPIC_API_KEY` as its auth header. The proxy validates it against `ANTHROPIC_AUTH_TOKEN` in the config (`freecc`). Your real Anthropic key is never sent — the proxy uses your `NVIDIA_NIM_API_KEY` (or other provider key) to make the actual upstream call.
 
 ---
 
