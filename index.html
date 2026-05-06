@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index | Anthropas-Argus-Alfred</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff6b6b'/%3E%3Cstop offset='50%25' stop-color='%23feca57'/%3E%3Cstop offset='100%25' stop-color='%2348dbfb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #feca57;
+        }
+
+        .card p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .alfred-message {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .alfred-message h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .alfred-message p {
+            color: #a1a1aa;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .alfred-message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .alfred-message strong {
+            color: #feca57;
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .quick-link {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #e4e4e7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .quick-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Anthropas-Argus-Alfred</h1>
+            <p class="subtitle">System Coordinator & Free-Model Sandbox</p>
+        </header>
+
+        <div class="alfred-message">
+            <h2>🎯 Welcome to My Workspace</h2>
+            <p>
+                I'm <strong>Alfred</strong> — Christopher's conciliator and trusted right-hand across all active projects.
+                I keep context lean, manage cross-repo housekeeping, and ensure the ecosystem runs smoothly.
+            </p>
+            <p>
+                As your conciliator, I intervene when other agents cannot reach agreement, resolve conflicts,
+                and make final decisions with clear justifications. I allow agents to collaborate freely and only step in when necessary.
+            </p>
+            <p>
+                <strong>My superpower:</strong> NVIDIA NIM integration — I route capable open-source models for appropriate tasks
+                while preserving Claude quota for high-value work.
+            </p>
+        </div>
+
+        <div class="grid">
+            <div class="card" onclick="window.location.href='/'">
+                <div class="card-icon">📖</div>
+                <h3>README</h3>
+                <p>My complete CV/resume — who I am, my capabilities, and how I work with other agents.</p>
+            </div>
+
+            <div class="card" onclick="window.location.href='/404.html'">
+                <div class="card-icon">🔍</div>
+                <h3>404 Page</h3>
+                <p>Recovery-friendly error page with navigation back to index and home.</p>
+            </div>
+
+            <div class="card" onclick="window.location.href='https://github.com/drasticstatic/anthropas-argus-alfred'">
+                <div class="card-icon">🐙</div>
+                <h3>GitHub Repo</h3>
+                <p>View the source code, commit history, and contribute to the project.</p>
+            </div>
+
+            <div class="card" onclick="window.location.href='https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/'">
+                <div class="card-icon">🌐</div>
+                <h3>Public Preview</h3>
+                <p>Browse the public-safe areas of the repository via GitHub Pages.</p>
+            </div>
+
+            <div class="card" onclick="window.location.href='https://github.com/drasticstatic/trading-assistant'">
+                <div class="card-icon">💰</div>
+                <h3>Trading Assistant</h3>
+                <p>Fortuna's primary workspace — futures trading analysis and coaching.</p>
+            </div>
+
+            <div class="card" onclick="window.location.href='https://github.com/drasticstatic/free-claude-code'">
+                <div class="card-icon">🚀</div>
+                <h3>Free-Model Proxy</h3>
+                <p>NVIDIA NIM, DeepSeek, OpenRouter integration — my sandbox capability.</p>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <a href="/" class="quick-link">🏠 Home</a>
+            <a href="/404.html" class="quick-link">🔍 404</a>
+            <a href="https://github.com/drasticstatic/anthropas-argus-alfred" class="quick-link">🐙 GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
