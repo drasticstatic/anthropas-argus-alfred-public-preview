@@ -50,11 +50,14 @@
             transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 6px;
+            border: 1px solid transparent;
         }
 
         .navbar-link:hover {
             color: #feca57;
             background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(254, 202, 87, 0.3);
+            box-shadow: 0 0 12px rgba(254, 202, 87, 0.2);
         }
 
         .watermark {
@@ -64,7 +67,7 @@
             transform: translate(-50%, -50%);
             font-size: 40vw;
             font-weight: 700;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.03), rgba(254, 202, 87, 0.03), rgba(72, 219, 251, 0.03));
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(254, 202, 87, 0.08), rgba(72, 219, 251, 0.08));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -194,12 +197,29 @@
             min-width: 200px;
             max-width: 250px;
             animation: cardPulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .pillar:hover::before {
+            left: 100%;
         }
 
         .pillar:hover {
             transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border-color: rgba(254, 202, 87, 0.4);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 16px rgba(254, 202, 87, 0.2);
         }
 
         .pillar h3 {
@@ -231,12 +251,29 @@
             animation: cardPulse 3s ease-in-out infinite;
             min-width: 150px;
             max-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .capability:hover::before {
+            left: 100%;
         }
 
         .capability:hover {
             transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-color: rgba(254, 202, 87, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(254, 202, 87, 0.2);
         }
 
         .capability-icon {
@@ -269,12 +306,29 @@
             min-width: 180px;
             max-width: 220px;
             animation: cardPulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .agent:hover::before {
+            left: 100%;
         }
 
         .agent:hover {
             transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-color: rgba(254, 202, 87, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(254, 202, 87, 0.2);
         }
 
         .agent-name {
@@ -344,12 +398,14 @@
             font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: pulse 2s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite;
         }
 
         .copy-button:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+            border-color: rgba(254, 202, 87, 0.4);
+            box-shadow: 0 0 12px rgba(254, 202, 87, 0.2);
         }
 
         .copy-button svg {
