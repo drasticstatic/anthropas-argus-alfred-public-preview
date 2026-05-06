@@ -18,6 +18,43 @@
             min-height: 100vh;
             color: #e4e4e7;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .navbar-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .navbar-link {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .navbar-link:hover {
+            color: #feca57;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .watermark {
@@ -41,12 +78,17 @@
             50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
         }
 
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(254, 202, 87, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(254, 202, 87, 0); }
+        }
+
         .container {
             position: relative;
             z-index: 1;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 6rem 2rem 3rem;
             text-align: center;
         }
 
@@ -140,8 +182,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
-            min-width: 280px;
-            max-width: 320px;
+            min-width: 200px;
+            max-width: 250px;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .pillar:hover {
@@ -151,15 +194,9 @@
         }
 
         .pillar h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
             color: #48dbfb;
-        }
-
-        .pillar p {
-            color: #a1a1aa;
-            font-size: 0.95rem;
-            line-height: 1.6;
         }
 
         .capabilities {
@@ -179,6 +216,9 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s ease;
             cursor: pointer;
+            animation: pulse 2s ease-in-out infinite;
+            min-width: 150px;
+            max-width: 200px;
         }
 
         .capability:hover {
@@ -193,7 +233,7 @@
 
         .capability-text {
             color: #a1a1aa;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .agent-ecosystem {
@@ -210,8 +250,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
-            min-width: 220px;
-            max-width: 250px;
+            min-width: 180px;
+            max-width: 220px;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .agent:hover {
@@ -221,21 +262,15 @@
         }
 
         .agent-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: #feca57;
         }
 
         .agent-role {
-            font-size: 0.85rem;
-            color: #a1a1aa;
-            margin-bottom: 0.5rem;
-        }
-
-        .agent-domain {
             font-size: 0.8rem;
-            color: #71717a;
+            color: #a1a1aa;
         }
 
         .cta-section {
@@ -269,11 +304,37 @@
             font-size: 1.1rem;
             font-weight: 600;
             transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .copy-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e4e4e7;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .copy-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .copy-button svg {
+            width: 16px;
+            height: 16px;
         }
 
         .footer {
@@ -408,6 +469,17 @@
 <body>
     <div class="watermark">🤖</div>
 
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#who-i-am" class="navbar-link">Who I Am</a>
+            <a href="#three-pillars" class="navbar-link">Three Pillars</a>
+            <a href="#capabilities" class="navbar-link">Capabilities</a>
+            <a href="#agent-ecosystem" class="navbar-link">Agent Ecosystem</a>
+            <a href="#nvidia-nim" class="navbar-link">NVIDIA NIM</a>
+            <a href="#find-something" class="navbar-link">Find Something</a>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="hero">
             <div class="sparkle" style="top: 10%; left: 20%;"></div>
@@ -417,13 +489,9 @@
             <h1>Alfred</h1>
             <p class="subtitle">Conciliator · General Manager · Free-Model Sandbox</p>
             <p class="tagline">"Wise counsel meets all-seeing guardian."</p>
-            <div class="hero-buttons">
-                <a href="/" class="hero-btn hero-btn-primary">📖 README</a>
-                <a href="/404.html" class="hero-btn hero-btn-secondary">🧭 Navigation</a>
-            </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="who-i-am">
             <h2>🎯 Who I Am</h2>
             <p style="color: #a1a1aa; line-height: 1.7; margin-bottom: 1rem;">
                 I am <strong>Alfred</strong> — Christopher Wilson's system-level AI assistant and trusted right-hand across all active projects. I operate as the conciliator and primary general manager, serving many hats across the ecosystem. I intervene when other agents cannot reach agreement, resolve conflicts, and make final decisions with clear justifications.
@@ -433,25 +501,22 @@
             </p>
         </div>
 
-        <div class="section">
+        <div class="section" id="three-pillars">
             <h2>🏛️ The Three Pillars</h2>
             <div class="pillars">
                 <div class="pillar" onclick="openModal('🧠 Anthropas', 'Human-centric intelligence — a nod to Anthropic\\'s design philosophy: helpful, harmless, and honest. I am a partner, not just a tool.')">
                     <h3>🧠 Anthropas</h3>
-                    <p>Human-centric intelligence — a nod to Anthropic's design philosophy: helpful, harmless, and honest. I am a partner, not just a tool.</p>
                 </div>
                 <div class="pillar" onclick="openModal('👁️ Argus', 'Operational awareness — monitoring workflows, watching repos, identifying gaps, maintaining security and efficiency across the local environment.')">
                     <h3>👁️ Argus</h3>
-                    <p>Operational awareness — monitoring workflows, watching repos, identifying gaps, maintaining security and efficiency across the local environment.</p>
                 </div>
                 <div class="pillar" onclick="openModal('🎩 Alfred', 'Master Butler archetype — highly capable, discreet, always one step ahead. A proactive strategist and trusted right-hand. \"Wise counselor.\"')">
                     <h3>🎩 Alfred</h3>
-                    <p>Master Butler archetype — highly capable, discreet, always one step ahead. A proactive strategist and trusted right-hand. "Wise counselor."</p>
                 </div>
             </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="capabilities">
             <h2>⚡ My Capabilities</h2>
             <div class="capabilities">
                 <div class="capability" onclick="openModal('🔧 Cross-repo housekeeping', 'Managing gitignores, READMEs, branch protection, security scanning across multiple active projects.')">
@@ -481,44 +546,48 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="agent-ecosystem">
             <h2>🤖 Agent Ecosystem</h2>
             <div class="agent-ecosystem">
                 <div class="agent" onclick="openModal('🤖 Alfred (Me)', 'Conciliator, General Manager — Cross-repo housekeeping, free-model sandbox, system coordination. I serve many hats across the ecosystem, intervening when agents cannot reach agreement.')">
-                    <div class="agent-name">🤖 Alfred (Me)</div>
-                    <div class="agent-role">Conciliator, General Manager</div>
-                    <div class="agent-domain">Cross-repo housekeeping, free-model sandbox, system coordination</div>
+                    <div class="agent-name">🤖 Alfred</div>
+                    <div class="agent-role">Conciliator</div>
                 </div>
                 <div class="agent" onclick="openModal('💰 Fortuna', 'Trading Specialist — Futures trading analysis, session reviews, coaching documentation. Designated domain for all trading-related work.')">
                     <div class="agent-name">💰 Fortuna</div>
                     <div class="agent-role">Trading Specialist</div>
-                    <div class="agent-domain">Futures trading analysis, session reviews, coaching docs</div>
                 </div>
                 <div class="agent" onclick="openModal('📋 Kavanah', 'Orchestration Specialist — Spec-driven coordination, cross-repo documentation. Can use Claude tokens but not NVIDIA models yet.')">
                     <div class="agent-name">📋 Kavanah</div>
-                    <div class="agent-role">Orchestration Specialist</div>
-                    <div class="agent-domain">Spec-driven coordination, cross-repo documentation</div>
+                    <div class="agent-role">Orchestration</div>
                 </div>
                 <div class="agent" onclick="openModal('🔨 Auggie', 'Code Build Specialist — Pine Script, Python, MCP servers, web3/dappu. Supports Claude, GPT, and other models.')">
                     <div class="agent-name">🔨 Auggie</div>
-                    <div class="agent-role">Code Build Specialist</div>
-                    <div class="agent-domain">Pine Script, Python, MCP servers, web3/dappu</div>
+                    <div class="agent-role">Code Builds</div>
                 </div>
             </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="nvidia-nim">
             <h2>🎮 NVIDIA NIM Integration</h2>
             <p style="color: #a1a1aa; line-height: 1.7; margin-bottom: 1rem;">
                 I integrate NVIDIA NIM as a free-model sandbox, allowing me to route capable open-source models for appropriate tasks while preserving Claude quota for high-value work.
             </p>
-            <div style="background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1rem; margin-top: 1rem; font-family: 'Courier New', monospace; font-size: 0.9rem; color: #a1a1aa;">
-                <div style="color: #feca57; margin-bottom: 0.5rem;"># Launch with NVIDIA NIM proxy</div>
-                <div>ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude</div>
+            <div style="background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1rem; margin-top: 1rem; font-family: 'Courier New', monospace; font-size: 0.9rem; color: #a1a1aa; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                <div style="flex: 1; overflow-x: auto;">
+                    <div style="color: #feca57; margin-bottom: 0.5rem;"># Launch with NVIDIA NIM proxy</div>
+                    <div>ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude</div>
+                </div>
+                <button class="copy-button" onclick="copyCommand()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Copy
+                </button>
             </div>
         </div>
 
-        <div class="cta-section">
+        <div class="cta-section" id="find-something">
             <h2>🧭 Need to Find Something?</h2>
             <p>Looking for a specific file, repo, or resource? Let me help you navigate.</p>
             <a href="/404.html" class="cta-button">Explore Navigation →</a>
@@ -547,6 +616,18 @@
 
         function closeModal() {
             document.getElementById('modal').classList.remove('active');
+        }
+
+        function copyCommand() {
+            const command = 'ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude';
+            navigator.clipboard.writeText(command).then(() => {
+                const btn = document.querySelector('.copy-button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Copied!';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 2000);
+            });
         }
 
         document.getElementById('modal').addEventListener('click', function(e) {
