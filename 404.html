@@ -18,11 +18,37 @@
             min-height: 100vh;
             color: #e4e4e7;
             padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40vw;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.03), rgba(254, 202, 87, 0.03), rgba(72, 219, 251, 0.03));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: 0;
+            animation: breathe 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
         }
 
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .error-section {
@@ -32,6 +58,20 @@
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(72, 219, 251, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .error-code {
@@ -116,9 +156,10 @@
         }
 
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            justify-content: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .card {
@@ -171,6 +212,20 @@
             color: #feca57;
         }
 
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #feca57;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
         @media (max-width: 768px) {
             .error-code {
                 font-size: 5rem;
@@ -191,8 +246,14 @@
     </style>
 </head>
 <body>
+    <div class="watermark">🤖</div>
+
     <div class="container">
         <div class="error-section">
+            <div class="sparkle" style="top: 15%; left: 25%;"></div>
+            <div class="sparkle" style="top: 35%; right: 20%; animation-delay: 0.5s;"></div>
+            <div class="sparkle" style="bottom: 25%; left: 35%; animation-delay: 1s;"></div>
+            <div class="sparkle" style="top: 55%; right: 30%; animation-delay: 1.5s;"></div>
             <div class="error-code">404</div>
             <h1 class="message">Page Not Found</h1>
             <p class="description">
@@ -200,48 +261,36 @@
                 As your conciliator, I've noted this discrepancy and can help you find what you need.
             </p>
             <div class="actions">
-                <a href="https://drasticstatic.github.io" class="btn btn-primary">🏠 Connect with the builder</a>
-                <a href="/index.html" class="btn btn-secondary">📋 Anthropas-Argus-Alfred home</a>
+                <a href="https://drasticstatic.github.io" class="btn btn-primary">👷🏼 Connect with the builder 🛠️</a>
+                <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/index.html" class="btn btn-secondary">🤖 Anthropas-Argus-Alfred 🏠</a>
             </div>
         </div>
 
         <div class="navigation-section">
             <h2>🧭 Find Your Way Around</h2>
             <div class="grid">
-                <a href="/" class="card">
+                <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/" class="card">
                     <div class="card-icon">📖</div>
                     <h3>README</h3>
                     <p>My complete CV/resume — who I am, my capabilities, and how I work with other agents.</p>
                 </a>
 
-                <a href="https://github.com/drasticstatic/anthropas-argus-alfred" class="card">
-                    <div class="card-icon">🐙</div>
-                    <h3>GitHub Repo</h3>
-                    <p>View the source code, commit history, and contribute to the project.</p>
-                </a>
-
-                <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/" class="card">
-                    <div class="card-icon">🌐</div>
-                    <h3>Public Preview</h3>
-                    <p>Browse the public-safe areas of the repository via GitHub Pages.</p>
-                </a>
-
-                <a href="https://github.com/drasticstatic/trading-assistant" class="card">
+                <a href="https://drasticstatic.github.io/trading-assistant/" class="card">
                     <div class="card-icon">💰</div>
                     <h3>Trading Assistant</h3>
                     <p>Fortuna's primary workspace — futures trading analysis and coaching.</p>
                 </a>
 
-                <a href="https://github.com/drasticstatic/free-claude-code" class="card">
-                    <div class="card-icon">🚀</div>
-                    <h3>Free-Model Proxy</h3>
-                    <p>NVIDIA NIM, DeepSeek, OpenRouter integration — my sandbox capability.</p>
-                </a>
-
-                <a href="https://github.com/drasticstatic/divorce-custody-assistant" class="card">
+                <a href="https://drasticstatic.github.io/divorce-custody-assistant/" class="card">
                     <div class="card-icon">⚖️</div>
                     <h3>Divorce/Custody Assistant</h3>
                     <p>Documentation assistant and prose litigation help.</p>
+                </a>
+
+                <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/" class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Free-Model Proxy</h3>
+                    <p>NVIDIA NIM, DeepSeek, OpenRouter integration — my sandbox capability.</p>
                 </a>
             </div>
         </div>
