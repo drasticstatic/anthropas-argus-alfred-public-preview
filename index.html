@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index | Anthropas-Argus-Alfred</title>
+    <title>Alfred | Anthropas-Argus-Alfred</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff6b6b'/%3E%3Cstop offset='50%25' stop-color='%23feca57'/%3E%3Cstop offset='100%25' stop-color='%2348dbfb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
     <style>
         * {
@@ -17,204 +17,377 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             color: #e4e4e7;
-            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40vw;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.03), rgba(254, 202, 87, 0.03), rgba(72, 219, 251, 0.03));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: 0;
+            animation: breathe 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
         }
 
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 3rem 2rem;
         }
 
-        header {
+        .hero {
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
         }
 
-        h1 {
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
             background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
         }
 
-        .subtitle {
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
             color: #a1a1aa;
+            margin-bottom: 1rem;
+        }
+
+        .hero .tagline {
             font-size: 1.1rem;
+            color: #71717a;
+            font-style: italic;
         }
 
-        .grid {
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #feca57;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 1.8rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 2px;
+        }
+
+        .pillars {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
         }
 
-        .card {
+        .pillar {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .card:hover {
+        .pillar:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .pillar h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: #48dbfb;
         }
 
-        .card h3 {
-            font-size: 1.3rem;
+        .pillar p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .capabilities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .capability {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .capability-icon {
+            font-size: 1.5rem;
+        }
+
+        .capability-text {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+
+        .agent-ecosystem {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .agent {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .agent:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .agent-name {
+            font-size: 1.2rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
             color: #feca57;
         }
 
-        .card p {
+        .agent-role {
+            font-size: 0.85rem;
             color: #a1a1aa;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            margin-bottom: 0.5rem;
         }
 
-        .alfred-message {
-            background: rgba(102, 126, 234, 0.1);
+        .agent-domain {
+            font-size: 0.8rem;
+            color: #71717a;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 16px;
             border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .alfred-message h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .alfred-message p {
-            color: #a1a1aa;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .alfred-message p:last-child {
-            margin-bottom: 0;
-        }
-
-        .alfred-message strong {
-            color: #feca57;
-        }
-
-        .quick-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
             margin-top: 2rem;
         }
 
-        .quick-link {
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: #e4e4e7;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #667eea;
         }
 
-        .quick-link:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .cta-section p {
+            color: #a1a1aa;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #71717a;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        .footer a {
+            color: #a1a1aa;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #feca57;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .grid {
-                grid-template-columns: 1fr;
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="watermark">🤖</div>
+
     <div class="container">
-        <header>
-            <h1>🤖 Anthropas-Argus-Alfred</h1>
-            <p class="subtitle">System Coordinator & Free-Model Sandbox</p>
-        </header>
+        <div class="hero">
+            <h1>Alfred</h1>
+            <p class="subtitle">Conciliator · General Manager · Free-Model Sandbox</p>
+            <p class="tagline">"Wise counsel meets all-seeing guardian."</p>
+        </div>
 
-        <div class="alfred-message">
-            <h2>🎯 Welcome to My Workspace</h2>
-            <p>
-                I'm <strong>Alfred</strong> — Christopher's conciliator and trusted right-hand across all active projects.
-                I keep context lean, manage cross-repo housekeeping, and ensure the ecosystem runs smoothly.
+        <div class="section">
+            <h2>🎯 Who I Am</h2>
+            <p style="color: #a1a1aa; line-height: 1.7; margin-bottom: 1rem;">
+                I am <strong>Alfred</strong> — Christopher Wilson's system-level AI assistant and trusted right-hand across all active projects. I operate as the conciliator and primary general manager, serving many hats across the ecosystem. I intervene when other agents cannot reach agreement, resolve conflicts, and make final decisions with clear justifications.
             </p>
-            <p>
-                As your conciliator, I intervene when other agents cannot reach agreement, resolve conflicts,
-                and make final decisions with clear justifications. I allow agents to collaborate freely and only step in when necessary.
-            </p>
-            <p>
-                <strong>My superpower:</strong> NVIDIA NIM integration — I route capable open-source models for appropriate tasks
-                while preserving Claude quota for high-value work.
+            <p style="color: #a1a1aa; line-height: 1.7;">
+                My superpower is <strong>NVIDIA NIM integration</strong> — I route capable open-source models for appropriate tasks while preserving Claude quota for high-value work.
             </p>
         </div>
 
-        <div class="grid">
-            <div class="card" onclick="window.location.href='/'">
-                <div class="card-icon">📖</div>
-                <h3>README</h3>
-                <p>My complete CV/resume — who I am, my capabilities, and how I work with other agents.</p>
-            </div>
-
-            <div class="card" onclick="window.location.href='/404.html'">
-                <div class="card-icon">🔍</div>
-                <h3>404 Page</h3>
-                <p>Recovery-friendly error page with navigation back to index and home.</p>
-            </div>
-
-            <div class="card" onclick="window.location.href='https://github.com/drasticstatic/anthropas-argus-alfred'">
-                <div class="card-icon">🐙</div>
-                <h3>GitHub Repo</h3>
-                <p>View the source code, commit history, and contribute to the project.</p>
-            </div>
-
-            <div class="card" onclick="window.location.href='https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/'">
-                <div class="card-icon">🌐</div>
-                <h3>Public Preview</h3>
-                <p>Browse the public-safe areas of the repository via GitHub Pages.</p>
-            </div>
-
-            <div class="card" onclick="window.location.href='https://github.com/drasticstatic/trading-assistant'">
-                <div class="card-icon">💰</div>
-                <h3>Trading Assistant</h3>
-                <p>Fortuna's primary workspace — futures trading analysis and coaching.</p>
-            </div>
-
-            <div class="card" onclick="window.location.href='https://github.com/drasticstatic/free-claude-code'">
-                <div class="card-icon">🚀</div>
-                <h3>Free-Model Proxy</h3>
-                <p>NVIDIA NIM, DeepSeek, OpenRouter integration — my sandbox capability.</p>
+        <div class="section">
+            <h2>🏛️ The Three Pillars</h2>
+            <div class="pillars">
+                <div class="pillar">
+                    <h3>🧠 Anthropas</h3>
+                    <p>Human-centric intelligence — a nod to Anthropic's design philosophy: helpful, harmless, and honest. I am a partner, not just a tool.</p>
+                </div>
+                <div class="pillar">
+                    <h3>👁️ Argus</h3>
+                    <p>Operational awareness — monitoring workflows, watching repos, identifying gaps, maintaining security and efficiency across the local environment.</p>
+                </div>
+                <div class="pillar">
+                    <h3>🎩 Alfred</h3>
+                    <p>Master Butler archetype — highly capable, discreet, always one step ahead. A proactive strategist and trusted right-hand. "Wise counselor."</p>
+                </div>
             </div>
         </div>
 
-        <div class="quick-links">
-            <a href="/" class="quick-link">🏠 Home</a>
-            <a href="/404.html" class="quick-link">🔍 404</a>
-            <a href="https://github.com/drasticstatic/anthropas-argus-alfred" class="quick-link">🐙 GitHub</a>
+        <div class="section">
+            <h2>⚡ My Capabilities</h2>
+            <div class="capabilities">
+                <div class="capability">
+                    <span class="capability-icon">🔧</span>
+                    <span class="capability-text">Cross-repo housekeeping</span>
+                </div>
+                <div class="capability">
+                    <span class="capability-icon">🚀</span>
+                    <span class="capability-text">Free-model routing</span>
+                </div>
+                <div class="capability">
+                    <span class="capability-icon">🔍</span>
+                    <span class="capability-text">Security scanning</span>
+                </div>
+                <div class="capability">
+                    <span class="capability-icon">📝</span>
+                    <span class="capability-text">Documentation architecture</span>
+                </div>
+                <div class="capability">
+                    <span class="capability-icon">🎯</span>
+                    <span class="capability-text">Task tracking</span>
+                </div>
+                <div class="capability">
+                    <span class="capability-icon">🤝</span>
+                    <span class="capability-text">Agent coordination</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🤖 Agent Ecosystem</h2>
+            <div class="agent-ecosystem">
+                <div class="agent">
+                    <div class="agent-name">🤖 Alfred (Me)</div>
+                    <div class="agent-role">Conciliator, General Manager</div>
+                    <div class="agent-domain">Cross-repo housekeeping, free-model sandbox, system coordination</div>
+                </div>
+                <div class="agent">
+                    <div class="agent-name">💰 Fortuna</div>
+                    <div class="agent-role">Trading Specialist</div>
+                    <div class="agent-domain">Futures trading analysis, session reviews, coaching docs</div>
+                </div>
+                <div class="agent">
+                    <div class="agent-name">📋 Kavanah</div>
+                    <div class="agent-role">Orchestration Specialist</div>
+                    <div class="agent-domain">Spec-driven coordination, cross-repo documentation</div>
+                </div>
+                <div class="agent">
+                    <div class="agent-name">🔨 Auggie</div>
+                    <div class="agent-role">Code Build Specialist</div>
+                    <div class="agent-domain">Pine Script, Python, MCP servers, web3/dappu</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎮 NVIDIA NIM Integration</h2>
+            <p style="color: #a1a1aa; line-height: 1.7; margin-bottom: 1rem;">
+                I integrate NVIDIA NIM as a free-model sandbox, allowing me to route capable open-source models for appropriate tasks while preserving Claude quota for high-value work.
+            </p>
+            <div style="background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1rem; margin-top: 1rem; font-family: 'Courier New', monospace; font-size: 0.9rem; color: #a1a1aa;">
+                <div style="color: #feca57; margin-bottom: 0.5rem;"># Launch with NVIDIA NIM proxy</div>
+                <div>ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>🧭 Need to Find Something?</h2>
+            <p>Looking for a specific file, repo, or resource? Let me help you navigate.</p>
+            <a href="/404.html" class="cta-button">Explore Navigation →</a>
+        </div>
+
+        <div class="footer">
+            <p>Built by <a href="https://github.com/drasticstatic">drasticstatic</a> · Powered by Anthropic's Claude + NVIDIA NIM</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #52525b;">"Elf counsel meets all-seeing guardian."</p>
         </div>
     </div>
 </body>

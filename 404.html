@@ -16,16 +16,22 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: #e4e4e7;
+            padding: 2rem;
         }
 
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .error-section {
             text-align: center;
-            padding: 2rem;
-            max-width: 600px;
+            margin-bottom: 3rem;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .error-code {
@@ -36,22 +42,23 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
+            animation: glitch 3s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes glitch {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
         }
 
         .message {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
             color: #a1a1aa;
         }
 
         .description {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #71717a;
             margin-bottom: 2rem;
             line-height: 1.6;
@@ -97,51 +104,150 @@
             transform: translateY(-2px);
         }
 
+        .navigation-section {
+            margin-top: 3rem;
+        }
+
+        .navigation-section h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #feca57;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #feca57;
+        }
+
+        .card p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         .alfred-note {
             margin-top: 3rem;
             padding: 1.5rem;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #a1a1aa;
             line-height: 1.6;
+            text-align: center;
         }
 
         .alfred-note strong {
             color: #feca57;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .error-code {
                 font-size: 5rem;
             }
 
             .message {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
 
             .actions {
                 flex-direction: column;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="error-code">404</div>
-        <h1 class="message">Page Not Found</h1>
-        <p class="description">
-            The page you're looking for doesn't exist or has been moved.
-            As your conciliator, I've noted this discrepancy and can help you find what you need.
-        </p>
-        <div class="actions">
-            <a href="/" class="btn btn-primary">🏠 Return Home</a>
-            <a href="/index.html" class="btn btn-secondary">📋 View Index</a>
+        <div class="error-section">
+            <div class="error-code">404</div>
+            <h1 class="message">Page Not Found</h1>
+            <p class="description">
+                The page you're looking for doesn't exist or has been moved.
+                As your conciliator, I've noted this discrepancy and can help you find what you need.
+            </p>
+            <div class="actions">
+                <a href="https://drasticstatic.github.io" class="btn btn-primary">🏠 Connect with the builder</a>
+                <a href="/index.html" class="btn btn-secondary">📋 Anthropas-Argus-Alfred home</a>
+            </div>
         </div>
+
+        <div class="navigation-section">
+            <h2>🧭 Find Your Way Around</h2>
+            <div class="grid">
+                <a href="/" class="card">
+                    <div class="card-icon">📖</div>
+                    <h3>README</h3>
+                    <p>My complete CV/resume — who I am, my capabilities, and how I work with other agents.</p>
+                </a>
+
+                <a href="https://github.com/drasticstatic/anthropas-argus-alfred" class="card">
+                    <div class="card-icon">🐙</div>
+                    <h3>GitHub Repo</h3>
+                    <p>View the source code, commit history, and contribute to the project.</p>
+                </a>
+
+                <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/" class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Public Preview</h3>
+                    <p>Browse the public-safe areas of the repository via GitHub Pages.</p>
+                </a>
+
+                <a href="https://github.com/drasticstatic/trading-assistant" class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>Trading Assistant</h3>
+                    <p>Fortuna's primary workspace — futures trading analysis and coaching.</p>
+                </a>
+
+                <a href="https://github.com/drasticstatic/free-claude-code" class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Free-Model Proxy</h3>
+                    <p>NVIDIA NIM, DeepSeek, OpenRouter integration — my sandbox capability.</p>
+                </a>
+
+                <a href="https://github.com/drasticstatic/divorce-custody-assistant" class="card">
+                    <div class="card-icon">⚖️</div>
+                    <h3>Divorce/Custody Assistant</h3>
+                    <p>Documentation assistant and prose litigation help.</p>
+                </a>
+            </div>
+        </div>
+
         <div class="alfred-note">
-            <strong>Alfred's note:</strong> I'm here to help resolve conflicts and find the right path.
-            If you're looking for something specific, let me know and I'll coordinate with the appropriate agent.
+            <strong>Alfred's note:</strong> Ah, a lost traveler! Even the most carefully organized systems have their blind spots. As your conciliator, I'm here to help you find your way. If you're looking for something specific, let me know — I'll coordinate with the appropriate agent or dig through the archives myself. No need to panic; we'll get you back on track in no time. 🎩
         </div>
     </div>
 </body>
