@@ -51,6 +51,29 @@
             padding: 0.5rem 1rem;
             border-radius: 6px;
             border: 1px solid transparent;
+            position: relative;
+        }
+
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #feca57;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-link:hover::after,
+        .navbar-link.active::after {
+            width: 80%;
+        }
+
+        .navbar-link.active {
+            color: #feca57;
+            background: rgba(254, 202, 87, 0.1);
         }
 
         .navbar-link:hover {
@@ -201,7 +224,7 @@
             cursor: pointer;
             min-width: 200px;
             max-width: 250px;
-            animation: cardPulse 3s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -256,7 +279,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: cardPulse 3s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
             min-width: 150px;
             max-width: 200px;
             position: relative;
@@ -316,7 +339,7 @@
             cursor: pointer;
             min-width: 180px;
             max-width: 220px;
-            animation: cardPulse 3s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -382,21 +405,29 @@
 
         .cta-button {
             display: inline-block;
-            padding: 1.25rem 3rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 1.5rem 3.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            background-size: 200% 200%;
             color: white;
             text-decoration: none;
             border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
             transition: all 0.3s ease;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 3s ease-in-out infinite;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4), 0 0 40px rgba(254, 202, 87, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 32px rgba(255, 107, 107, 0.6), 0 0 60px rgba(254, 202, 87, 0.5);
         }
 
         .copy-button {
@@ -528,11 +559,12 @@
 
         .sparkle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 6px;
+            height: 6px;
             background: #feca57;
             border-radius: 50%;
             animation: sparkle 2s ease-in-out infinite;
+            box-shadow: 0 0 10px #feca57, 0 0 20px #feca57;
         }
 
         @keyframes sparkle {
@@ -618,6 +650,10 @@
             <div class="sparkle" style="top: 30%; right: 15%; animation-delay: 0.5s;"></div>
             <div class="sparkle" style="bottom: 20%; left: 30%; animation-delay: 1s;"></div>
             <div class="sparkle" style="top: 50%; right: 25%; animation-delay: 1.5s;"></div>
+            <div class="sparkle" style="top: 70%; left: 10%; animation-delay: 2s;"></div>
+            <div class="sparkle" style="bottom: 30%; right: 10%; animation-delay: 2.5s;"></div>
+            <div class="sparkle" style="top: 20%; right: 40%; animation-delay: 0.8s;"></div>
+            <div class="sparkle" style="bottom: 50%; left: 15%; animation-delay: 1.8s;"></div>
             <h1>Alfred</h1>
             <p class="subtitle">Conciliator · General Manager · Free-Model Sandbox</p>
             <p class="tagline">"Wise counsel meets all-seeing guardian."</p>
@@ -789,6 +825,32 @@
                 closeModal();
             }
         });
+
+        // Highlight active navbar link based on scroll position
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('.section, .hero, .cta-section');
+            const navLinks = document.querySelectorAll('.navbar-link');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+        window.addEventListener('load', updateActiveNavLink);
     </script>
 </body>
 </html>
