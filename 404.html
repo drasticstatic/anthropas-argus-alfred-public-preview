@@ -126,7 +126,7 @@
         .btn-primary {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            animation: cardPulse 3s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
@@ -156,7 +156,7 @@
             background: rgba(255, 255, 255, 0.1);
             color: #e4e4e7;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: cardPulse 3s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
@@ -213,7 +213,7 @@
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            animation: cardPulse 3s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
@@ -275,11 +275,12 @@
 
         .sparkle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 6px;
+            height: 6px;
             background: #feca57;
             border-radius: 50%;
             animation: sparkle 2s ease-in-out infinite;
+            box-shadow: 0 0 10px #feca57, 0 0 20px #feca57;
         }
 
         @keyframes sparkle {
@@ -295,6 +296,11 @@
         @keyframes cardPulse {
             0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(254, 202, 87, 0.1); }
             50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 6px rgba(254, 202, 87, 0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
         @media (max-width: 768px) {
@@ -325,6 +331,10 @@
             <div class="sparkle" style="top: 35%; right: 20%; animation-delay: 0.5s;"></div>
             <div class="sparkle" style="bottom: 25%; left: 35%; animation-delay: 1s;"></div>
             <div class="sparkle" style="top: 55%; right: 30%; animation-delay: 1.5s;"></div>
+            <div class="sparkle" style="top: 70%; left: 10%; animation-delay: 2s;"></div>
+            <div class="sparkle" style="bottom: 30%; right: 10%; animation-delay: 2.5s;"></div>
+            <div class="sparkle" style="top: 20%; right: 40%; animation-delay: 0.8s;"></div>
+            <div class="sparkle" style="bottom: 50%; left: 15%; animation-delay: 1.8s;"></div>
             <div class="error-code">404</div>
             <h1 class="message">Looking for something?</h1>
             <p class="description">
