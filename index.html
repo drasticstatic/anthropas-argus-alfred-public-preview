@@ -183,11 +183,12 @@
         }
 
         .pillar {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 12px;
             padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             min-width: 200px;
@@ -205,6 +206,7 @@
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
             color: #48dbfb;
+            pointer-events: none;
         }
 
         .capabilities {
@@ -219,10 +221,11 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             animation: cardPulse 3s ease-in-out infinite;
@@ -238,11 +241,13 @@
 
         .capability-icon {
             font-size: 1.5rem;
+            pointer-events: none;
         }
 
         .capability-text {
             color: #a1a1aa;
             font-size: 0.85rem;
+            pointer-events: none;
         }
 
         .agent-ecosystem {
@@ -253,11 +258,12 @@
         }
 
         .agent {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 12px;
             padding: 1.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             min-width: 180px;
@@ -276,11 +282,13 @@
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: #feca57;
+            pointer-events: none;
         }
 
         .agent-role {
             font-size: 0.8rem;
             color: #a1a1aa;
+            pointer-events: none;
         }
 
         .cta-section {
@@ -307,20 +315,21 @@
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 1.25rem 3rem;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
             font-weight: 600;
             transition: all 0.3s ease;
-            animation: pulse 2s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
         }
 
         .copy-button {
@@ -463,6 +472,23 @@
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+
+            .navbar-content {
+                gap: 0.5rem;
+            }
+
+            .navbar-link {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .container {
+                padding: 8rem 1rem 3rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -471,8 +497,34 @@
                 font-size: 1.2rem;
             }
 
-            .container {
-                padding: 2rem 1rem;
+            .pillars {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pillar {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .capabilities {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .capability {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .agent-ecosystem {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .agent {
+                min-width: 100%;
+                max-width: 100%;
             }
         }
     </style>
