@@ -76,6 +76,13 @@
             background: rgba(254, 202, 87, 0.1);
         }
 
+        .navbar-link.clicked {
+            color: #feca57;
+            background: rgba(254, 202, 87, 0.15);
+            border-color: rgba(254, 202, 87, 0.5);
+            box-shadow: 0 0 16px rgba(254, 202, 87, 0.3);
+        }
+
         .navbar-link:hover {
             color: #feca57;
             background: rgba(255, 255, 255, 0.05);
@@ -406,18 +413,20 @@
         .cta-button {
             display: inline-block;
             padding: 1.5rem 3.5rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
+            background-size: 300% 300%;
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.3rem;
             font-weight: 700;
             transition: all 0.3s ease;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 3s ease-in-out infinite;
-            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4), 0 0 40px rgba(254, 202, 87, 0.3);
+            animation: cardPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 4s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
         @keyframes gradientShift {
@@ -425,9 +434,18 @@
             50% { background-position: 100% 50%; }
         }
 
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(255, 107, 107, 0.7), 0 0 80px rgba(254, 202, 87, 0.6), 0 0 100px rgba(72, 219, 251, 0.5), 0 0 120px rgba(168, 85, 247, 0.3);
+            }
+        }
+
         .cta-button:hover {
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 32px rgba(255, 107, 107, 0.6), 0 0 60px rgba(254, 202, 87, 0.5);
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.8), 0 0 80px rgba(254, 202, 87, 0.7), 0 0 100px rgba(72, 219, 251, 0.6), 0 0 120px rgba(168, 85, 247, 0.4);
         }
 
         .copy-button {
@@ -481,8 +499,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
             padding: 2rem;
@@ -499,6 +517,8 @@
             max-width: 500px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
+            z-index: 2001;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(254, 202, 87, 0.1);
         }
 
         .modal-close {
@@ -672,13 +692,13 @@
         <div class="section" id="three-pillars">
             <h2>🏛️ The Three Pillars</h2>
             <div class="pillars">
-                <div class="pillar" onclick="openModal('🧠 Anthropas', 'Human-centric intelligence — a nod to Anthropic\\'s design philosophy: helpful, harmless, and honest. I am a partner, not just a tool.')">
+                <div class="pillar" onclick="openModal('🧠 Anthropas', 'Human-centric intelligence — a nod to Anthropic design philosophy: helpful, harmless, and honest. I am a partner, not just a tool.')">
                     <h3>🧠 Anthropas</h3>
                 </div>
                 <div class="pillar" onclick="openModal('👁️ Argus', 'Operational awareness — monitoring workflows, watching repos, identifying gaps, maintaining security and efficiency across the local environment.')">
                     <h3>👁️ Argus</h3>
                 </div>
-                <div class="pillar" onclick="openModal('🎩 Alfred', 'Master Butler archetype — highly capable, discreet, always one step ahead. A proactive strategist and trusted right-hand. \"Wise counselor.\"')">
+                <div class="pillar" onclick="openModal('🎩 Alfred', 'Master Butler archetype — highly capable, discreet, always one step ahead. A proactive strategist and trusted right-hand. Wise counselor.')">
                     <h3>🎩 Alfred</h3>
                 </div>
             </div>
@@ -758,7 +778,7 @@
         <div class="cta-section" id="find-something">
             <h2>🧭 Need to Find Something?</h2>
             <p>Looking for a specific file, repo, or resource? Let me help you navigate.</p>
-            <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/404.html" class="cta-button">Explore Navigation →</a>
+            <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/404.html" class="cta-button">🧭 Explore Navigation →</a>
         </div>
 
         <div class="footer">
@@ -832,14 +852,23 @@
             const navLinks = document.querySelectorAll('.navbar-link');
 
             let currentSection = '';
+            const scrollPosition = window.scrollY + window.innerHeight / 3;
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop - 100) {
+                const sectionBottom = sectionTop + section.clientHeight;
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                     currentSection = section.getAttribute('id');
                 }
             });
+
+            // If at the bottom of the page, highlight the last visible section
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
+                const lastSection = sections[sections.length - 1];
+                if (lastSection) {
+                    currentSection = lastSection.getAttribute('id');
+                }
+            }
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -848,6 +877,20 @@
                 }
             });
         }
+
+        // Add click handler to navbar links for temporary highlight
+        document.querySelectorAll('.navbar-link').forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove clicked class from all links
+                document.querySelectorAll('.navbar-link').forEach(l => l.classList.remove('clicked'));
+                // Add clicked class to this link
+                this.classList.add('clicked');
+                // Remove clicked class after 3 seconds
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 3000);
+            });
+        });
 
         window.addEventListener('scroll', updateActiveNavLink);
         window.addEventListener('load', updateActiveNavLink);
