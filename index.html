@@ -91,6 +91,11 @@
             50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 6px rgba(254, 202, 87, 0); }
         }
 
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
         .container {
             position: relative;
             z-index: 1;
@@ -199,6 +204,7 @@
             animation: cardPulse 3s ease-in-out infinite;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .pillar::before {
@@ -240,6 +246,7 @@
         .capability {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.75rem;
             padding: 1rem;
             background: rgba(255, 255, 255, 0.1);
@@ -254,6 +261,8 @@
             max-width: 200px;
             position: relative;
             overflow: hidden;
+            text-align: center;
+            z-index: 1;
         }
 
         .capability::before {
@@ -310,6 +319,7 @@
             animation: cardPulse 3s ease-in-out infinite;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .agent::before {
@@ -380,7 +390,7 @@
             font-size: 1.2rem;
             font-weight: 600;
             transition: all 0.3s ease;
-            animation: cardPulse 3s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
             box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
         }
 
@@ -730,9 +740,20 @@
     </div>
 
     <script>
-        // Scroll to top on page load
+        // Scroll to top on page load and reload
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
+        });
+
         window.addEventListener('load', function() {
             window.scrollTo(0, 0);
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 100);
         });
 
         function openModal(title, content) {
