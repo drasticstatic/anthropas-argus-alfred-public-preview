@@ -210,6 +210,7 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
             transition: left 0.5s ease;
+            pointer-events: none;
         }
 
         .pillar:hover::before {
@@ -264,6 +265,7 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
             transition: left 0.5s ease;
+            pointer-events: none;
         }
 
         .capability:hover::before {
@@ -319,6 +321,7 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
             transition: left 0.5s ease;
+            pointer-events: none;
         }
 
         .agent:hover::before {
@@ -727,6 +730,11 @@
     </div>
 
     <script>
+        // Scroll to top on page load
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+
         function openModal(title, content) {
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-content-text').textContent = content;
