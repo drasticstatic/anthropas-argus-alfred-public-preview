@@ -232,7 +232,7 @@
             cursor: pointer;
             min-width: 200px;
             max-width: 250px;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -287,7 +287,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
             min-width: 150px;
             max-width: 200px;
             position: relative;
@@ -347,7 +347,7 @@
             cursor: pointer;
             min-width: 180px;
             max-width: 220px;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -414,16 +414,16 @@
         .cta-button {
             display: inline-block;
             padding: 1.5rem 3.5rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
+            background-size: 300% 300%;
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.3rem;
             font-weight: 700;
             transition: all 0.3s ease;
-            animation: cardPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 4s ease-in-out infinite, glowPulse 2s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
-            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4), 0 0 40px rgba(254, 202, 87, 0.3);
+            animation: cardPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 8s ease-in-out infinite, glowPulse 2s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
@@ -438,10 +438,10 @@
 
         @keyframes glowPulse {
             0%, 100% {
-                box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4), 0 0 40px rgba(254, 202, 87, 0.3);
+                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
             }
             50% {
-                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.6), 0 0 60px rgba(254, 202, 87, 0.5);
+                box-shadow: 0 8px 40px rgba(255, 107, 107, 0.7), 0 0 80px rgba(254, 202, 87, 0.6), 0 0 100px rgba(72, 219, 251, 0.5), 0 0 120px rgba(168, 85, 247, 0.3);
             }
         }
 
@@ -456,8 +456,9 @@
 
         .cta-button:hover {
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 32px rgba(255, 107, 107, 0.6), 0 0 60px rgba(254, 202, 87, 0.5);
-            border-color: rgba(254, 202, 87, 0.8);
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.8), 0 0 80px rgba(254, 202, 87, 0.7), 0 0 100px rgba(72, 219, 251, 0.6), 0 0 120px rgba(168, 85, 247, 0.4);
+            border-color: rgba(254, 202, 87, 0.9);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
 
         .copy-button {
@@ -864,18 +865,20 @@
             const navLinks = document.querySelectorAll('.navbar-link');
 
             let currentSection = '';
-            const scrollPosition = window.scrollY + 150;
+            const scrollPosition = window.scrollY + 200;
 
-            sections.forEach(section => {
+            // Find the section that contains the scroll position
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
                 const sectionTop = section.offsetTop;
-                const sectionBottom = sectionTop + section.clientHeight;
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                if (scrollPosition >= sectionTop) {
                     currentSection = section.getAttribute('id');
+                    break;
                 }
-            });
+            }
 
             // If at the bottom of the page, highlight the last visible section
-            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
                 const lastSection = sections[sections.length - 1];
                 if (lastSection) {
                     currentSection = lastSection.getAttribute('id');
@@ -895,7 +898,7 @@
 
         // Add click handler to navbar links for temporary highlight
         document.querySelectorAll('.navbar-link').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
                 // Remove clicked class from all links
                 document.querySelectorAll('.navbar-link').forEach(l => l.classList.remove('clicked'));
                 // Add clicked class to this link
