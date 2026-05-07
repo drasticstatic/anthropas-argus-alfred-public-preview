@@ -245,17 +245,16 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
-            background-size: 400% 400%;
+            background: conic-gradient(from 0deg, #ff6b6b, #feca57, #48dbfb, #ff6b6b);
             border-radius: 12px;
             z-index: -1;
-            animation: travelingBorder 4s linear infinite;
+            animation: rotateBorder 5s linear infinite;
             opacity: 0.5;
         }
 
-        @keyframes travelingBorder {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 400% 50%; }
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .pillar::after {
@@ -278,8 +277,8 @@
         }
 
         .pillar:hover::before {
-            opacity: 0.8;
-            animation-duration: 2s;
+            opacity: 0.7;
+            animation-duration: 3s;
         }
 
         .pillar h3 {
@@ -325,11 +324,10 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
-            background-size: 400% 400%;
+            background: conic-gradient(from 0deg, #a855f7, #ec4899, #ff6b6b, #a855f7);
             border-radius: 8px;
             z-index: -1;
-            animation: travelingBorder 4s linear infinite;
+            animation: rotateBorder 5s linear infinite;
             opacity: 0.5;
         }
 
@@ -349,12 +347,12 @@
 
         .capability:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(254, 202, 87, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(168, 85, 247, 0.2);
         }
 
         .capability:hover::before {
-            opacity: 0.8;
-            animation-duration: 2s;
+            opacity: 0.7;
+            animation-duration: 3s;
         }
 
         .capability-icon {
@@ -399,11 +397,10 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
-            background-size: 400% 400%;
+            background: conic-gradient(from 0deg, #22dd00, #48dbfb, #00aa88, #22dd00);
             border-radius: 12px;
             z-index: -1;
-            animation: travelingBorder 4s linear infinite;
+            animation: rotateBorder 5s linear infinite;
             opacity: 0.5;
         }
 
@@ -423,12 +420,12 @@
 
         .agent:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(254, 202, 87, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(34, 221, 0, 0.2);
         }
 
         .agent:hover::before {
-            opacity: 0.8;
-            animation-duration: 2s;
+            opacity: 0.7;
+            animation-duration: 3s;
         }
 
         .agent-name {
@@ -470,8 +467,8 @@
         .cta-button {
             display: inline-block;
             padding: 1.5rem 3.5rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
+            background-size: 300% 300%;
             color: white;
             text-decoration: none;
             border-radius: 12px;
@@ -499,12 +496,16 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff6b6b);
-            background-size: 300% 300%;
+            background: conic-gradient(from 0deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
             border-radius: 12px;
             z-index: -1;
-            animation: travelingBorder 5s linear infinite;
-            opacity: 0.4;
+            animation: rotateBorder 4s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .cta-button::after {
@@ -514,8 +515,8 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
+            background-size: 300% 300%;
             border-radius: 10px;
             z-index: -1;
             animation: gradientShift 8s ease-in-out infinite;
@@ -528,8 +529,8 @@
         }
 
         .cta-button:hover::before {
-            opacity: 0.7;
-            animation-duration: 3s;
+            opacity: 0.8;
+            animation-duration: 2s;
         }
 
         .copy-button {
@@ -758,7 +759,7 @@
             <div class="sparkle" style="bottom: 30%; right: 10%; animation-delay: 2.5s;"></div>
             <div class="sparkle" style="top: 20%; right: 40%; animation-delay: 0.8s;"></div>
             <div class="sparkle" style="bottom: 50%; left: 15%; animation-delay: 1.8s;"></div>
-            <h1>Argus Anthropas Alfred</h1>
+            <h1>Anthropas Argus Alfred</h1>
             <p class="subtitle">Conciliator · General Manager · Free-Model Sandbox</p>
             <p class="tagline">"Wise counsel meets all-seeing guardian"</p>
         </div>
@@ -938,19 +939,22 @@
             const navLinks = document.querySelectorAll('.navbar-link');
 
             let currentSection = '';
-            const scrollPosition = window.scrollY + 200;
+            const scrollPosition = window.scrollY + 150;
 
             // Find the section that contains the scroll position
-            sections.forEach(section => {
+            for (let i = 0; i < sections.length; i++) {
+                const section = sections[i];
                 const sectionTop = section.offsetTop;
                 const sectionBottom = sectionTop + section.clientHeight;
+
                 if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                     currentSection = section.getAttribute('id');
+                    break;
                 }
-            });
+            }
 
             // If at the bottom of the page, highlight the last visible section
-            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
                 const lastSection = sections[sections.length - 1];
                 if (lastSection) {
                     currentSection = lastSection.getAttribute('id');
@@ -958,10 +962,12 @@
             }
 
             navLinks.forEach(link => {
-                // Always update active state based on scroll, even if clicked
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + currentSection) {
-                    link.classList.add('active');
+                // Don't update if this link has the clicked class
+                if (!link.classList.contains('clicked')) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
                 }
             });
         }
@@ -973,9 +979,10 @@
                 document.querySelectorAll('.navbar-link').forEach(l => l.classList.remove('clicked'));
                 // Add clicked class to this link
                 this.classList.add('clicked');
-                // Remove clicked class after 2 seconds
+                // Remove clicked class after 2 seconds and let scroll take over
                 setTimeout(() => {
                     this.classList.remove('clicked');
+                    updateActiveNavLink();
                 }, 2000);
             });
         });
