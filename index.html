@@ -220,10 +220,15 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            justify-content: center;
+            position: relative;
+            padding-left: 2rem;
         }
 
         .section h2::before {
             content: '';
+            position: absolute;
+            left: 0;
             width: 4px;
             height: 1.8rem;
             background: linear-gradient(135deg, #ff6b6b, #feca57);
@@ -238,7 +243,7 @@
         }
 
         .pillar {
-            background: rgba(26, 26, 46, 0.6);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 12px;
@@ -259,13 +264,13 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 500%;
-            height: 500%;
+            width: 400%;
+            height: 400%;
             background: conic-gradient(from 0deg, #a855f7, #ec4899, #a855f7);
             transform: translate(-50%, -50%);
-            animation: rotateBorder 6s linear infinite;
+            animation: rotateBorder 8s linear infinite;
             z-index: -1;
-            opacity: 0.8;
+            opacity: 0.6;
         }
 
         .pillar::after {
@@ -275,7 +280,7 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(26, 26, 46, 0.7);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 10px;
@@ -289,12 +294,12 @@
 
         .pillar:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 16px rgba(168, 85, 247, 0.2);
         }
 
         .pillar:hover::before {
-            opacity: 1;
-            animation-duration: 3s;
+            opacity: 0.8;
+            animation-duration: 4s;
         }
 
         .pillar h3 {
@@ -302,7 +307,6 @@
             margin-bottom: 0.5rem;
             color: #a855f7;
             pointer-events: none;
-            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         .capabilities {
@@ -318,7 +322,7 @@
             justify-content: center;
             gap: 0.75rem;
             padding: 1rem;
-            background: rgba(26, 26, 46, 0.6);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 8px;
@@ -339,13 +343,13 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 500%;
-            height: 500%;
+            width: 400%;
+            height: 400%;
             background: conic-gradient(from 0deg, #48dbfb, #ff6b6b, #48dbfb);
             transform: translate(-50%, -50%);
-            animation: rotateBorder 6s linear infinite;
+            animation: rotateBorder 8s linear infinite;
             z-index: -1;
-            opacity: 0.8;
+            opacity: 0.6;
         }
 
         .capability::after {
@@ -355,7 +359,7 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(26, 26, 46, 0.7);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 6px;
@@ -364,25 +368,23 @@
 
         .capability:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(72, 219, 251, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(72, 219, 251, 0.2);
         }
 
         .capability:hover::before {
-            opacity: 1;
-            animation-duration: 3s;
+            opacity: 0.8;
+            animation-duration: 4s;
         }
 
         .capability-icon {
             font-size: 1.5rem;
             pointer-events: none;
-            filter: drop-shadow(0 0 8px rgba(72, 219, 251, 0.5));
         }
 
         .capability-text {
-            color: #e4e4e7;
+            color: #a1a1aa;
             font-size: 0.85rem;
             pointer-events: none;
-            text-shadow: 0 0 8px rgba(72, 219, 251, 0.3);
         }
 
         .agent-ecosystem {
@@ -393,7 +395,7 @@
         }
 
         .agent {
-            background: rgba(26, 26, 46, 0.6);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 12px;
@@ -414,13 +416,13 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 500%;
-            height: 500%;
+            width: 400%;
+            height: 400%;
             background: conic-gradient(from 0deg, #22c55e, #feca57, #22c55e);
             transform: translate(-50%, -50%);
-            animation: rotateBorder 6s linear infinite;
+            animation: rotateBorder 8s linear infinite;
             z-index: -1;
-            opacity: 0.8;
+            opacity: 0.6;
         }
 
         .agent::after {
@@ -430,7 +432,7 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(26, 26, 46, 0.7);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 10px;
@@ -439,12 +441,12 @@
 
         .agent:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 221, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(34, 221, 0, 0.2);
         }
 
         .agent:hover::before {
-            opacity: 1;
-            animation-duration: 3s;
+            opacity: 0.8;
+            animation-duration: 4s;
         }
 
         .agent-name {
@@ -453,14 +455,12 @@
             margin-bottom: 0.5rem;
             color: #feca57;
             pointer-events: none;
-            text-shadow: 0 0 10px rgba(254, 202, 87, 0.5);
         }
 
         .agent-role {
             font-size: 0.8rem;
-            color: #e4e4e7;
+            color: #a1a1aa;
             pointer-events: none;
-            text-shadow: 0 0 8px rgba(254, 202, 87, 0.3);
         }
 
         .cta-section {
