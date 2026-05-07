@@ -82,6 +82,22 @@
             background: rgba(254, 202, 87, 0.15);
             border-color: rgba(254, 202, 87, 0.5);
             box-shadow: 0 0 16px rgba(254, 202, 87, 0.3);
+            animation: clickedFade 2s ease-out forwards;
+        }
+
+        @keyframes clickedFade {
+            0% {
+                color: #feca57;
+                background: rgba(254, 202, 87, 0.15);
+                border-color: rgba(254, 202, 87, 0.5);
+                box-shadow: 0 0 16px rgba(254, 202, 87, 0.3);
+            }
+            100% {
+                color: #a1a1aa;
+                background: transparent;
+                border-color: transparent;
+                box-shadow: none;
+            }
         }
 
         .navbar-link:hover {
@@ -940,31 +956,33 @@
             const navLinks = document.querySelectorAll('.navbar-link');
 
             let currentSection = '';
-            const scrollPosition = window.scrollY + 100;
+            const scrollPosition = window.scrollY + 150;
 
-            // Find the section whose top is closest to but not greater than scroll position
-            let closestSection = null;
-            let closestDistance = Infinity;
-
-            sections.forEach(section => {
+            // Find the section that is currently in view
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
                 const sectionTop = section.offsetTop;
-                const distance = Math.abs(scrollPosition - sectionTop);
+                const sectionBottom = sectionTop + section.offsetHeight;
 
-                if (scrollPosition >= sectionTop && distance < closestDistance) {
-                    closestDistance = distance;
-                    closestSection = section;
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSection = section.getAttribute('id');
+                    break;
                 }
-            });
-
-            if (closestSection) {
-                currentSection = closestSection.getAttribute('id');
             }
 
             // If at the bottom of the page, highlight the last visible section
-            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
+            if (!currentSection && window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
                 const lastSection = sections[sections.length - 1];
                 if (lastSection) {
                     currentSection = lastSection.getAttribute('id');
+                }
+            }
+
+            // If at the top, highlight the first section
+            if (!currentSection && window.scrollY < 100) {
+                const firstSection = sections[0];
+                if (firstSection) {
+                    currentSection = firstSection.getAttribute('id');
                 }
             }
 
@@ -986,11 +1004,11 @@
                 document.querySelectorAll('.navbar-link').forEach(l => l.classList.remove('clicked'));
                 // Add clicked class to this link
                 this.classList.add('clicked');
-                // Remove clicked class after 2 seconds and let scroll take over
-                setTimeout(() => {
+                // Remove clicked class after animation completes and let scroll take over
+                this.addEventListener('animationend', function() {
                     this.classList.remove('clicked');
                     updateActiveNavLink();
-                }, 2000);
+                }, { once: true });
             });
         });
 
