@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alfred | Anthropas-Argus-Alfred</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff6b6b'/%3E%3Cstop offset='50%25' stop-color='%23feca57'/%3E%3Cstop offset='100%25' stop-color='%2348dbfb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+    <title>Anthropas Argus Alfred</title>
+    <link rel="icon" type="image/svg+xml" href="https://drasticstatic.github.io/favicon.svg">
+    <link rel="apple-touch-icon" href="https://drasticstatic.github.io/favicon.svg">
     <style>
         * {
             margin: 0;
@@ -413,20 +414,21 @@
         .cta-button {
             display: inline-block;
             padding: 1.5rem 3.5rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            background-size: 200% 200%;
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.3rem;
             font-weight: 700;
             transition: all 0.3s ease;
-            animation: cardPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 4s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
-            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
+            animation: cardPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 4s ease-in-out infinite, glowPulse 2s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4), 0 0 40px rgba(254, 202, 87, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
         @keyframes gradientShift {
@@ -436,16 +438,26 @@
 
         @keyframes glowPulse {
             0%, 100% {
-                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
+                box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4), 0 0 40px rgba(254, 202, 87, 0.3);
             }
             50% {
-                box-shadow: 0 8px 40px rgba(255, 107, 107, 0.7), 0 0 80px rgba(254, 202, 87, 0.6), 0 0 100px rgba(72, 219, 251, 0.5), 0 0 120px rgba(168, 85, 247, 0.3);
+                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.6), 0 0 60px rgba(254, 202, 87, 0.5);
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                border-color: rgba(254, 202, 87, 0.3);
+            }
+            50% {
+                border-color: rgba(254, 202, 87, 0.7);
             }
         }
 
         .cta-button:hover {
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.8), 0 0 80px rgba(254, 202, 87, 0.7), 0 0 100px rgba(72, 219, 251, 0.6), 0 0 120px rgba(168, 85, 247, 0.4);
+            box-shadow: 0 12px 32px rgba(255, 107, 107, 0.6), 0 0 60px rgba(254, 202, 87, 0.5);
+            border-color: rgba(254, 202, 87, 0.8);
         }
 
         .copy-button {
@@ -778,7 +790,7 @@
         <div class="cta-section" id="find-something">
             <h2>🧭 Need to Find Something?</h2>
             <p>Looking for a specific file, repo, or resource? Let me help you navigate.</p>
-            <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/404.html" class="cta-button">🧭 Explore Navigation →</a>
+            <a href="https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/404.html" class="cta-button">Explore Navigation →</a>
         </div>
 
         <div class="footer">
@@ -852,7 +864,7 @@
             const navLinks = document.querySelectorAll('.navbar-link');
 
             let currentSection = '';
-            const scrollPosition = window.scrollY + window.innerHeight / 3;
+            const scrollPosition = window.scrollY + 150;
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -863,7 +875,7 @@
             });
 
             // If at the bottom of the page, highlight the last visible section
-            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
                 const lastSection = sections[sections.length - 1];
                 if (lastSection) {
                     currentSection = lastSection.getAttribute('id');
@@ -871,9 +883,12 @@
             }
 
             navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + currentSection) {
-                    link.classList.add('active');
+                // Don't remove active class if the link has the clicked class
+                if (!link.classList.contains('clicked')) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
                 }
             });
         }
@@ -885,10 +900,11 @@
                 document.querySelectorAll('.navbar-link').forEach(l => l.classList.remove('clicked'));
                 // Add clicked class to this link
                 this.classList.add('clicked');
-                // Remove clicked class after 3 seconds
+                // Remove clicked class after 1.5 seconds and let scroll take over
                 setTimeout(() => {
                     this.classList.remove('clicked');
-                }, 3000);
+                    updateActiveNavLink();
+                }, 1500);
             });
         });
 
