@@ -232,7 +232,7 @@
             cursor: pointer;
             min-width: 200px;
             max-width: 250px;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -241,23 +241,45 @@
         .pillar::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
-            transition: left 0.5s ease;
-            pointer-events: none;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
+            background-size: 400% 400%;
+            border-radius: 12px;
+            z-index: -1;
+            animation: travelingBorder 4s linear infinite;
+            opacity: 0.5;
         }
 
-        .pillar:hover::before {
-            left: 100%;
+        @keyframes travelingBorder {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        .pillar::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 10px;
+            z-index: -1;
         }
 
         .pillar:hover {
             transform: translateY(-4px);
-            border-color: rgba(254, 202, 87, 0.4);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 16px rgba(254, 202, 87, 0.2);
+        }
+
+        .pillar:hover::before {
+            opacity: 0.8;
+            animation-duration: 2s;
         }
 
         .pillar h3 {
@@ -287,7 +309,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
             min-width: 150px;
             max-width: 200px;
             position: relative;
@@ -299,23 +321,40 @@
         .capability::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
-            transition: left 0.5s ease;
-            pointer-events: none;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
+            background-size: 400% 400%;
+            border-radius: 8px;
+            z-index: -1;
+            animation: travelingBorder 4s linear infinite;
+            opacity: 0.5;
         }
 
-        .capability:hover::before {
-            left: 100%;
+        .capability::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 6px;
+            z-index: -1;
         }
 
         .capability:hover {
             transform: translateY(-2px);
-            border-color: rgba(254, 202, 87, 0.4);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(254, 202, 87, 0.2);
+        }
+
+        .capability:hover::before {
+            opacity: 0.8;
+            animation-duration: 2s;
         }
 
         .capability-icon {
@@ -347,7 +386,7 @@
             cursor: pointer;
             min-width: 180px;
             max-width: 220px;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -356,23 +395,40 @@
         .agent::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(254, 202, 87, 0.1), transparent);
-            transition: left 0.5s ease;
-            pointer-events: none;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
+            background-size: 400% 400%;
+            border-radius: 12px;
+            z-index: -1;
+            animation: travelingBorder 4s linear infinite;
+            opacity: 0.5;
         }
 
-        .agent:hover::before {
-            left: 100%;
+        .agent::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 10px;
+            z-index: -1;
         }
 
         .agent:hover {
             transform: translateY(-2px);
-            border-color: rgba(254, 202, 87, 0.4);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(254, 202, 87, 0.2);
+        }
+
+        .agent:hover::before {
+            opacity: 0.8;
+            animation-duration: 2s;
         }
 
         .agent-name {
@@ -414,16 +470,16 @@
         .cta-button {
             display: inline-block;
             padding: 1.5rem 3.5rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            background-size: 200% 200%;
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.3rem;
             font-weight: 700;
             transition: all 0.3s ease;
-            animation: cardPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 8s ease-in-out infinite, glowPulse 2s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
-            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
+            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 8s ease-in-out infinite;
+            box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3), 0 0 30px rgba(254, 202, 87, 0.2);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
@@ -436,29 +492,44 @@
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes glowPulse {
-            0%, 100% {
-                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 60px rgba(254, 202, 87, 0.4), 0 0 80px rgba(72, 219, 251, 0.3);
-            }
-            50% {
-                box-shadow: 0 8px 40px rgba(255, 107, 107, 0.7), 0 0 80px rgba(254, 202, 87, 0.6), 0 0 100px rgba(72, 219, 251, 0.5), 0 0 120px rgba(168, 85, 247, 0.3);
-            }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff6b6b);
+            background-size: 300% 300%;
+            border-radius: 12px;
+            z-index: -1;
+            animation: travelingBorder 5s linear infinite;
+            opacity: 0.4;
         }
 
-        @keyframes borderGlow {
-            0%, 100% {
-                border-color: rgba(254, 202, 87, 0.3);
-            }
-            50% {
-                border-color: rgba(254, 202, 87, 0.7);
-            }
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            background-size: 200% 200%;
+            border-radius: 10px;
+            z-index: -1;
+            animation: gradientShift 8s ease-in-out infinite;
         }
 
         .cta-button:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.8), 0 0 80px rgba(254, 202, 87, 0.7), 0 0 100px rgba(72, 219, 251, 0.6), 0 0 120px rgba(168, 85, 247, 0.4);
-            border-color: rgba(254, 202, 87, 0.9);
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4), 0 0 40px rgba(254, 202, 87, 0.3);
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-button:hover::before {
+            opacity: 0.7;
+            animation-duration: 3s;
         }
 
         .copy-button {
@@ -867,17 +938,16 @@
             const navLinks = document.querySelectorAll('.navbar-link');
 
             let currentSection = '';
-            const scrollPosition = window.scrollY + 250;
+            const scrollPosition = window.scrollY + 200;
 
             // Find the section that contains the scroll position
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = sections[i];
+            sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (scrollPosition >= sectionTop) {
+                const sectionBottom = sectionTop + section.clientHeight;
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                     currentSection = section.getAttribute('id');
-                    break;
                 }
-            }
+            });
 
             // If at the bottom of the page, highlight the last visible section
             if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
