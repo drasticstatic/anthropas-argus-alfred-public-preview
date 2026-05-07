@@ -36,7 +36,7 @@ Wait ~4 seconds, then re-check with the curl command above.
 
 ## Choose Your Backend
 
-**[1] Alfred-Claude** — Anthropic Sonnet/Opus. Full quality, full context, uses quota.
+**[1] Alfred-Anthropic** — Anthropic Sonnet/Opus. Full quality, full context, uses quota.
 
 **[2] Alfred-NIM** — NVIDIA NIM (free). GLM-4.7 default. For exploratory questions, research, drafts.
 
@@ -44,7 +44,7 @@ Wait ~4 seconds, then re-check with the curl command above.
 
 **[4] Alfred-OpenRouter** — OpenRouter (free, multiple models). Via proxy.
 
-### Choosing [1]: Alfred-Claude
+### Choosing [1]: Alfred-Anthropic
 
 Proceed normally. This is the default for anything in trading-assistant or live environments.
 
@@ -72,7 +72,7 @@ Once inside a free-model session, use `/model` to choose:
 ## Free Model Session Notes
 
 ### Image Support
-**Text only** — proxy rejects image blocks with error 400. For vision work, use Alfred-Claude.  
+**Text only** — proxy rejects image blocks with error 400. For vision work, use Alfred-Anthropic.  
 If the error fires on every message (session jammed): an image block is stuck in context — **restart the session**.
 
 ### Error Recovery
@@ -87,7 +87,7 @@ If the error fires on every message (session jammed): an image block is stuck in
 
 ## Fortuna Sessions (Trading)
 
-**Always use Alfred-Claude for Fortuna** — never NIM or free models.  
+**Always use Alfred-Anthropic for Fortuna** — never NIM or free models.  
 Live trading requires full reliability, context, and quality. Free models are for exploration and research only.
 
 ---
