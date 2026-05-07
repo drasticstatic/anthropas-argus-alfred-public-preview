@@ -867,7 +867,7 @@
             const navLinks = document.querySelectorAll('.navbar-link');
 
             let currentSection = '';
-            const scrollPosition = window.scrollY + 200;
+            const scrollPosition = window.scrollY + 250;
 
             // Find the section that contains the scroll position
             for (let i = sections.length - 1; i >= 0; i--) {
@@ -880,7 +880,7 @@
             }
 
             // If at the bottom of the page, highlight the last visible section
-            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
                 const lastSection = sections[sections.length - 1];
                 if (lastSection) {
                     currentSection = lastSection.getAttribute('id');
@@ -888,12 +888,10 @@
             }
 
             navLinks.forEach(link => {
-                // Don't remove active class if the link has the clicked class
-                if (!link.classList.contains('clicked')) {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + currentSection) {
-                        link.classList.add('active');
-                    }
+                // Always update active state based on scroll, even if clicked
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
                 }
             });
         }
@@ -905,11 +903,10 @@
                 document.querySelectorAll('.navbar-link').forEach(l => l.classList.remove('clicked'));
                 // Add clicked class to this link
                 this.classList.add('clicked');
-                // Remove clicked class after 1.5 seconds and let scroll take over
+                // Remove clicked class after 2 seconds
                 setTimeout(() => {
                     this.classList.remove('clicked');
-                    updateActiveNavLink();
-                }, 1500);
+                }, 2000);
             });
         });
 
