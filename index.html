@@ -220,7 +220,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            justify-content: center;
         }
 
         .section h2::before {
@@ -239,7 +238,7 @@
         }
 
         .pillar {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 46, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 12px;
@@ -260,13 +259,13 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 400%;
-            height: 400%;
+            width: 500%;
+            height: 500%;
             background: conic-gradient(from 0deg, #a855f7, #ec4899, #a855f7);
             transform: translate(-50%, -50%);
-            animation: rotateBorder 8s linear infinite;
+            animation: rotateBorder 6s linear infinite;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.8;
         }
 
         .pillar::after {
@@ -276,7 +275,7 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 46, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 10px;
@@ -290,12 +289,12 @@
 
         .pillar:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 16px rgba(168, 85, 247, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.3);
         }
 
         .pillar:hover::before {
-            opacity: 0.8;
-            animation-duration: 4s;
+            opacity: 1;
+            animation-duration: 3s;
         }
 
         .pillar h3 {
@@ -303,6 +302,7 @@
             margin-bottom: 0.5rem;
             color: #a855f7;
             pointer-events: none;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         .capabilities {
@@ -318,7 +318,7 @@
             justify-content: center;
             gap: 0.75rem;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 46, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 8px;
@@ -339,13 +339,13 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 400%;
-            height: 400%;
+            width: 500%;
+            height: 500%;
             background: conic-gradient(from 0deg, #48dbfb, #ff6b6b, #48dbfb);
             transform: translate(-50%, -50%);
-            animation: rotateBorder 8s linear infinite;
+            animation: rotateBorder 6s linear infinite;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.8;
         }
 
         .capability::after {
@@ -355,7 +355,7 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 46, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 6px;
@@ -364,23 +364,25 @@
 
         .capability:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(72, 219, 251, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(72, 219, 251, 0.3);
         }
 
         .capability:hover::before {
-            opacity: 0.8;
-            animation-duration: 4s;
+            opacity: 1;
+            animation-duration: 3s;
         }
 
         .capability-icon {
             font-size: 1.5rem;
             pointer-events: none;
+            filter: drop-shadow(0 0 8px rgba(72, 219, 251, 0.5));
         }
 
         .capability-text {
-            color: #a1a1aa;
+            color: #e4e4e7;
             font-size: 0.85rem;
             pointer-events: none;
+            text-shadow: 0 0 8px rgba(72, 219, 251, 0.3);
         }
 
         .agent-ecosystem {
@@ -391,7 +393,7 @@
         }
 
         .agent {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 46, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 12px;
@@ -412,13 +414,13 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 400%;
-            height: 400%;
+            width: 500%;
+            height: 500%;
             background: conic-gradient(from 0deg, #22c55e, #feca57, #22c55e);
             transform: translate(-50%, -50%);
-            animation: rotateBorder 8s linear infinite;
+            animation: rotateBorder 6s linear infinite;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.8;
         }
 
         .agent::after {
@@ -428,7 +430,7 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 46, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 10px;
@@ -437,12 +439,12 @@
 
         .agent:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 12px rgba(34, 221, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 221, 0, 0.3);
         }
 
         .agent:hover::before {
-            opacity: 0.8;
-            animation-duration: 4s;
+            opacity: 1;
+            animation-duration: 3s;
         }
 
         .agent-name {
@@ -451,12 +453,14 @@
             margin-bottom: 0.5rem;
             color: #feca57;
             pointer-events: none;
+            text-shadow: 0 0 10px rgba(254, 202, 87, 0.5);
         }
 
         .agent-role {
             font-size: 0.8rem;
-            color: #a1a1aa;
+            color: #e4e4e7;
             pointer-events: none;
+            text-shadow: 0 0 8px rgba(254, 202, 87, 0.3);
         }
 
         .cta-section {
@@ -484,15 +488,16 @@
         .cta-button {
             display: inline-block;
             padding: 1.5rem 3.5rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
-            background-size: 300% 300%;
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.3rem;
             font-weight: 700;
             transition: all 0.3s ease;
-            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite, gradientShift 8s ease-in-out infinite;
+            animation: cardPulse 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
             box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3), 0 0 30px rgba(254, 202, 87, 0.2);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -501,23 +506,18 @@
             border: 2px solid transparent;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
         .cta-button::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 400%;
-            height: 400%;
+            width: 500%;
+            height: 500%;
             background: conic-gradient(from 0deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899, #ff6b6b);
             transform: translate(-50%, -50%);
-            animation: rotateBorder 8s linear infinite;
+            animation: rotateBorder 6s linear infinite;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.8;
         }
 
         @keyframes rotateBorder {
@@ -532,11 +532,11 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #a855f7, #ec4899);
-            background-size: 300% 300%;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 10px;
             z-index: -1;
-            animation: gradientShift 8s ease-in-out infinite;
         }
 
         .cta-button:hover {
@@ -546,8 +546,8 @@
         }
 
         .cta-button:hover::before {
-            opacity: 0.8;
-            animation-duration: 4s;
+            opacity: 1;
+            animation-duration: 3s;
         }
 
         .copy-button {
