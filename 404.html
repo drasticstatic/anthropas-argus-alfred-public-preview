@@ -294,7 +294,8 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
+            /* 1. Make the base container completely transparent so colors pass through */
+            background: transparent; 
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 12px;
@@ -320,7 +321,8 @@
             transform: translate(-50%, -50%);
             animation: rotateBorder 8s linear infinite;
             z-index: -2;
-            opacity: 0.4;
+            /* 2. Keep this low so the background snake gradient does not overpower your text */
+            opacity: 0.4; 
         }
 
         .card::after {
@@ -330,11 +332,37 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(255, 255, 255, 0.05);
+            /* 3. Switch from white tint to a dark violet/blue tint with low alpha */
+            background: rgba(20, 20, 35, 0.45);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 10px;
             z-index: -1;
+        }
+
+        /* Subtly lifts the card and drops a softer glow shadow */
+        .card:hover {
+            /* Reduced lift from -4px/-2px down to a gentle -1px */
+            transform: translateY(-1px);
+            /* Softened the shadow spread and dropped color opacity to 0.15 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+                        0 0 12px rgba(72, 219, 251, 0.15);
+        }
+
+        /* Keeps the background moving smoothly without flashing white */
+        .card:hover::after {
+            /* Keeps the glass panel background consistent instead of wiping it out */
+            background: rgba(20, 20, 35, 0.42);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Prevents the spinning neon light from getting too bright */
+        .card:hover::before {
+            /* Restricted the opacity jump from 0.85 down to a gentle 0.55 */
+            opacity: 0.55;
+            /* Keeps the animation speed calm instead of rushing the spin */
+            animation-duration: 8s;
         }
 
         @keyframes rotateBorder {
