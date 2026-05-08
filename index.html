@@ -258,16 +258,17 @@
             transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
                         box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             will-change: transform;
+            cursor: pointer;
         }
 
         /* 2. Unified Spinning Border Engine (Exact center tracking & soft glow) */
         .pillar::before, .capability::before, .agent::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 400%;
-            height: 400%;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             transform: translate(-50%, -50%);
             animation: rotateBorder 8s linear infinite;
             z-index: -2;
@@ -291,9 +292,6 @@
         }
 
         /* 4. Unified Softer Hover Response Profiles */
-        .pillar:hover, .capability:hover, .agent:hover {
-            transform: translateY(-1px);
-        }
         .pillar:hover::before, .capability:hover::before, .agent:hover::before {
             opacity: 0.55;
         }
@@ -314,6 +312,7 @@
             background: conic-gradient(from 0deg, #a855f7, #ec4899, #a855f7);
         }
         .pillar:hover {
+            transform: translateY(-1px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), 0 0 12px rgba(168, 85, 247, 0.15);
         }
         .pillar h3 {
@@ -344,6 +343,7 @@
             border-radius: 6px;
         }
         .capability:hover {
+            transform: translateY(-1px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), 0 0 12px rgba(72, 219, 251, 0.15);
         }
         .capability-icon {
@@ -373,6 +373,7 @@
             border-radius: 10px;
         }
         .agent:hover {
+            transform: translateY(-1px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), 0 0 12px rgba(34, 197, 94, 0.15);
         }
         .agent-name {
