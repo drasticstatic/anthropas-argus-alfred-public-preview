@@ -7,7 +7,7 @@
 
 ---
 
-**🌐 [Explore the Public Preview →](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/)**
+**🌐 [Explore the Public Preview →](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/)** &nbsp;&nbsp;<big>·&nbsp;&amp;&nbsp;·</big>&nbsp;&nbsp; [👀 View Sample Marp Deck 📰](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/alfred-palette-sample.marp.html)
 
 ---
 

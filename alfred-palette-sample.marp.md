@@ -70,7 +70,7 @@ style: |
 
 - [`create-skill` · `marp-deck`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/tree/main/.claude/skills) — skills live in `.claude/skills/`
 - [my-template](https://github.com/drasticstatic/my-template) — settings, pointer, skill format documented
-- [**PIR De Vine News**](https://drasticstatic.github.io/pir-devine-news-public-preview/dashboard/pir-palette-sample.marp.html) — newsletter deck identity (`#00d082` green)
+- [**PIR De Vine News**](https://drasticstatic.github.io/pir-devine-news-public/dashboard/pir-palette-sample.marp.html) — newsletter deck identity (`#00d082` green)
 - [**Divorce & Custody**](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/divorce-palette-sample.marp.html) — professional legal deck identity (navy + white)
 - [**Trading-assistant**](https://drasticstatic.github.io/trading-assistant-public-preview/setup/trading-palette-sample.marp.html) — canonical case study, GitHub-inspired palette
 
