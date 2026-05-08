@@ -279,9 +279,6 @@
         .pillar::before, .capability::before, .agent::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             animation: rotateBorder 8s linear infinite;
             z-index: -2;
             opacity: 0.35;
@@ -289,16 +286,25 @@
             will-change: transform;
         }
         .pillar::before {
+            top: 50%;
+            left: 50%;
             width: 300%;
             height: 300%;
+            transform: translate(-50%, -50%);
         }
         .capability::before {
+            top: 50%;
+            left: 50%;
             width: 250%;
             height: 250%;
+            transform: translate(-50%, -50%);
         }
         .agent::before {
+            top: 50%;
+            left: 50%;
             width: 300%;
             height: 300%;
+            transform: translate(-50%, -50%);
         }
 
         /* 3. Unified Glass Mask Cover Sheet (Protects reading legibility) */
