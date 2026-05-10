@@ -44,12 +44,12 @@ Builds a knowledge graph from the codebase using tree-sitter AST (code files) an
 ## 🛠️ Install & Setup
 
 ```bash
-# Install globally (one-time)
-uv tool install graphifyy
+# Install globally with anthropic SDK included (one-time)
+uv tool install graphifyy --with anthropic
 
 # Per repo: build the graph and wire the Claude Code hook
 cd ~/code/anthropas-argus-alfred
-graphify .
+graphify extract .
 graphify claude install
 
 # Add to .gitignore before first commit
@@ -60,6 +60,20 @@ echo "graphify-out/cost.json" >> .gitignore
 git add graphify-out/graph.json graphify-out/GRAPH_REPORT.md graphify-out/graph.html
 git commit -m "Add graphify knowledge graph"
 ```
+
+### ⚠️ Claude Code Session — API Key Requirement
+
+Graphify v0.7.13 requires an LLM API key in the **shell environment** — there is no AST-only fallback. Claude Code uses OAuth internally, so `ANTHROPIC_API_KEY` is not set as an env var and subprocess tools like graphify cannot access it.
+
+**Fix:** Before running `graphify extract .` in a Claude Code session, set the key in-session:
+
+```
+! export ANTHROPIC_API_KEY=sk-ant-...
+```
+
+The `!` prefix runs it in the terminal and makes it available to graphify. This is a one-time step per session — the key is not persisted.
+
+**NIM proxy note:** `localhost:8082` (free-claude-code proxy) is NOT compatible with graphify's Claude client — the response format causes a `'str' object has no attribute 'content'` error. Use the real Anthropic key directly.
 
 ### .graphifyignore
 
@@ -102,7 +116,7 @@ Key version fixes to be aware of when upgrading:
 
 ## 🔒 Notes
 
-- `graphify .` on repos with PDF/image docs will trigger LLM API calls (uses `ANTHROPIC_API_KEY` from env). AST-only extraction is free — pure local tree-sitter.
+- `graphify extract .` requires an LLM API key — v0.7.13 has no AST-only fallback mode. See the Claude Code session note above for the `! export` workaround.
 - `graphify hook install` adds post-commit/post-checkout hooks for auto-rebuild; remove with `graphify hook uninstall` if they slow things down.
 - If `GRAPH_REPORT.md` flags hardcoded secrets — rotate them, it's doing its job.
 
