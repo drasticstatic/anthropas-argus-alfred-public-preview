@@ -12,9 +12,17 @@ Execute the complete sync routine: stage outstanding work, commit, push to remot
 
 ## Step 1 — Check Status and Stage Work
 
+If code files were modified this session, update the knowledge graph first (AST-only, no API cost):
+
+```bash
+graphify update .
+```
+
+Then stage:
+
 ```bash
 git status
-git add AGENTS.md CLAUDE.md README.md PENDING-TASKS.md HANDOFF.md AGENT-SYNC/ sandbox/ logs/ .claude/skills/ specs/
+git add AGENTS.md CLAUDE.md README.md PENDING-TASKS.md HANDOFF.md AGENT-SYNC/ sandbox/ logs/ .claude/skills/ specs/ graphify-out/
 ```
 
 Stage only what was actually changed — no need to add everything if it's clean.

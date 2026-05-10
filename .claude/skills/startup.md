@@ -34,6 +34,19 @@ Wait ~4 seconds, then re-check with the curl command above.
 
 ---
 
+## Graph Orientation (if graphify installed)
+
+If `graphify-out/GRAPH_REPORT.md` exists, read it before opening any files or running searches — god nodes and community structure orient the session faster than file-by-file exploration.
+
+```bash
+# Quick check
+[ -f graphify-out/GRAPH_REPORT.md ] && echo "graph present" || echo "no graph"
+```
+
+Use `graphify query "your question"` for cross-file questions. The PreToolUse hook fires automatically before grep/find, but reading the report at session open is faster.
+
+---
+
 ## Choose Your Backend
 
 **[1] Alfred-Anthropic** — Anthropic Sonnet/Opus. Full quality, full context, uses quota.
