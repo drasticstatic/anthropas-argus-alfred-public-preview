@@ -2,7 +2,7 @@
 
 Alfred integrates [free-claude-code](https://github.com/drasticstatic/free-claude-code) as a local proxy that routes Claude Code CLI requests to free/open-source AI providers. This lets you keep working when Claude session tokens are exhausted.
 
-**Sandbox location:** `/Users/christopherwilson/code-forked/free-claude-code/`
+**Sandbox location:** `~/code-forked/free-claude-code/`
 **Config file:** `~/.config/free-claude-code/.env` (never committed)
 
 ---
@@ -22,13 +22,14 @@ Alfred integrates [free-claude-code](https://github.com/drasticstatic/free-claud
 
 ## Initial Setup (One-Time)
 
-Prerequisites are already satisfied:
-- `uv` ✅ installed at `~/.local/bin/uv`
-- Python 3.14 ✅ installed via Homebrew
-- Virtual environment ✅ created at `/code-forked/free-claude-code/.venv`
-- Config scaffold ✅ created at `~/.config/free-claude-code/.env`
+Prerequisites:
+- `uv` — install from [astral.sh/uv](https://astral.sh/uv) if not present
+- Python 3.14 — via Homebrew (`brew install python@3.14`) or [python.org](https://www.python.org/downloads/)
+- Clone the repo: `git clone https://github.com/Alishahryar1/free-claude-code ~/code-forked/free-claude-code`
+- Run `uv sync` inside the clone to create the virtual environment at `~/code-forked/free-claude-code/.venv`
+- Run `uv run free-claude-code init` to scaffold the config at `~/.config/free-claude-code/.env`
 
-**The only remaining step: add your NVIDIA NIM API key.**
+**The only remaining step: add your API key for your chosen provider (see below).**
 
 ### Get a Free NVIDIA NIM API Key
 
