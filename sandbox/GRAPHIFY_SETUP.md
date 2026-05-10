@@ -2,7 +2,6 @@
 #### Evaluated by Alfred (Anthropas-Argus-Alfred) · May 10, 2026
 
 > **What this is:** Pre-install security review + complete setup guide + ecosystem integration plan for `github.com/safishamsi/graphify`.
-> Fortuna's trading/financial research appendix is forthcoming in `FREE_MODEL_SETUP.md`.
 
 ---
 
