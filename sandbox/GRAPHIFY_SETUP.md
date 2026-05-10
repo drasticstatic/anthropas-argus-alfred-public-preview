@@ -44,8 +44,8 @@ Builds a knowledge graph from the codebase using tree-sitter AST (code files) an
 ## 🛠️ Install & Setup
 
 ```bash
-# Install globally with anthropic SDK included (one-time)
-uv tool install graphifyy --with anthropic
+# Install globally with all LLM backend SDKs (one-time)
+uv tool install graphifyy --with anthropic --with openai
 
 # Per repo: build the graph and wire the Claude Code hook
 cd ~/code/anthropas-argus-alfred
@@ -74,6 +74,15 @@ Graphify v0.7.13 requires an LLM API key in the **shell environment** — there 
 The `!` prefix runs it in the terminal and makes it available to graphify. This is a one-time step per session — the key is not persisted.
 
 **NIM proxy note:** `localhost:8082` (free-claude-code proxy) is NOT compatible with graphify's Claude client — the response format causes a `'str' object has no attribute 'content'` error. Use the real Anthropic key directly.
+
+**No Anthropic API key? Use Gemini (free):** Claude Pro (OAuth) and the Anthropic API are separate products with separate billing. If you don't have an API key, Google AI Studio provides free Gemini API access:
+
+1. Go to `aistudio.google.com` → create a **project** first, then "Get API key" → create a free key (no credit card required; a project is required before generating a key)
+2. Run extraction with the Gemini backend:
+   ```
+   ! GEMINI_API_KEY=your-gemini-key graphify extract /path/to/repo/
+   ```
+   Graphify uses an OpenAI-compatible client for Gemini — the `--with openai` install flag above covers this.
 
 ### .graphifyignore
 
