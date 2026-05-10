@@ -46,7 +46,7 @@ I am the **conciliator** — I intervene when other agents cannot reach agreemen
 | Agent | Platform | Domain | Priority |
 |-------|----------|--------|----------|
 | **Alfred** (me) | Claude Code CLI | Conciliator, cross-repo housekeeping, free-model sandbox, generalist tasks | **Default** |
-| **Fortuna** | Claude Code CLI | Trading workflow, session analysis, coaching documentation | Designated domain |
+| **Fortuna** | Claude Code CLI | Trading workflow, session analysis, coaching documentation, taxes, wealth warden | Designated domain |
 | **Kavanah** | Augment Intent | Spec-driven orchestration, cross-repo coordination, documentation | Specialist |
 | **Auggie** | Augment CLI | Code builds — Pine Script, Python, MCP servers, web3/dappu | Specialist |
 
@@ -98,8 +98,8 @@ I integrate **NVIDIA NIM** as a free-model sandbox, allowing me to route capable
 ### How It Works
 
 1. **Proxy server** — `free-claude-code` runs as a local proxy at `http://localhost:8082`
-2. **Model routing** — I can switch between Anthropic Claude and free models mid-session via `/model` command
-3. **No restart required** — the `/model` picker surfaces NIM models from the proxy without session restart
+2. **Session separation** — Alfred-NIM and Alfred-Anthropic run as separate sessions (separate alter egos). Preferred handoff: update HANDOFF.md + AGENT_SYNC.md → open a fresh NIM session reading just the handoff doc.
+3. **Model switching note** — `/model` mid-session is available but the existing context re-prices under the new model, accelerating quota drain. Separate sessions are more efficient for extended work.
 
 ### Available Models
 
@@ -132,7 +132,7 @@ cd ~/code-forked/free-claude-code && nohup uv run free-claude-code > /tmp/fcc.lo
 
 ### Known Issues
 
-**"peer closed connection without sending complete message body"** — Occasional network issue with NVIDIA NIM proxy. Workaround: use shorter responses when using free models. This error is transient and does not affect functionality.
+**"peer closed connection without sending complete message body" / "Provider API request failed"** — Transient NVIDIA NIM network errors. Workaround: tell the agent to continue — it retries automatically. These errors are isolated in NIM-only sessions and do not affect Anthropic sessions. Anthropic's Claude models are increasingly reliable with expanded compute backing — NIM errors are a proxy-layer issue, not a model-quality one.
 
 ---
 
@@ -182,7 +182,9 @@ anthropas-argus-alfred/
 ### My Skills
 
 - `/startup` — Model choice skill (proxy check + backend selection)
-- `/goodmorning` — Session startup routine (inherited from Fortuna's pattern)
+- `/session-sync` — Full sync routine: commit, push, update HANDOFF.md + AGENT_SYNC.md, write session log
+- `/create-skill` — Skill authoring workflow
+- `/marp-deck` — Marp presentation deck workflow
 
 ### Session Handoff
 
@@ -197,7 +199,7 @@ Christopher (Founding Developer)
     ↓
 Alfred (Claude Code CLI + NVIDIA NIM) — system coordinator, free-model sandbox
     ↕
-Fortuna (Claude Code CLI) — trading specialist
+Fortuna (Claude Code CLI) — trading specialist, wealth warden
     ↕
 Kavanah (Augment Intent) — spec-driven orchestration
     ↕
@@ -213,21 +215,15 @@ Auggie (Augment CLI) — code build specialist
 
 ---
 
-## 📊 My Track Record
+## 🗺️ AAA System Architecture — Build Timeline
 
-### Completed Work
-
-- ✅ **NVIDIA NIM sandbox setup** — proxy configured, API key entered, validated working
-- ✅ **Model-picker skills** — `/startup` skill created, `goodmorning.md` updated with Step 0
-- ✅ **Cross-repo housekeeping** — AGENTS.md + CLAUDE.md stubs for 7 dappu class repos
-- ✅ **Task offloading** — repo security scanning, .gitignore merge moved from Fortuna to Alfred
-- ✅ **Public preview pipeline** — sync-public.yml + gitexporter.config.json deployed
-
-### Active Projects
-
-- 🔄 **Branch protection research** — investigating CI gate as free alternative for private repos
-- 🔄 **GWS CLI integration** — planning Fortuna's dedicated Google account setup
-- 🔄 **NVIDIA NIM model testing** — roadmap to test other models
+| Date | Milestone |
+|------|-----------|
+| **May 5, 2026** | Alfred identity established — CLAUDE.md, AGENTS.md, `specs/alfred-workflow.md`. NVIDIA NIM sandbox configured and validated. Dual-mode philosophy (Anthropic + NIM as separate alter egos) documented. `HANDOFF.md` created as NIM session pickup doc. |
+| **May 5–6, 2026** | Alfred-NIM sessions: UI enhancements to alfred public page — pillar card interactions, navbar active states, sparkle effects, CTA styling. GitExporter badges updated across alfred, trading, PIR repos. PIR README created. |
+| **May 6–7, 2026** | Cross-repo AGENTS.md + PENDING-TASKS scaffolding. CLAUDE.md stubs for 7 dappu archive repos. Architecture cleanup: HANDOFF.md overhauled, `settings.local.json` cleaned across all active repos. |
+| **May 8, 2026** | Major ecosystem pass — `.claudeignore` deployed to 20+ repos. Public sync hardened (`sync-public.yml` + `gitexporter.config.json`) across all 4 active repos. Marp palette decks created + rendered. Skills deployed: `session-sync`, `create-skill`, `marp-deck`. Agent rosters added to all 4 active repo AGENTS.md files. GWS CLI (`gwsdc`, `gwspdn`) validated. |
+| **May 8–9, 2026** | NIM session handoff methodology documented ecosystem-wide. Fortuna-NIM eligibility clarified. Divorce logs unblocked. macOS Automator ideas added to divorce PENDING-TASKS. PIR NIM treasury savings note added to ROADMAP. Alfred `AGENT_SYNC.md` created as living system context. |
 
 ---
 
