@@ -50,7 +50,9 @@ uv tool install graphifyy --with anthropic --with openai
 # Per repo: build the graph and wire the Claude Code hook
 cd ~/code/anthropas-argus-alfred
 graphify extract .
-graphify claude install
+graphify cluster-only .   # free — no API calls; generates GRAPH_REPORT.md from graph.json
+                          # also run this after a partial extraction (rate-limited chunks)
+graphify claude install   # free — adds PreToolUse hook to .claude/settings.json
 
 # Add to .gitignore before first commit
 echo "graphify-out/manifest.json" >> .gitignore
@@ -60,6 +62,26 @@ echo "graphify-out/cost.json" >> .gitignore
 git add graphify-out/graph.json graphify-out/GRAPH_REPORT.md graphify-out/graph.html
 git commit -m "Add graphify knowledge graph"
 ```
+
+### ⚠️ Free Tier Rate Limit — Large Repos
+
+Gemini free tier: **5 requests/minute** and **250k input tokens/minute**. Graphify fires all chunks in parallel without respecting the retry delays in the 429 response. For repos with 100+ files (17+ chunks), many chunks will rate-limit.
+
+**Observed in trading-assistant (334 files, 17 chunks — May 11, 2026):**
+- Chunks 1, 3, 4 completed; chunk 2 failed (connection error); chunks 5–17 hit 429
+- Despite failures, graphify still wrote output from completed chunks:
+  `graph.json: 116 nodes, 141 edges, 18 communities` · tokens: 225,612 in / 5,579 out · est. cost: ~$0.13
+- `GRAPH_REPORT.md` and `graph.html` were not generated (partial extraction); run `graphify cluster-only .` (free, no API calls) to generate the report from existing `graph.json`
+
+**For comparison — alfred repo (17 docs, 1 chunk):**
+  `graph.json: 16 nodes, 13 edges, 4 communities` · tokens: 64,138 in / 1,916 out · est. cost: ~$0.04
+
+**Fix options:**
+- Use a real Anthropic API key (see below) — most reliable; ~$0.10–0.30 per full extraction
+- For small/new repos: free Gemini tier works fine (stay under 1 chunk ≈ under ~20 files)
+- `graphify cluster-only .` is always free — generates report from existing `graph.json`
+
+---
 
 ### ⚠️ Claude Code Session — API Key Requirement
 
