@@ -123,3 +123,64 @@ git log upstream/main --oneline -10  # review changes
 git merge upstream/main
 uv sync  # re-install deps if pyproject.toml changed
 ```
+
+---
+
+## 🔬 Research & Evaluation
+
+**Verdict: SAFE TO USE (evaluated May 2026 by Alfred)**
+
+| Check | Result |
+|-------|--------|
+| Network exposure | ✅ Binds to `localhost:8082` only — not externally accessible |
+| Credential handling | ✅ Real Anthropic key never sent to proxy; passphrase (`freecc`) is a local proxy secret only |
+| Config storage | ✅ `~/.config/free-claude-code/.env` — local only, never committed |
+| Upstream provenance | ✅ Fork of `Alishahryar1/free-claude-code` — actively maintained, reviewed before merging |
+| API key exposure | ✅ NVIDIA NIM key in `.env` stays local; no writes to disk beyond config |
+| Subprocess calls | ✅ No `shell=True` patterns in core proxy code |
+| Proxy behavior | ✅ Full backend swap — Claude Code client behavior is identical; no prompt interception |
+
+**What it does:** Routes Claude Code CLI requests to free/open-source LLM providers (primarily NVIDIA NIM free tier) via a local proxy at `localhost:8082`. The Claude Code client is unaware of the swap — all prompts, tool use, and responses pass through identically. Real Anthropic key is never used; the proxy substitutes your NIM or other provider key upstream.
+
+**Key limitation:** Model quality varies significantly from Claude. NIM free-tier models (Llama 3.3 70B, GLM 4.7) are capable for structured tasks but do not match Claude Opus/Sonnet for nuanced reasoning, complex tool use, or multi-step workflows. Plan accordingly.
+
+---
+
+## 🎯 Fortuna / Trading-Assistant Use Cases
+
+**Rule:** NIM is for non-live, non-account work only. Live trading decisions, prop firm account actions, and anything that affects real money are always Anthropic.
+
+### ✅ NIM-Eligible Tasks (Fortuna)
+
+| Task | Why NIM Works |
+|------|---------------|
+| Draft markdown reviews from raw notes | Structured templating — model quality less critical |
+| Research and summarize strategy documentation | Reading + summarizing, not reasoning |
+| Bulk housekeeping (rename files, update headers, pattern find/replace) | Mechanical tasks |
+| First-pass weekly review drafts | Anthropic does final wrap and quality pass |
+| Historical trade data formatting | CSV → table → markdown — no judgment calls |
+| Skills and spec documentation drafts | Template-filling work |
+| PENDING-TASKS.md cleanup and organization | Administrative |
+
+### ❌ Not NIM-Eligible (Always Anthropic)
+
+| Task | Why Anthropic Only |
+|------|-------------------|
+| Live session decisions (entry, SL, TP, position sizing) | Real money — no exceptions |
+| Trade reviews (final, publication-ready) | Coaching-grade analysis requires full reasoning |
+| Prop firm account status and progression | Account-critical accuracy |
+| Pattern Tracker updates | Behavioral continuity requires judgment |
+| Any action that triggers a git push to a live coaching channel | Irreversible external action |
+
+### Handoff Pattern (NIM → Anthropic)
+
+When using NIM for drafts:
+1. NIM session writes draft to a temp file or stdout
+2. Close NIM session — do NOT switch models mid-session (re-prices context, drains quota)
+3. Open fresh Anthropic session → read draft → quality-wrap into final format
+
+Log NIM sessions as `session_YYYYMMDD_nvidia.md` in `logs/fortuna/YYYY/MM-Mon/`.
+
+---
+
+*Evaluated by Alfred · May 2026 · See `sandbox/GRAPHIFY_SETUP.md` for graphify equivalent*
