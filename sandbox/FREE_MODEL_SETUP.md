@@ -63,6 +63,50 @@ ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude
 
 **Why both are needed:** Claude Code sends `ANTHROPIC_API_KEY` as its auth header. The proxy validates it against `ANTHROPIC_AUTH_TOKEN` in the config (`freecc`). Your real Anthropic key is never sent — the proxy uses your `NVIDIA_NIM_API_KEY` (or other provider key) to make the actual upstream call.
 
+### Model Picker Issue (Workaround)
+
+**Known issue:** Claude Code CLI's initial model picker doesn't display non-Anthropic models from the proxy, even though `/v1/models` returns them correctly.
+
+**Workaround:** Specify the model directly when launching:
+
+```bash
+ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude --model anthropic/nvidia_nim/z-ai/glm4.7
+```
+
+**Important:** The `/model` command only shows the full list of models in sessions that were started WITHOUT `--model`. If you use `--model` to bypass the picker, `/model` will still only show Anthropic models.
+
+**To see the full model list:** Start a session without `--model`, then run `/model` once you're in the session. The models will appear correctly.
+
+**Common NVIDIA NIM models:**
+- `anthropic/nvidia_nim/z-ai/glm4.7` — General purpose, fast
+- `anthropic/nvidia_nim/z-ai/glm5` — **Recommended** — best free-tier model for Claude Code tool-use
+- `anthropic/nvidia_nim/z-ai/glm-5.1` — Newest GLM; switch via `/model` (don't put in .env — causes boot crash)
+- `anthropic/nvidia_nim/meta/llama-3.3-70b-instruct` — Reasonable quality, can hallucinate tool calls
+- `anthropic/nvidia_nim/nvidia/llama-3.1-nemotron-70b-instruct` — Reasoning/coding
+- `anthropic/nvidia_nim/moonshotai/kimi-k2.5` — Kimi model
+- `anthropic/nvidia_nim/minimaxai/minimax-m2.5` — MiniMax model
+
+Browse all models at [build.nvidia.com](https://build.nvidia.com/explore/discover).
+
+---
+
+## 🏆 Model Battle Notes (Tested June 2026)
+
+It is a massive win that GLM was found deep down in the NVIDIA NIM pool. Here's what we've learned from live testing:
+
+**GLM-5.1 startup quirk:** Putting `z-ai/glm-5.1` directly into the proxy's `.env` file on startup causes a hard crash. The proxy's local boot-up script uses explicit string matching that doesn't natively recognize GLM's unique name format — yet it allows the active runtime router to resolve it dynamically once the engine is already awake and listening. **Workaround:** Set a safe default (e.g. `glm4.7`) in `.env`, then switch to GLM-5.1 via `/model` after the session starts.
+
+**Model comparison for Claude Code tool-use:**
+
+| Model | Verdict | Why |
+|-------|---------|-----|
+| **Z-Ai (GLM 4.7 / 5.1)** | ✅ **Hidden gem** — recommended | Handles structured JSON logic exceptionally well. Easily picks up broken contexts and executes proper engineering tasks just like native Claude Sonnet or Opus. Best free-tier model for tool-use workflows. |
+| **Gemma** | ❌ Problematic | Lacks specialized multi-turn tool-handling parameters required by Claude Code. Hallucinates raw file operations. |
+| **Llama 3.3 70B** | ⚠️ Mixed | Capable for structured tasks but does not match Claude for nuanced reasoning, complex tool use, or multi-step workflows. Can hallucinate file operations under pressure. |
+| **DeepSeek / Claude Gateways** | ❌ Chokes on port 8082 | Frequently fail because they attempt complex native streaming protocols that the standard proxy translator struggles to parse. |
+
+**Bottom line for NIM sessions:** GLM is the go-to. It recovers context well, handles tool calls properly, and stays on task. When the Anthropic subscription returns, use Sonnet/Opus for verification passes on NIM-generated work.
+
 ---
 
 ## Model Configuration
