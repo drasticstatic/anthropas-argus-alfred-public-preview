@@ -85,6 +85,7 @@ ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude --model
 - `anthropic/nvidia_nim/nvidia/llama-3.1-nemotron-70b-instruct` — Reasoning/coding
 - `anthropic/nvidia_nim/moonshotai/kimi-k2.5` — Kimi model
 - `anthropic/nvidia_nim/minimaxai/minimax-m2.5` — MiniMax model
+- `anthropic/nvidia_nim/databricks/dbrx-instruct` — Databricks DBRX MoE; strong language + coding + RAG
 
 Browse all models at [build.nvidia.com](https://build.nvidia.com/explore/discover).
 
@@ -104,8 +105,29 @@ It is a massive win that GLM was found deep down in the NVIDIA NIM pool. Here's 
 | **Gemma** | ❌ Problematic | Lacks specialized multi-turn tool-handling parameters required by Claude Code. Hallucinates raw file operations. |
 | **Llama 3.3 70B** | ⚠️ Mixed | Capable for structured tasks but does not match Claude for nuanced reasoning, complex tool use, or multi-step workflows. Can hallucinate file operations under pressure. |
 | **DeepSeek / Claude Gateways** | ❌ Chokes on port 8082 | Frequently fail because they attempt complex native streaming protocols that the standard proxy translator struggles to parse. |
+| **Databricks DBRX Instruct** | ⚠️ Untested (June 2026) | Mixture-of-Experts architecture. Strong on language understanding, coding, and RAG per Databricks benchmarks. Available on free NIM tier. Needs live testing against Claude Code tool-use patterns — try it via `/model` and compare with GLM-5.1. |
 
 **Bottom line for NIM sessions:** GLM is the go-to. It recovers context well, handles tool calls properly, and stays on task. When the Anthropic subscription returns, use Sonnet/Opus for verification passes on NIM-generated work.
+
+---
+
+## ⚠️ Rate Limiting — Critical Config Note
+
+**Do NOT set `PROVIDER_RATE_LIMIT` too low.** Claude Code's tool-use pattern fires multiple rapid API calls per turn (tool calls, reads, edits, searches). The proxy's defaults are:
+
+```dotenv
+PROVIDER_RATE_LIMIT=40      # requests per window
+PROVIDER_RATE_WINDOW=60     # seconds
+```
+
+Setting `PROVIDER_RATE_LIMIT=1` and `PROVIDER_RATE_WINDOW=3` (1 request per 3 seconds) causes **constant "Provider rate limit reached" and "Provider API request failed" errors** because Claude Code easily exceeds that ceiling. The 40/60 defaults are safe for free-tier NIM usage.
+
+**Symptoms of misconfigured rate limits:**
+- Repeated "Provider rate limit reached" errors
+- "Provider API request failed" on every other message
+- Session appears to stall or loop on errors
+
+**Fix:** Restore `PROVIDER_RATE_LIMIT=40` and `PROVIDER_RATE_WINDOW=60` in `~/.config/free-claude-code/.env`, then restart the proxy.
 
 ---
 
