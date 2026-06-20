@@ -105,7 +105,7 @@ It is a massive win that GLM was found deep down in the NVIDIA NIM pool. Here's 
 | **Gemma** | ❌ Problematic | Lacks specialized multi-turn tool-handling parameters required by Claude Code. Hallucinates raw file operations. |
 | **Llama 3.3 70B** | ⚠️ Mixed | Capable for structured tasks but does not match Claude for nuanced reasoning, complex tool use, or multi-step workflows. Can hallucinate file operations under pressure. |
 | **DeepSeek / Claude Gateways** | ❌ Chokes on port 8082 | Frequently fail because they attempt complex native streaming protocols that the standard proxy translator struggles to parse. |
-| **Databricks DBRX Instruct** | ⚠️ Untested (June 2026) | Mixture-of-Experts architecture. Strong on language understanding, coding, and RAG per Databricks benchmarks. Available on free NIM tier. Needs live testing against Claude Code tool-use patterns — try it via `/model` and compare with GLM-5.1. |
+| **Databricks DBRX Instruct** | ⚠️ Untested (June 2026) | Mixture-of-Experts architecture. Strong on language understanding, coding, and RAG per Databricks benchmarks. Available on free NIM tier. May have lower free-tier capacity than GLM — caused cascading "Provider API request failed" errors when set as default MODEL. **Recommend:** Test via `/model` switch only, don't set as `.env` default. |
 
 **Bottom line for NIM sessions:** GLM is the go-to. It recovers context well, handles tool calls properly, and stays on task. When the Anthropic subscription returns, use Sonnet/Opus for verification passes on NIM-generated work.
 
