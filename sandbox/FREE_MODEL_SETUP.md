@@ -111,6 +111,26 @@ It is a massive win that GLM was found deep down in the NVIDIA NIM pool. Here's 
 
 ---
 
+### 🏆 Model Battle Notes — Update (Tested August 2026)
+
+**MiniMax-M3:** Confirmed usable end-to-end for real coding work, not just drafting. Successfully scaffolded a full new case-study card + modal (structured Tailwind markup, tooltips, evidence galleries) in a live repo during this session. Good conversational quality — held context well through a long, chaotic outage-recovery conversation. Christopher's own framing captures the trade-off best: "GLM-5.2 wins on absolute capability, complex reasoning, and heavy coding benchmarks, whereas MiniMax M3 wins significantly on speed, lower latency, and pricing efficiency." **Verdict: genuinely capable second option, not just an emergency fallback** — Christopher deliberately `/model`-switches to it for speed/cost reasons, then back to GLM-5.2 for final-quality passes on published work. See [[nim-model-pairing-strategy]] memory for the full hand-off pattern.
+
+**Kimi-K2.6 / Nemotron-3-Ultra-550B-A55B:** Both attempted during a confirmed provider-side NIM outage (see below) — every request failed regardless of model. **Inconclusive, not a verdict on either model.** Worth a clean retry once NIM is stable; Nemotron in particular is untested and flagged as a priority follow-up.
+
+**GLM-5.2 discontinuation — unverified flag:** Christopher saw an indication GLM-5.2 may be discontinued around **August 24, 2026**. This is Christopher's own unconfirmed read, not independently verified by Alfred. **Re-check the `build.nvidia.com` model catalog before this date** and update this file with the actual outcome.
+
+**⚠️ When every model fails at once, it's probably not you:** This session burned significant time cycling through `/model` and `/effort` combinations before realizing the outage was external. Two NVIDIA developer forum threads confirmed cascading 429/API-failure issues on the same day:
+- https://forums.developer.nvidia.com/t/critical-performance-issues-with-nim-request-for-transparency/380606
+- https://forums.developer.nvidia.com/t/api-error-429-help/376113
+
+**Lesson:** if requests fail across multiple *different* models in the same session, check NVIDIA's developer forum before assuming local proxy/config is at fault. Cycling through unrelated models and effort levels burns time without fixing an upstream outage.
+
+### 📌 `.env` Model Values Are Only a Cold-Start Default
+
+The `.env` variables (`MODEL_OPUS`, `MODEL_SONNET`, `MODEL_HAIKU`, `MODEL`) only set the model a **brand-new session** boots with. Once a session is running, `/model` overrides them for that session, and Claude Code's own last-used-model memory means later sessions default to whichever model was last selected — not necessarily what's in `.env`. Editing `.env` alone will not change an already-running session's model, and won't even affect the next session if `/model` was used more recently than the `.env` edit. To force a specific model, use `/model` inside the session rather than relying on `.env` alone.
+
+---
+
 ## ⚠️ Rate Limiting — Critical Config Note
 
 **Do NOT set `PROVIDER_RATE_LIMIT` too low.** Claude Code's tool-use pattern fires multiple rapid API calls per turn (tool calls, reads, edits, searches). The proxy's defaults are:
