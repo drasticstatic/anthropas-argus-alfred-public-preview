@@ -84,7 +84,7 @@ git pull --rebase origin main && git push origin main
 - Commit: [short hash] — [message]
 ```
 
-Write a `AGENT-SYNC/created-by-alfred/prompts/YYYY/MM-Mon/[RECIPIENT]_PROMPT_YYYYMMDD.md` if another agent needs a handoff brief.
+Write a `AGENT-SYNC/created-by-alfred/YYYY/MM-Mon/[RECIPIENT]_PROMPT_YYYYMMDD.md` if another agent needs a handoff brief.
 
 ---
 
