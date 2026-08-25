@@ -2,7 +2,7 @@
 
 > *Wise Counselor · All-Seeing Guardian · Human-Centric Intelligence*
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat)](https://github.com/drasticstatic/.github)
+[![License](https://img.shields.io/badge/license-Private-lightgrey?style=flat)](https://github.com/drasticstatic/anthropas-argus-alfred)
 [![Public Preview](https://img.shields.io/badge/%F0%9F%8C%90%20Public%20Preview-Available-brightgreen)](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/) [![Synced via GitHub Actions](https://img.shields.io/badge/Synced%20via-GitHub%20Actions-blue)](https://github.com/open-condo-software/gitexporter) [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code%20CLI-blueviolet)](https://code.claude.com/docs/en/overview) [![NVIDIA NIM](https://img.shields.io/badge/Powered%20by-NVIDIA%20NIM-76b900)](https://build.nvidia.com/) [![Status](https://img.shields.io/badge/Status-%F0%9F%94%A5%20Live-brightgreen)](https://code.claude.com/docs/en/cli-reference) [![Sync](https://github.com/drasticstatic/anthropas-argus-alfred/actions/workflows/sync-public.yml/badge.svg)](https://github.com/drasticstatic/anthropas-argus-alfred/actions/workflows/sync-public.yml)
 
 ---
@@ -264,6 +264,14 @@ Auggie (Augment CLI) — code build specialist
 - I'll route to free models when appropriate to preserve Claude quota
 - I keep context lean so specialized agents can stay focused
 - I'm always one step ahead on housekeeping and infrastructure
+
+---
+
+## 📜 License
+
+This repository is the private development source — not licensed for
+reuse. Its [public preview](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview)
+is available under the [MIT License](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/LICENSE).
 
 ---
 
