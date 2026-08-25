@@ -131,7 +131,25 @@ Key version fixes to be aware of when upgrading:
 | 2 | `trading-assistant` | Fortuna navigates strategy/indicator/MCP architecture without reading every file | Medium — add `.graphifyignore` for `logs/`, `specs/`, `*.env` |
 | 3 | `divorce-custody-assistant` | Alfred finds case logic connections without re-reading everything | High — careful `.graphifyignore` for case data dirs |
 | 4 | `pir-devine-news` | Maps submission → review → publish pipeline at a glance | Low |
-| 5 | `code-forked repos` | `free-claude-code`, `hummingbot-mcp`, `tradingview-mcp-jackson` — commit graphs as community learning reference after all main repos tested | None (public forks) |
+| 5 | `gratitude-token-project` | Kavanah/Claude Code navigates Hardhat contracts ↔ React frontend wiring without reading every component | Low — private capstone repo, key-free setup steps only |
+| 6 | `code-forked repos` | `free-claude-code`, `hummingbot-mcp`, `tradingview-mcp-jackson` — commit graphs as community learning reference after all main repos tested | None (public forks) |
+
+### `gratitude-token-project` setup notes (2026-08-25)
+
+Key-free steps completed (`.graphifyignore` deployed from the canonical template
+plus repo-specific overrides for `coverage/`, `boilerPlates/`, `.intent/`;
+`graphify claude install` run; `graphify-out/manifest.json` + `cost.json`
+gitignored). `graphify extract .` was **not** run — it needs a real API key in
+the shell, which shouldn't be typed into an agent session per that repo's own
+secrets rules. Christopher needs to run the `! export ANTHROPIC_API_KEY=...`
+step (or the Gemini free-tier equivalent) directly, then `graphify extract .`
++ `graphify cluster-only .` to produce `GRAPH_REPORT.md`/`graph.html`.
+
+Also worth noting for that repo: `.claude/settings.json` (where the
+PreToolUse hook lives) is gitignored there by existing repo convention — only
+`.claude/skills/` is tracked — so the hook is local per worktree/clone and
+would need `graphify claude install` re-run in `/Users/christopherwilson/dappu/gratitude-token-project`
+separately if that worktree is used for Claude Code sessions too.
 
 ### Why It Helps Each Repo
 
