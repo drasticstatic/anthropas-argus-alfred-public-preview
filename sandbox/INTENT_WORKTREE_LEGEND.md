@@ -6,6 +6,9 @@
 > locations, and how each relates to the separate manual `dappu/`/`code/` clone of the same repo.
 > Compiled by direct filesystem/git inspection (not from memory) on the date above — re-verify
 > ahead/behind counts before trusting them if you're reading this more than a few days later.
+>
+> **Related:** [`GRAPHIFY_SETUP.md`](GRAPHIFY_SETUP.md) links back here from its Integration Plan
+> section, since that plan references several of these same repos by name.
 
 ## How to read this
 
@@ -22,16 +25,19 @@
 
 ## Table
 
-| Repo | Intent workspace path | Intent branch | Intent spec note | Manual clone | Manual branch | Manual sync |
-|---|---|---|---|---|---|---|
-| resume | `intent/workspaces/specs-sync/resume` | `ground-repo-context` | `intent/workspaces/specs-sync/.workspace/notes/spec.md` | `dappu/resume` (live/deployed) | `main` | 0↑/0↓ |
-| gratitude-token-project | `intent/workspaces/tests-config/gratitude-token-project` | `ground-repo-context` | `intent/workspaces/tests-config/.workspace/notes/spec.md` | `dappu/gratitude-token-project` | `main` | 6↑/35↓ ⚠️ |
-| gratitude-token-project_docs | `intent/workspaces/react-config/gratitude-token-project-docs` | `ground-docs-repo` | `intent/workspaces/react-config/.workspace/notes/spec.md` | `dappu/gratitude-token-project_docs` (live/deployed) | `main` | 0↑/0↓ |
-| gratitude-token-project_testPublish (2026-04-06 showcase lane) | `intent/workspaces/tests-config/gratitude-token-project_testPublish_2026-04-06-showcase-lane` | n/a — static export dir, not a git repo | — | none found under `dappu/` | — | — |
-| gratitude-token-project_testPublish (2026-08-28) | `intent/workspaces/tests-config/gratitude-token-project_testPublish_2026-08-28` | n/a — static export dir, not a git repo | — | `dappu/gratitude-token-project_testPublish_2026-08-28` (live/deployed, is a real git repo there) | `main` | 0↑/0↓ |
-| trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE | `intent/workspaces/specs-sync-2/trading-bot-arbitrage-dappuv3-hardhat-uni-cake` | `main` | `intent/workspaces/specs-sync-2/.workspace/notes/spec.md` | `dappu/trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE` | `main` | 0↑/0↓ |
-| trading-assistant | `intent/workspaces/md-sync/trading-assistant` | `main` | `intent/workspaces/md-sync/.workspace/notes/spec.md` | `code/trading-assistant` | `main` | 0↑/0↓ |
-| divorce-custody-assistant | `intent/workspaces/end-update/divorce-custody-assistant` | linked git **worktree** of the code/ clone — not an independent clone (see flag below) | `intent/workspaces/end-update/.workspace/notes/spec.md` | `code/divorce-custody-assistant` | detached HEAD (`@ 9c950ef` as of this writing); other local branches: `alfred/housekeeping-v11v12`, `custody-portal`, `main` | uncommitted change present (not inspected — case-sensitive content) |
+"Intent sync" and "Manual sync" are each clone's own ahead/behind against `origin/main` —
+they're independent numbers, not compared to each other.
+
+| Repo | Intent workspace path | Intent branch | Intent sync | Intent spec note | Manual clone | Manual branch | Manual sync |
+|---|---|---|---|---|---|---|---|
+| resume | `intent/workspaces/specs-sync/resume` | `ground-repo-context` | 3↑/0↓ (local-only housekeeping commits; substance already upstream via manual clone) | `intent/workspaces/specs-sync/.workspace/notes/spec.md` | `dappu/resume` (live/deployed) | `main` | 0↑/0↓ |
+| gratitude-token-project | `intent/workspaces/tests-config/gratitude-token-project` | `ground-repo-context` | 13↑/36↓ ⚠️ | `intent/workspaces/tests-config/.workspace/notes/spec.md` | `dappu/gratitude-token-project` | `main` | 6↑/35↓ ⚠️ |
+| gratitude-token-project_docs | `intent/workspaces/react-config/gratitude-token-project-docs` | `ground-docs-repo` | 10↑/0↓ ⚠️ | `intent/workspaces/react-config/.workspace/notes/spec.md` | `dappu/gratitude-token-project_docs` (live/deployed) | `main` | 0↑/0↓ (but see uncommitted-changes flag below) |
+| gratitude-token-project_testPublish (2026-04-06 showcase lane) | `intent/workspaces/tests-config/gratitude-token-project_testPublish_2026-04-06-showcase-lane` | n/a — static export dir, not a git repo | — | — | none found under `dappu/` | — | — |
+| gratitude-token-project_testPublish (2026-08-28) | `intent/workspaces/tests-config/gratitude-token-project_testPublish_2026-08-28` | n/a — static export dir, not a git repo | — | — | `dappu/gratitude-token-project_testPublish_2026-08-28` (live/deployed, is a real git repo there) | `main` | 0↑/0↓ |
+| trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE | `intent/workspaces/specs-sync-2/trading-bot-arbitrage-dappuv3-hardhat-uni-cake` | `main` | 0↑/0↓ | `intent/workspaces/specs-sync-2/.workspace/notes/spec.md` | `dappu/trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE` | `main` | 0↑/0↓ |
+| trading-assistant | `intent/workspaces/md-sync/trading-assistant` | `main` | 0↑/0↓ | `intent/workspaces/md-sync/.workspace/notes/spec.md` | `code/trading-assistant` | `main` | 0↑/0↓ |
+| divorce-custody-assistant | `intent/workspaces/end-update/divorce-custody-assistant` | linked git **worktree** of the code/ clone — not an independent clone (see flag below) | same repo as Manual sync — no separate number | `intent/workspaces/end-update/.workspace/notes/spec.md` | `code/divorce-custody-assistant` | detached HEAD (`@ 9c950ef` as of this writing); other local branches: `alfred/housekeeping-v11v12`, `custody-portal`, `main` | uncommitted change present (not inspected — case-sensitive content) |
 
 There's also an empty `intent/workspaces/background-request/` slug with no repo cloned into it —
 leftover, safe to ignore or delete.
@@ -40,9 +46,16 @@ leftover, safe to ignore or delete.
 
 - **gratitude-token-project has real, unreconciled divergence on both its worktrees** — the manual
   `dappu/` clone is 6 ahead / 35 behind `origin/main`, and the Intent-workspace clone is 13 ahead /
-  36 behind. Per the repo's own role split (Auggie primary builder, Alfred/Claude Code Intent-side
-  coordinator), reconciling this is that repo's call, not something touched from here — flagging
-  it only so it's visible in one place.
+  36 behind. Christopher is actively at work in that workspace already — no need to worry about
+  resolving this, flagging it only so it's visible in one place.
+- **gratitude-token-project_docs also has divergence, on the Intent-workspace side only** — that
+  clone (`react-config/gratitude-token-project-docs`, branch `ground-docs-repo`) is 10 ahead / 0
+  behind `origin/main`. The manual `dappu/gratitude-token-project_docs` clone (the live/deployed
+  one) matches `origin/main` exactly (0↑/0↓) but has a large pile of uncommitted local changes —
+  several whitepaper PDFs deleted, several new ones added, `docs/DOCUSAURUS_AGENT_INSTRUCTIONS.md`
+  modified, and untracked `.augmentignore`, `.intent/`, `AGENT-SYNC/`, and `specs/` directories.
+  Same as above — Christopher's aware and this isn't something to act on from here, just flagging
+  it in one place.
 - **divorce-custody-assistant's Intent-workspace copy is a git *worktree*, not an independent
   clone** — it shares the same `.git` as `code/divorce-custody-assistant`. There is only one
   actual working-tree checkout of case data on disk (plus whatever's staged in Intent's UI state);

@@ -77,15 +77,19 @@ ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=freecc claude --model
 
 **To see the full model list:** Start a session without `--model`, then run `/model` once you're in the session. The models will appear correctly.
 
-**Common NVIDIA NIM models:**
-- `anthropic/nvidia_nim/z-ai/glm4.7` — General purpose, fast
-- `anthropic/nvidia_nim/z-ai/glm5` — **Recommended** — best free-tier model for Claude Code tool-use
-- `anthropic/nvidia_nim/z-ai/glm-5.1` — Newest GLM; switch via `/model` (don't put in .env — causes boot crash)
-- `anthropic/nvidia_nim/meta/llama-3.3-70b-instruct` — Reasonable quality, can hallucinate tool calls
-- `anthropic/nvidia_nim/nvidia/llama-3.1-nemotron-70b-instruct` — Reasoning/coding
-- `anthropic/nvidia_nim/moonshotai/kimi-k2.5` — Kimi model
-- `anthropic/nvidia_nim/minimaxai/minimax-m2.5` — MiniMax model
-- `anthropic/nvidia_nim/databricks/dbrx-instruct` — Databricks DBRX MoE; strong language + coding + RAG
+**Common NVIDIA NIM models** (parent org prefix included — the proxy path always encodes it, so the org tells you at a glance who trained the model):
+- `anthropic/nvidia_nim/z-ai/glm4.7` — Z.ai's GLM, general purpose, fast
+- `anthropic/nvidia_nim/z-ai/glm5` — Z.ai's GLM — **Recommended** — best free-tier model for Claude Code tool-use
+- `anthropic/nvidia_nim/z-ai/glm-5.1` — Z.ai's newest GLM; switch via `/model` (don't put in .env — causes boot crash)
+- `anthropic/nvidia_nim/z-ai/glm-5.2` — Z.ai's latest GLM as of August 2026; strongest performer tested so far — see Battle Notes below
+- `anthropic/nvidia_nim/meta/llama-3.3-70b-instruct` — Meta's Llama, reasonable quality, can hallucinate tool calls
+- `anthropic/nvidia_nim/nvidia/llama-3.1-nemotron-70b-instruct` — NVIDIA's Nemotron (Llama-based), reasoning/coding
+- `anthropic/nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b` — NVIDIA's larger Nemotron; untested as of August 2026 (see Battle Notes)
+- `anthropic/nvidia_nim/moonshotai/kimi-k2.5` — Moonshot AI's Kimi model
+- `anthropic/nvidia_nim/moonshotai/kimi-k2.6` — Moonshot AI's newer Kimi — built the majority of the early `iamoneself` repo, performed well
+- `anthropic/nvidia_nim/minimaxai/minimax-m2.5` — MiniMax AI's model
+- `anthropic/nvidia_nim/minimaxai/minimax-m3` — MiniMax AI's newer model — see Battle Notes below
+- `anthropic/nvidia_nim/databricks/dbrx-instruct` — Databricks' DBRX MoE; strong language + coding + RAG
 
 Browse all models at [build.nvidia.com](https://build.nvidia.com/explore/discover).
 
@@ -101,11 +105,11 @@ It is a massive win that GLM was found deep down in the NVIDIA NIM pool. Here's 
 
 | Model | Verdict | Why |
 |-------|---------|-----|
-| **Z-Ai (GLM 4.7 / 5.1)** | ✅ **Hidden gem** — recommended | Handles structured JSON logic exceptionally well. Easily picks up broken contexts and executes proper engineering tasks just like native Claude Sonnet or Opus. Best free-tier model for tool-use workflows. |
-| **Gemma** | ❌ Problematic | Lacks specialized multi-turn tool-handling parameters required by Claude Code. Hallucinates raw file operations. |
-| **Llama 3.3 70B** | ⚠️ Mixed | Capable for structured tasks but does not match Claude for nuanced reasoning, complex tool use, or multi-step workflows. Can hallucinate file operations under pressure. |
-| **DeepSeek / Claude Gateways** | ❌ Chokes on port 8082 | Frequently fail because they attempt complex native streaming protocols that the standard proxy translator struggles to parse. |
-| **Databricks DBRX Instruct** | ⚠️ Untested (June 2026) | Mixture-of-Experts architecture. Strong on language understanding, coding, and RAG per Databricks benchmarks. Available on free NIM tier. May have lower free-tier capacity than GLM — caused cascading "Provider API request failed" errors when set as default MODEL. **Recommend:** Test via `/model` switch only, don't set as `.env` default. |
+| **z-ai/GLM (4.7 / 5.1 / 5.2)** | ✅ **Hidden gem** — recommended | Handles structured JSON logic exceptionally well. Easily picks up broken contexts and executes proper engineering tasks just like native Claude Sonnet or Opus. Best free-tier model for tool-use workflows, and the strongest performer across every round of testing so far. |
+| **google/Gemma** | ❌ Problematic | Lacks specialized multi-turn tool-handling parameters required by Claude Code. Hallucinates raw file operations. |
+| **meta/Llama 3.3 70B** | ⚠️ Mixed | Capable for structured tasks but does not match Claude for nuanced reasoning, complex tool use, or multi-step workflows. Can hallucinate file operations under pressure. |
+| **deepseek-ai/DeepSeek / Claude Gateways** | ❌ Chokes on port 8082 | Frequently fail because they attempt complex native streaming protocols that the standard proxy translator struggles to parse. |
+| **databricks/DBRX Instruct** | ⚠️ Untested (June 2026) | Mixture-of-Experts architecture. Strong on language understanding, coding, and RAG per Databricks benchmarks. Available on free NIM tier. May have lower free-tier capacity than GLM — caused cascading "Provider API request failed" errors when set as default MODEL. **Recommend:** Test via `/model` switch only, don't set as `.env` default. |
 
 **Bottom line for NIM sessions:** GLM is the go-to. It recovers context well, handles tool calls properly, and stays on task. When the Anthropic subscription returns, use Sonnet/Opus for verification passes on NIM-generated work.
 
@@ -113,11 +117,19 @@ It is a massive win that GLM was found deep down in the NVIDIA NIM pool. Here's 
 
 ### 🏆 Model Battle Notes — Update (Tested August 2026)
 
-**MiniMax-M3:** Confirmed usable end-to-end for real coding work, not just drafting. Successfully scaffolded a full new case-study card + modal (structured Tailwind markup, tooltips, evidence galleries) in a live repo during this session. Good conversational quality — held context well through a long, chaotic outage-recovery conversation. Christopher's own framing captures the trade-off best: "GLM-5.2 wins on absolute capability, complex reasoning, and heavy coding benchmarks, whereas MiniMax M3 wins significantly on speed, lower latency, and pricing efficiency." **Verdict: genuinely capable second option, not just an emergency fallback** — Christopher deliberately `/model`-switches to it for speed/cost reasons, then back to GLM-5.2 for final-quality passes on published work. See [[nim-model-pairing-strategy]] memory for the full hand-off pattern.
+**z-ai/GLM-5.2:** Remains the strongest NIM performer tested to date, consistent with the June 2026 verdict on earlier GLM versions below. Handles structured tool-use and multi-step engineering work with the least hand-holding of any free-tier model tried so far.
 
-**Kimi-K2.6 / Nemotron-3-Ultra-550B-A55B:** Both attempted during a confirmed provider-side NIM outage (see below) — every request failed regardless of model. **Inconclusive, not a verdict on either model.** Worth a clean retry once NIM is stable; Nemotron in particular is untested and flagged as a priority follow-up.
+**moonshotai/Kimi-K2.6:** Built the majority of the early `iamoneself` repo in an earlier session and did great — a genuinely strong performer, not a fallback pick. Attempted again this session but only during a confirmed provider-side NIM outage (see below), so no fresh read either way this time; the earlier `iamoneself` result stands as the real data point.
+
+**minimaxai/MiniMax-M3:** Usable, and got real work done — scaffolded a full new case-study card + modal in a live repo (structured Tailwind markup, tooltips, evidence galleries) during an outage when nothing else was getting through. Held conversational context well through a long, chaotic recovery. But it was the model that got through, not the best-performing one tested this session: its HTML output had several unclosed-tag errors that required a follow-up Sonnet pass to find and fix before the work was safe to commit. Christopher's framing captures the trade-off: "GLM-5.2 wins on absolute capability, complex reasoning, and heavy coding benchmarks, whereas MiniMax M3 wins significantly on speed, lower latency, and pricing efficiency." **Verdict: a real, deliberate speed/cost choice for scaffolding — not a quality equal to GLM-5.2.** Plan on a GLM-5.2 or Anthropic review pass after any MiniMax-M3 output that will ship publicly. See [[nim-model-pairing-strategy]] memory for the full hand-off pattern.
+
+**nvidia/Nemotron-3-Ultra-550B-A55B:** Attempted only during the confirmed provider-side NIM outage (see below) — every request failed regardless of model, including this one. **Inconclusive, not a verdict on Nemotron.** Worth a clean retry once NIM is stable — flagged as a priority follow-up.
 
 **GLM-5.2 discontinuation — unverified flag:** Christopher saw an indication GLM-5.2 may be discontinued around **August 24, 2026**. This is Christopher's own unconfirmed read, not independently verified by Alfred. **Re-check the `build.nvidia.com` model catalog before this date** and update this file with the actual outcome.
+
+**One to try if the chance comes up: Sakana AI's Fugu.** Not yet available/tested on this NIM proxy setup as of August 2026 — noted here as a "would be curious" for a future battle-notes round, not a current recommendation.
+
+**Every model has earned its keep, wins or misses included.** GLM's consistency, Kimi's early iamoneself build, MiniMax getting through a dead proxy, even Nemotron's inconclusive outage attempts — each one taught something about the free-tier landscape that the next session benefits from.
 
 **⚠️ When every model fails at once, it's probably not you:** This session burned significant time cycling through `/model` and `/effort` combinations before realizing the outage was external. Two NVIDIA developer forum threads confirmed cascading 429/API-failure issues on the same day:
 - https://forums.developer.nvidia.com/t/critical-performance-issues-with-nim-request-for-transparency/380606
@@ -236,9 +248,11 @@ uv sync  # re-install deps if pyproject.toml changed
 
 **Rule:** NIM is for non-live, non-account work only. Live trading decisions, prop firm account actions, and anything that affects real money are always Anthropic.
 
-### ✅ NIM-Eligible Tasks (Fortuna)
+### ✅ Where NIM Does a Genuinely Good Job (Fortuna) — Anthropic Still Takes the Final Pass
 
-| Task | Why NIM Works |
+NIM models (GLM especially) handle these well on their own — this isn't "NIM as a lesser substitute," it's real, usable output. Anthropic still comes in for the final quality/judgment pass before anything ships, because that pass is worth having on this kind of work regardless of how well the NIM draft turned out.
+
+| Task | Why NIM Handles It Well |
 |------|---------------|
 | Draft markdown reviews from raw notes | Structured templating — model quality less critical |
 | Research and summarize strategy documentation | Reading + summarizing, not reasoning |
