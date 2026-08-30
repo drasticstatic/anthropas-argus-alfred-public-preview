@@ -3,6 +3,11 @@
 
 > **What this is:** Pre-install security review + complete setup guide + ecosystem integration plan for `github.com/safishamsi/graphify`.
 
+> **Related:** the Integration Plan below references several repos by name across `dappu/`,
+> `code/`, and Intent workspace paths — see [`INTENT_WORKTREE_LEGEND.md`](INTENT_WORKTREE_LEGEND.md)
+> for the full key mapping of Intent workspace slugs → repo → branch → spec-note location →
+> manual-clone counterpart, so you don't have to hold that mapping in memory.
+
 ---
 
 ## 🔬 Research & Evaluation
