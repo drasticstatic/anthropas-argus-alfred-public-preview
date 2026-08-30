@@ -137,6 +137,10 @@ It is a massive win that GLM was found deep down in the NVIDIA NIM pool. Here's 
 
 **Lesson:** if requests fail across multiple *different* models in the same session, check NVIDIA's developer forum before assuming local proxy/config is at fault. Cycling through unrelated models and effort levels burns time without fixing an upstream outage.
 
+**Outage update (2026-08-30):** NIM was still fully down as of this date — every attempted model failed, including a fresh try of `moonshotai/kimi-k2.6` (the same model that had built the early `iamoneself` repo successfully in an earlier session). No model got through this time, not even ones with a proven track record — reinforcing that this is a provider-side outage, not a per-model problem.
+
+**Operationally important side effect:** while Christopher was trying to get NIM working through Augment Intent (Kavanah), the outage caused Intent to fail over and silently route requests to the **Anthropic API** instead — meaning "free" NIM attempts were actually consuming paid Anthropic quota without that being obvious from the session. **If a NIM session is behaving oddly, check whether it's actually still hitting NIM at all** before assuming it's a slow/degraded NIM response — it may have already failed over to a paid backend. Confirmed by the simple signal that requests were succeeding at all when NIM was reported down.
+
 ### 📌 `.env` Model Values Are Only a Cold-Start Default
 
 The `.env` variables (`MODEL_OPUS`, `MODEL_SONNET`, `MODEL_HAIKU`, `MODEL`) only set the model a **brand-new session** boots with. Once a session is running, `/model` overrides them for that session, and Claude Code's own last-used-model memory means later sessions default to whichever model was last selected — not necessarily what's in `.env`. Editing `.env` alone will not change an already-running session's model, and won't even affect the next session if `/model` was used more recently than the `.env` edit. To force a specific model, use `/model` inside the session rather than relying on `.env` alone.
