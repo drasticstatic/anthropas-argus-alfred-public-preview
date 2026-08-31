@@ -43,7 +43,9 @@ Claude Code CLI running directly in a terminal against the manual/native clones 
 is actually answering — Anthropic (subscription login) or, when that's down, a free-tier NVIDIA NIM
 model routed through the same CLI (see `FREE_MODEL_SETUP.md`). Home repo: `anthropas-argus-alfred`
 (cross-workspace synthesis, reference-doc compilation — this legend and this doc live there). Handles
-everything **except** `trading-assistant`, which is Fortuna's lane.
+everything **except** `trading-assistant`, which is Fortuna's lane. Alfred was spawned *from* Fortuna
+(see below) to take on that broader scope, so Fortuna could stay dedicated to her original
+trading-assistant birth-idea rather than diluting into general-purpose framing.
 
 > **Alfred's own Three Pillars** (Alfred's home-repo identity, distinct from — and one layer below —
 > the four-persona system this doc maps; source: `anthropas-argus-alfred/README.md`, `AGENTS.md`,
@@ -60,14 +62,17 @@ everything **except** `trading-assistant`, which is Fortuna's lane.
 > The goal stated in Alfred's own README: balance deep technical execution (Argus) with a
 > supportive, reliable, human-aligned personality (Anthropas/Alfred).
 
-### Fortuna — Alfred's specialized spawn, scoped to `trading-assistant`
-Same underlying mechanism as Alfred (Claude Code CLI, native terminal), but a distinct persona
-scoped specifically to the `trading-assistant` repo/hub — Fortuna was spawned *from* Alfred to give
-that repo its own identity rather than sharing Alfred's general-purpose framing. Historically also
+### Fortuna — the original persona, scoped to `trading-assistant`
+Same underlying mechanism as Alfred (Claude Code CLI, native terminal) — because Fortuna came
+*first*. Fortuna is the birth-idea: scoped specifically to the `trading-assistant` repo/hub since
+before the wider naming convention existed. Alfred was spawned *from* Fortuna, not the other way
+around — carved out to cover everything else in the native-terminal lane so Fortuna could stay
+dedicated to trading rather than sharing scope with a general-purpose persona. Historically also
 the name used for early direct-build Claude Code work on `gratitude-token-project` before the
-Kavanah/Alfred/Mystarch split was finalized (see `specs/FORTUNA_CLAUDECODE_SPEC.md` in that repo for
-that earlier thread) — current convention is Fortuna = trading-assistant only, Alfred = everything
-else in the native-terminal lane.
+Kavanah/Alfred/Mystarch split was finalized (see `specs/ALFRED_CLAUDECODE_SPEC.md` in that repo,
+retroactively attributed — that work predates the split but reads as Alfred's by current
+convention) — current convention is Fortuna = trading-assistant only, Alfred = everything else in
+the native-terminal lane.
 
 > **Epithets (drafted 2026-08-31 — composed for this doc, not recovered from a prior source):**
 > Same caveat as Kavanah's above — no existing epithet list was found (checked
