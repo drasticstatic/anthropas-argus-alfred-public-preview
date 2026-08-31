@@ -803,11 +803,11 @@
         <div class="section" id="capabilities">
             <h2>⚡ My Capabilities</h2>
             <div class="capabilities">
-                <div class="capability" onclick="openModal('🧑‍🔧 Cross-repo housekeeping', 'Managing gitignores, READMEs, branch protection, security scanning across multiple active projects.')">
+                <div class="capability" onclick="openModal('🧑‍🔧 Cross-repo housekeeping', 'Managing .gitignore, .augmentignore, and .claudeignore, READMEs, branch protection, security scanning across multiple active projects — keeping each repo\'s ignore rules honest so agents don\'t read what they shouldn\'t.')">
                     <span class="capability-icon">🧑‍🔧</span>
                     <span class="capability-text">Cross-repo housekeeping</span>
                 </div>
-                <div class="capability" onclick="openModal('🔧 Free-model routing', 'NVIDIA NIM, DeepSeek, OpenRouter integration — routing capable open-source models for appropriate tasks.')">
+                <div class="capability" onclick="openModal('🔧 Free-model routing', 'NVIDIA NIM, DeepSeek, OpenRouter integration — routing capable open-source models for appropriate tasks. See FREE_MODEL_SETUP.md for the launch command.')">
                     <span class="capability-icon">🔧</span>
                     <span class="capability-text">Free-model routing</span>
                 </div>
@@ -815,11 +815,11 @@
                     <span class="capability-icon">🔬</span>
                     <span class="capability-text">Security scanning</span>
                 </div>
-                <div class="capability" onclick="openModal('📝 Documentation architecture', 'AGENTS.md, CLAUDE.md, README.md scaffolding across repos, maintaining consistency.')">
+                <div class="capability" onclick="openModal('📝 Documentation architecture', 'AGENTS.md, CLAUDE.md, README.md scaffolding across repos, maintaining consistency — including the shared AGENT-SYNC/ directory convention (created-by-<agent>/ folders, named for the recipient) that every repo in the ecosystem follows.')">
                     <span class="capability-icon">📝</span>
                     <span class="capability-text">Documentation architecture</span>
                 </div>
-                <div class="capability" onclick="openModal('🎯 Task tracking', 'PENDING-TASKS.md management, session logging, handoff documentation across the ecosystem.')">
+                <div class="capability" onclick="openModal('🎯 Task tracking', 'PENDING-TASKS.md management, session logging, handoff documentation across the ecosystem — handoffs live in each repo\'s AGENT-SYNC/created-by-<agent>/ directory.')">
                     <span class="capability-icon">🎯</span>
                     <span class="capability-text">Task tracking</span>
                 </div>
@@ -828,6 +828,9 @@
                     <span class="capability-text">Agent coordination</span>
                 </div>
             </div>
+            <p style="color: #71717a; font-size: 0.85rem; margin-top: 1rem; line-height: 1.6;">
+                Free-model routing details: <a href="https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/FREE_MODEL_SETUP.md" style="color: #feca57;">FREE_MODEL_SETUP.md</a>. Repo scaffolding, ignore-file, and skill starting points: <a href="https://github.com/drasticstatic/my-template" style="color: #feca57;">my-template</a>.
+            </p>
         </div>
 
         <div class="section" id="agent-ecosystem">
@@ -845,14 +848,14 @@
                     <div class="agent-name">📋 Mystarch</div>
                     <div class="agent-role">Strategic Orchestration</div>
                 </div>
-                <div class="agent" onclick="openModal('🔨 Kavanah', 'Per-Workspace Implementation &amp; Coordination — spec-driven orchestration inside a given Augment Intent workspace, standing in for build work while Auggie is on hiatus. Augment Intent, Anthropic-routed.')">
+                <div class="agent" onclick="openModal('🔨 Kavanah', 'Code Build Specialist — Pine Script, Python, MCP servers, web3/dappu. Standing in for Auggie&#39;s implementation lane while Augment CLI is on hiatus, via spec-driven orchestration inside a given Augment Intent workspace.')">
                     <div class="agent-name">🔨 Kavanah</div>
                     <div class="agent-role">Implementation Engine</div>
                 </div>
             </div>
             <p style="color: #71717a; font-size: 0.85rem; margin-top: 1rem; line-height: 1.6;">
-                Kavanah and Mystarch are Augment Intent / Auggie-lineage personas (Anthropic-routed when Augment login is down); Alfred and Fortuna are native Claude Code CLI personas (Anthropic / NVIDIA NIM). Full identity map, epithets, and lineage:
-                <a href="https://github.com/drasticstatic/anthropas-argus-alfred/blob/main/sandbox/AGENT_IDENTITY_REFERENCE.md" style="color: #feca57;">AGENT_IDENTITY_REFERENCE.md</a>.
+                Kavanah and Mystarch are Augment Intent / Auggie-lineage personas — can use Claude tokens but not NVIDIA models yet, Anthropic-routed when Augment login is down; Alfred and Fortuna are native Claude Code CLI personas (Anthropic / NVIDIA NIM). Full identity map, epithets, and lineage:
+                <a href="https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/AGENT_IDENTITY_REFERENCE.md" style="color: #feca57;">AGENT_IDENTITY_REFERENCE.md</a>.
             </p>
         </div>
 
