@@ -23,6 +23,36 @@
   as a subdirectory inside it.
 - "Sync" columns are ahead/behind counts against `origin/main`, checked 2026-08-30.
 
+## Guessed origin of the workspace slug names
+
+Christopher doesn't remember why these particular words got assigned and asked for best guesses
+based on creation order and repo content — these are inferences, not confirmed history:
+
+- **`specs-sync`** (→ `resume`) — plausibly the very first Intent workspace created, using
+  `resume` as a low-stakes test subject while getting familiar with Intent's spec-note workflow.
+  "Specs" fits a workspace meant for exercising the spec/note system itself.
+- **`specs-sync-2`** (→ `trading-bot_arbitrage...`) — likely just Intent auto-incrementing because
+  `specs-sync` was already taken by the time this second workspace was created, not because of any
+  thematic link to the trading bot. Order-of-creation collision, not intentional pairing.
+- **`tests-config`** (→ `gratitude-token-project`) — this repo is Hardhat-heavy with a large test
+  suite (`npx hardhat test`), so "tests-config" may reflect Intent sampling words related to the
+  detected project type/tooling at creation time, or may be coincidental from a random word-bank.
+- **`react-config`** (→ `gratitude-token-project_docs`) — Docusaurus is a React framework, so
+  "react-config" plausibly reflects the same kind of stack-detection naming as `tests-config`
+  above. Consistent with that theory, but not confirmed.
+- **`md-sync`** (→ `trading-assistant`) — this repo is the cross-repo `AGENT-SYNC/` markdown-
+  handoff hub referenced by every other repo, so "md-sync" (markdown sync) is a plausible fit for
+  its actual purpose rather than a random pairing.
+- **`end-update`** (→ `divorce-custody-assistant`) — no obvious thematic link found; most likely a
+  coincidental random slug rather than anything meaningful, despite how it reads next to this
+  repo's subject matter.
+- **`background-request`** — the empty leftover slug (no repo ever cloned into it). Best guess: a
+  workspace Intent spun up for a one-off request that got backgrounded or abandoned before
+  Christopher (or the assigned agent) ever cloned a repo into it.
+
+None of the above is verified against Intent's actual naming logic — treat as memory aids, not
+documentation of how Intent's namer works.
+
 ## Table
 
 "Intent sync" and "Manual sync" are each clone's own ahead/behind against `origin/main` —
@@ -62,6 +92,17 @@ leftover, safe to ignore or delete.
   don't treat the Intent copy as a separate privacy boundary.
 - The two `gratitude-token-project_testPublish_*` directories under Intent are static export
   output, not git repos — they're build artifacts, not sources of truth.
+- **`gratitude-token-project_testPublish_2026-04-06-showcase-lane`, inspected directly** — a local
+  Vite build snapshot timestamped Apr 6 09:14, living only under the `tests-config` Intent
+  workspace with no `dappu/` counterpart and never pushed to GitHub as its own repo. It bundles
+  five different 404-page variants side by side: `404.html`, `404_old.html`, `404_1stdraft.html`,
+  `404_2nd draft.html`, and `404_1st+2nd.html` — plus a stray duplicate `favicon copy.svg`. This
+  looks like a local A/B staging build for comparing 404-page designs before picking one, predating
+  both the `2026-01-05` and `2026-08-28` published `testPublish` snapshots. Notably,
+  `404_1st+2nd.html` here is the same rich, animated 404 content (glow text, mushrooms, blockchain
+  cubes) that was later deleted from the live repo's `public/` in commit `73b1ea4` and just
+  restored this session as `public/404-legacy.html` — so this showcase-lane folder is effectively
+  the archival source for that content if it's ever needed again.
 
 ## Where the detailed handoff record lives per repo
 
@@ -71,6 +112,38 @@ Most of these repos keep a running coordination doc beyond just the Intent spec 
 - `gratitude-token-project` → `AGENT-SYNC/` (per-creator handoff subdirs: `created-by-alfred/`,
   `created-by-kavanah/`, `created-by-christopher/`, `created-by-augment-vscode-migration/`)
 - `trading-assistant` → the hub for cross-repo `AGENT-SYNC/` handoffs referenced by every other repo
+
+## Where session chat logs actually live
+
+Added 2026-08-31, from direct inspection — useful when a UI thread gets stuck ("Awaiting tool
+response" hangs) and you need to point a fresh session at the verbatim history instead.
+
+- **Claude Code CLI**: one `.jsonl` file per session, under
+  `~/.claude/projects/<cwd-path-with-slashes-as-dashes>/`. The directory name is derived from the
+  *working directory the CLI was launched from*, not the repo name — so the same repo has two
+  separate log directories depending on which worktree you launched from:
+  - Launched from the Intent-workspace clone: `~/.claude/projects/-Users-christopherwilson-intent-workspaces-tests-config-gratitude-token-project/` (60+ session files as of this writing — this is the active one)
+  - Launched from the manual `dappu/` clone: `~/.claude/projects/-Users-christopherwilson-dappu-gratitude-token-project/` (only contains `memory/`, no session `.jsonl` files yet — hasn't been launched from there directly)
+  - Per-project persistent memory (separate from session transcripts) lives at
+    `<same-dir>/memory/MEMORY.md` plus individual topic files.
+  - Note: `/resume` inside the CLI matches on the *exact* launch directory, so if it reports "No
+    conversations found," you're very likely running from a different cwd than the sessions were
+    logged under (e.g. shell `cd`'d into `dappu/` instead of the Intent workspace path) — check
+    `pwd` first before concluding history was lost.
+- **Augment Intent (the desktop app)**: standard Electron app-support layout at
+  `~/Library/Application Support/intent/` — mostly Chromium cache/storage internals, not
+  human-readable chat logs. The one plausibly relevant file found is
+  `~/Library/Application Support/intent/.augment/memory/memory-events.jsonl`, which is app-level
+  (not scoped to a single workspace) — likely where a global agent like Chief of Staff would keep
+  its own memory, separate from any single workspace's `.workspace/notes/spec.md`. Per-workspace
+  UI state (panel layout, file tracking) lives at
+  `~/intent/workspaces/<slug>/.workspace/workspace.json` and sibling files, not chat content.
+  Nothing here was opened/read beyond directory listings — treat this as "here's where to look,"
+  not a confirmed schema.
+- **Practical fallback**: when a UI thread hangs and you're not sure whether work landed, the
+  reliable ground-truth check is always `git log --oneline` / `git status` in the actual repo
+  worktree, not the chat log — every agent in this ecosystem has been confirming state that way
+  rather than trusting the UI's own "still thinking" indicator.
 
 ---
 *If this doc drifts out of date, regenerate the table with a fresh pass of `git branch
