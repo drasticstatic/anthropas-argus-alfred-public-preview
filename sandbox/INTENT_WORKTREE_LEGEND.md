@@ -90,6 +90,22 @@ leftover, safe to ignore or delete.
   clone** — it shares the same `.git` as `code/divorce-custody-assistant`. There is only one
   actual working-tree checkout of case data on disk (plus whatever's staged in Intent's UI state);
   don't treat the Intent copy as a separate privacy boundary.
+- **`trading-assistant` and `divorce-custody-assistant` both moved from `~/ClaudeCodeCLI/` to
+  `~/code/` at some point** (confirmed by Christopher 2026-08-31) — any older doc, handoff, or
+  memory file referencing `~/ClaudeCodeCLI/trading-assistant/` or
+  `~/ClaudeCodeCLI/divorce-custody-assistant/` is stale; the live path is `~/code/` for both.
+  **This is also the likely root cause of divorce-custody-assistant's broken linked worktree**:
+  `git status` on the Intent-workspace copy (`end-update/divorce-custody-assistant`) currently
+  fails with `fatal: not a git repository: .../ClaudeCodeCLI/divorce-custody-assistant/.git/worktrees/divorce-custody-assistant`
+  — the worktree's gitdir pointer still points at the old `ClaudeCodeCLI/` path and never got
+  updated when the manual clone moved to `code/`. Not repaired as of this writing; needs either
+  manually editing the `.git` gitdir pointer file inside the Intent-workspace copy or re-adding the
+  worktree from the `code/` clone. Flagging only — hasn't been touched without Christopher's
+  go-ahead, since worktree surgery is easy to get wrong.
+  **Also as of 2026-08-31**: Christopher will no longer be prompting through Intent for either of
+  these two repos going forward — Fortuna/Alfred's native-terminal lane against `code/` is now the
+  primary way of working in both, which somewhat lowers the urgency of the worktree repair (the
+  Intent-workspace copy isn't the active working copy either way).
 - The two `gratitude-token-project_testPublish_*` directories under Intent are static export
   output, not git repos — they're build artifacts, not sources of truth.
 - **`gratitude-token-project_testPublish_2026-04-06-showcase-lane`, inspected directly** — a local
