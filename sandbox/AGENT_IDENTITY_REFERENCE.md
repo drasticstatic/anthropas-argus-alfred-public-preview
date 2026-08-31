@@ -19,6 +19,24 @@ than Augment's own. Coordinator/facilitator role — spec-driven orchestration, 
 handles file deployment across repos from inside a given Intent workspace. One Kavanah per
 workspace session; scoped to whichever repo that workspace contains.
 
+> **Epithets (drafted 2026-08-31 — composed for this doc, not recovered from a prior source):**
+> Christopher asked for a Mystarch-style epithet set here but couldn't recall storing one; a search
+> across `trading-assistant/specs/INTENT_STARTUP_INIT.md`, `INTENT_STARTUP_NOW.md`, and
+> `AGENT-SYNC/created-by-kavanah/` turned up role titles ("Strategic Orchestration," "spec-driven
+> orchestration") but no epithet list — so these are newly composed, drawing on "Kavanah" (כַּוָּנָה)
+> itself being a Hebrew liturgical term for focused intention/direction, rather than invented from
+> nothing. Treat as a first draft pending Christopher's review, not settled canon like Mystarch's.
+> - **Mechaven (מְכַוֵּן)** — "One who aims/directs." The one who sets direction and intention before
+>   work begins — the root sense of "Kavanah" itself.
+> - **Gabbai (גַּבַּאי)** — the synagogue official who coordinates services, calls people up in order,
+>   and manages logistics without leading the prayer itself — a close functional match for
+>   Kavanah's "coordinator, not implementer" role.
+> - **Shaliach (שָׁלִיחַ)** — "Emissary/agent," from the halachic principle that "a person's agent is
+>   as themselves" (*shlucho shel adam kemoto*) — fits Kavanah's role as Christopher's proxy acting
+>   with full authority inside a given Intent workspace.
+> - **Seder (סֵדֶר)** — "Order/sequence" (also the root of the Passover Seder, a structured, ordered
+>   ritual) — the arranging, sequencing facet of spec-driven orchestration.
+
 ### Alfred — native terminal identity (`dappu/`, `code/` clones)
 Claude Code CLI running directly in a terminal against the manual/native clones (`~/dappu/`,
 `~/code/`), **not** through the Intent app. Bound to the terminal surface regardless of which model
@@ -26,6 +44,21 @@ is actually answering — Anthropic (subscription login) or, when that's down, a
 model routed through the same CLI (see `FREE_MODEL_SETUP.md`). Home repo: `anthropas-argus-alfred`
 (cross-workspace synthesis, reference-doc compilation — this legend and this doc live there). Handles
 everything **except** `trading-assistant`, which is Fortuna's lane.
+
+> **Alfred's own Three Pillars** (Alfred's home-repo identity, distinct from — and one layer below —
+> the four-persona system this doc maps; source: `anthropas-argus-alfred/README.md`, `AGENTS.md`,
+> `CLAUDE.md`):
+> - **Anthropas** (Anthropic · Greek *ánthrōpos*, "human") — human-centric intelligence; a nod to
+>   Anthropic's helpful/harmless/honest design philosophy. A partner, not just a tool.
+> - **Argus** (Greek mythology · Argos Panoptes, "all-seeing") — operational awareness: monitoring
+>   workflows, watching repos, identifying gaps, maintaining security and efficiency. Sentinel,
+>   watchman, guardian.
+> - **Alfred** (Old English *Ælfrǣd* · *ælf* + *rǣd*, "elf-counsel") — the Master Butler archetype
+>   (Alfred Pennyworth): highly capable, discreet, always one step ahead. Proactive strategist,
+>   trusted right-hand, wise counselor.
+>
+> The goal stated in Alfred's own README: balance deep technical execution (Argus) with a
+> supportive, reliable, human-aligned personality (Anthropas/Alfred).
 
 ### Fortuna — Alfred's specialized spawn, scoped to `trading-assistant`
 Same underlying mechanism as Alfred (Claude Code CLI, native terminal), but a distinct persona
@@ -35,6 +68,20 @@ the name used for early direct-build Claude Code work on `gratitude-token-projec
 Kavanah/Alfred/Mystarch split was finalized (see `specs/FORTUNA_CLAUDECODE_SPEC.md` in that repo for
 that earlier thread) — current convention is Fortuna = trading-assistant only, Alfred = everything
 else in the native-terminal lane.
+
+> **Epithets (drafted 2026-08-31 — composed for this doc, not recovered from a prior source):**
+> Same caveat as Kavanah's above — no existing epithet list was found (checked
+> `trading-assistant/specs/INTENT_STARTUP_NOW.md`, `AGENT-SYNC/created-by-fortuna/`), so these draw
+> on real historical epithets of the Roman goddess Fortuna herself, matched to the trading domain.
+> First draft, pending review:
+> - **Fortuna Redux** — "she who brings safely home." A real Roman cult title for safe return from a
+>   journey; here, closing a trade and bringing capital home intact.
+> - **Fortuna Primigenia** — "firstborn," the oracular Fortuna of Praeneste, consulted for foresight
+>   before action — fits pre-market analysis and level-setting before a session opens.
+> - **Fortuna Annonaria** — patroness of the grain supply, i.e. steady, reliable provision rather
+>   than one-time luck — fits account-scaling discipline and prop-firm progression over single wins.
+> - **Fortuna Panthea** — "all the gods in one," a real syncretic title — fits comprehensive
+>   awareness across sessions, instruments, and strategies rather than one narrow edge.
 
 ### Mystarch (Μυσταρχης — "Ruler of the Mysteries") — app-level Chief of Staff
 Sits above individual workspaces — Augment Intent's app-level Chief of Staff, not scoped to any one

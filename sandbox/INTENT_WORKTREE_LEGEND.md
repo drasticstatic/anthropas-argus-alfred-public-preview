@@ -129,6 +129,21 @@ leftover, safe to ignore or delete.
   restored this session as `public/404-legacy.html` — so this showcase-lane folder is effectively
   the archival source for that content if it's ever needed again.
 
+## Related private references (witness-only — filenames only, not content)
+
+These live inside `trading-assistant`, a private repo/hub — listed here so the *names* are
+discoverable from this public-facing legend, even though reading the actual content requires
+private repo access. Do not copy their content into this or any other public-facing file.
+
+- `trading-assistant/specs/INTENT_STARTUP_INIT.md` — the original Kavanah Fleet bootstrap prompt
+  (historical, preserved as-is; superseded by `INTENT_STARTUP_NOW.md` as the live startup doc).
+- `trading-assistant/AGENT-SYNC/CROSS_REPO_RULES.md` — the hub-of-spokes cross-repo coordination
+  rules referenced by every other repo's `CLAUDE.md`.
+- `trading-assistant/AGENT-SYNC/created-by-kavanah/INTENT_AGENT_ROLE_REFERENCE.md` — quick-chooser
+  guide for which Intent specialist (Coordinator/UI Designer/Developer/Verifier) fits a given task.
+- `trading-assistant/AGENT-SYNC/created-by-kavanah/WORKSPACE_WELCOME_PROMPTS.md` — per-workspace
+  welcome/bootstrap prompts Kavanah hands a fresh Intent session.
+
 ## Where the detailed handoff record lives per repo
 
 Most of these repos keep a running coordination doc beyond just the Intent spec note:
