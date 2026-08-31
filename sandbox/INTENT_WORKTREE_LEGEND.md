@@ -9,6 +9,9 @@
 >
 > **Related:** [`GRAPHIFY_SETUP.md`](GRAPHIFY_SETUP.md) links back here from its Integration Plan
 > section, since that plan references several of these same repos by name.
+> [`DETACHED_HEAD_GUIDE.md`](../../divorce-custody-assistant/DETACHED_HEAD_GUIDE.md) (in
+> `code/divorce-custody-assistant/`) explains that repo's intentional dual-checkout setup — read it
+> before assuming its detached HEAD is a problem.
 
 ## How to read this
 
@@ -94,18 +97,24 @@ leftover, safe to ignore or delete.
   `~/code/` at some point** (confirmed by Christopher 2026-08-31) — any older doc, handoff, or
   memory file referencing `~/ClaudeCodeCLI/trading-assistant/` or
   `~/ClaudeCodeCLI/divorce-custody-assistant/` is stale; the live path is `~/code/` for both.
-  **This is also the likely root cause of divorce-custody-assistant's broken linked worktree**:
-  `git status` on the Intent-workspace copy (`end-update/divorce-custody-assistant`) currently
-  fails with `fatal: not a git repository: .../ClaudeCodeCLI/divorce-custody-assistant/.git/worktrees/divorce-custody-assistant`
-  — the worktree's gitdir pointer still points at the old `ClaudeCodeCLI/` path and never got
-  updated when the manual clone moved to `code/`. Not repaired as of this writing; needs either
-  manually editing the `.git` gitdir pointer file inside the Intent-workspace copy or re-adding the
-  worktree from the `code/` clone. Flagging only — hasn't been touched without Christopher's
-  go-ahead, since worktree surgery is easy to get wrong.
+- **Correction (2026-08-31, same day as first written above):** an earlier pass of this file
+  claimed divorce-custody-assistant's linked worktree was broken with a stale `ClaudeCodeCLI/`
+  gitdir pointer (`fatal: not a git repository` on `git status`). Re-verified directly and that
+  claim was **wrong** — `git status`, `git log`, and `git worktree list` all work cleanly on both
+  `code/divorce-custody-assistant` and the Intent-workspace copy at
+  `end-update/divorce-custody-assistant`. The likely explanation: a transient/misread state during
+  an earlier session-recovery gap, not a real fault. **What's actually true, per
+  `code/divorce-custody-assistant/DETACHED_HEAD_GUIDE.md`:** this repo runs an intentional
+  dual-checkout setup. `code/divorce-custody-assistant` is deliberately kept in **detached HEAD**
+  (currently `33eafbf`) — that's where real casework commits actually land and push straight to
+  `origin/main`; it is the primary/current checkout, not a stray state to fix. The Intent-workspace
+  worktree (`end-update/`) is attached to `main` but is the secondary, less-current track. Read that
+  guide before touching either checkout — it also explains why some git UIs (VS Code's push flow
+  included) can fail or hang pushing from a detached checkout, and the fix (`git push origin
+  HEAD:main`) when that happens.
   **Also as of 2026-08-31**: Christopher will no longer be prompting through Intent for either of
   these two repos going forward — Fortuna/Alfred's native-terminal lane against `code/` is now the
-  primary way of working in both, which somewhat lowers the urgency of the worktree repair (the
-  Intent-workspace copy isn't the active working copy either way).
+  primary way of working in both.
 - The two `gratitude-token-project_testPublish_*` directories under Intent are static export
   output, not git repos — they're build artifacts, not sources of truth.
 - **`gratitude-token-project_testPublish_2026-04-06-showcase-lane`, inspected directly** — a local
