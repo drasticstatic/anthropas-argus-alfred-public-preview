@@ -8,7 +8,10 @@
 >
 > **Related:** [`INTENT_WORKTREE_LEGEND.md`](INTENT_WORKTREE_LEGEND.md) (which workspace/clone is
 > which repo), [`FREE_MODEL_SETUP.md`](FREE_MODEL_SETUP.md) (Alfred's Anthropic vs NVIDIA NIM model
-> routing).
+> routing), [`INTENT_AGENT_ROLE_REFERENCE.md`](INTENT_AGENT_ROLE_REFERENCE.md) (which Intent
+> specialist — Coordinator/UI Designer/Developer/Verifier/Chief of Staff — fits a given task, plus
+> the AugmentIntent login/specialist-factory notes; mirrored here from
+> `trading-assistant/AGENT-SYNC/created-by-kavanah/`, canonical source lives there).
 
 ## The four personas
 
@@ -46,6 +49,16 @@ model routed through the same CLI (see `FREE_MODEL_SETUP.md`). Home repo: `anthr
 everything **except** `trading-assistant`, which is Fortuna's lane. Alfred was spawned *from* Fortuna
 (see below) to take on that broader scope, so Fortuna could stay dedicated to her original
 trading-assistant birth-idea rather than diluting into general-purpose framing.
+
+> **Non-obvious case, worth naming explicitly (2026-09-02):** `~/code/mystarch_chief-of-staff` is a
+> native-terminal `code/` clone, so by the rule above it's **Alfred's** lane, same as any other
+> `code/` repo — even though its *content* is Mystarch's own home. The surface decides authorship,
+> not the subject matter: a session launched from that native terminal clone is Alfred, working on
+> Mystarch's behalf; a session launched through Intent's UI at `~/intent/workspaces/__chief__` is
+> Mystarch. Same underlying Claude Code CLI engine either way — what differs is which surface
+> launched it, exactly like the Kavanah/Alfred split above. See `INTENT_WORKTREE_LEGEND.md`'s
+> "Where session chat logs actually live" section for how this maps to `created-by-*` attribution
+> and separate `.jsonl` transcript locations.
 
 > **Alfred's own Three Pillars** (Alfred's home-repo identity, distinct from — and one layer below —
 > the four-persona system this doc maps; source: `anthropas-argus-alfred/README.md`, `AGENTS.md`,

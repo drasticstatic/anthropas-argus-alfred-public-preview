@@ -71,9 +71,98 @@ they're independent numbers, not compared to each other.
 | trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE | `intent/workspaces/specs-sync-2/trading-bot-arbitrage-dappuv3-hardhat-uni-cake` | `main` | 0↑/0↓ | `intent/workspaces/specs-sync-2/.workspace/notes/spec.md` | `dappu/trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE` | `main` | 0↑/0↓ |
 | trading-assistant | `intent/workspaces/md-sync/trading-assistant` | `main` | 0↑/0↓ | `intent/workspaces/md-sync/.workspace/notes/spec.md` | `code/trading-assistant` | `main` | 0↑/0↓ |
 | divorce-custody-assistant | `intent/workspaces/end-update/divorce-custody-assistant` | linked git **worktree** of the code/ clone — not an independent clone (see flag below) | same repo as Manual sync — no separate number | `intent/workspaces/end-update/.workspace/notes/spec.md` | `code/divorce-custody-assistant` | detached HEAD (`@ 9c950ef` as of this writing); other local branches: `alfred/housekeeping-v11v12`, `custody-portal`, `main` | uncommitted change present (not inspected — case-sensitive content) |
+| mystarch_chief-of-staff | `intent/workspaces/__chief__` | git-initialized in place (option b, 2026-09-01) — see below, this row is the exception to "not a git repo" | 0↑/0↓ vs `origin/main`, but has uncommitted/untracked scaffolding work pending auto-commit as of this writing | `intent/workspaces/__chief__/.workspace/notes/spec.md` | `code/mystarch_chief-of-staff` (added 2026-09-01, fresh `git clone` from GitHub — for native-terminal fallback when Intent's UI hangs, see § below) | `main` | 0↑/0↓ against `origin/main`, but **stale relative to `__chief__` itself** — cloned at `9c8ca88`, missing whatever `__chief__`'s uncommitted working tree has that auto-commit hasn't pushed yet; `git pull` before trusting it as current |
 
 There's also an empty `intent/workspaces/background-request/` slug with no repo cloned into it —
 leftover, safe to ignore or delete.
+
+## The `__chief__` workspace — Intent's built-in Chief of Staff seat
+
+Added 2026-08-31. Unlike every other row above, `intent/workspaces/__chief__` is not a per-repo
+clone — it's Intent's **reserved, fixed slug** (not one of the random word-pair names like
+`tests-config`) for the app-level Chief of Staff agent, identified in this ecosystem as
+**Mystarch**. Confirmed by direct inspection:
+
+- Directory created 2026-08-26 14:51, predates this doc and every handoff referencing Mystarch's
+  elevation to app-level on 2026-08-31 — the seat existed before it was actively used.
+- Contains only `.workspace/` (notes, agents, logs, events.jsonl, panel-layout-history.json) — no
+  git repo, no `origin` remote, nothing to clone into it by design.
+- Its spec note lives at the same relative path as any other workspace:
+  `intent/workspaces/__chief__/.workspace/notes/spec.md`.
+- What makes it different functionally: from this seat, `ws.app.workspaces.list(...)` resolves
+  and returns *every* workspace across every repo (confirmed live) — the cross-workspace reach
+  that repo-scoped workspaces (like `tests-config`) don't have. That's the whole point of the
+  elevation effort documented in `gratitude-token-project`'s
+  `AGENT-SYNC/created-by-mystarch/HANDOFF_20260831_*.md` handoffs.
+- To reopen this workspace's panel in the Intent UI after navigating away from it, use the app's
+  workspace switcher/navigate-to-workspace action targeting route `/workspace/__chief__` — same
+  mechanism as opening any other workspace, just with this fixed slug instead of a random one.
+
+**Correction/addition (2026-08-31, later same day):** Christopher reports `__chief__` does **not**
+appear in Intent's workspace list or search UI, and the only way he found to reopen it after
+navigating away was the `/workspace/__chief__` nav-link chip above — not a normal "File → New" or
+workspace-switcher entry. Confirmed from the seat itself: `ws.app.workspaces.list(...)` — the same
+call that returns every other repo-backed workspace — does **not** include `__chief__` in its
+results (checked live, only the 6 repo-backed workspaces come back). So this seat has full
+*outbound* cross-workspace reach (it can list/see all 6 repo workspaces) but is itself invisible to
+that same listing — asymmetric, not a bug in the recon, an actual property of how this reserved
+slug is exposed. Practical implication: don't rely on Intent's normal workspace list/search to find
+this seat again; keep the `/workspace/__chief__` nav-link (or just remember the literal route)
+somewhere durable, since re-deriving it requires already knowing the fixed slug.
+
+**Also confirmed live (2026-08-31):** this seat's own spec note is empty — `ws.note.read("spec")`
+returns no content, task status `not_started`, created 2026-08-26 and never written to since. And
+`ws.agent.list()` from this seat shows only itself plus two `New thread` agents with 0 messages
+each (idle placeholders, not agents actually dispatched to do work) — i.e. despite `ws.agent.*`
+tools being available from this seat, no subagents have actually been delegated/deployed from here
+yet. Everything done from `__chief__` so far (repo file reads/edits, terminal diagnostics, the
+coordinator handoffs) was done directly by the seat's own single agent thread, not via delegation.
+
+## 🤔 Pondering — Anthropic login vs. Augment-native persistence (2026-08-31)
+
+Christopher's working hypothesis, recorded here rather than settled: the Chief of Staff agents in
+this ecosystem (Mystarch at `__chief__`, and by extension the per-workspace Kavanah coordinators)
+are currently authenticating through **Anthropic's own login** for Claude Code CLI inside Intent,
+not through an **Augment-native subscription** login. If true, that's a plausible (additional, not
+alternative) explanation for why `__chief__`'s spec note and agent roster are empty even after the
+2026-08-31 elevation to `ws.app.*` tool access confirmed above: Claude Code acting as the model
+underneath is a substitute for the surface, but it doesn't bring in Augment's own Context Engine /
+shared codebase-understanding layer ("AugmentMagic") the way a native Auggie session would. This is
+a distinct hypothesis from the tool-scope explanation already recorded in
+[`AGENT_IDENTITY_REFERENCE.md`](AGENT_IDENTITY_REFERENCE.md)'s "How the four relate" section
+(repo-scoped `ws.*` vs. app-level `ws.app.*`, before elevation) — that one is about which *tools*
+were reachable; this one is about which *underlying capability* is powering the session regardless
+of tool reach. Both could be true at once and compound each other.
+
+**If Augment-native login becomes available and persists** (something Christopher has wanted to
+test but hasn't been able to under current constraints), the expectation is Mystarch and the
+Kavanah coordinators would resume operating with Intent's full native capability set — the agent
+roles and specialist factory laid out in
+[`INTENT_AGENT_ROLE_REFERENCE.md`](INTENT_AGENT_ROLE_REFERENCE.md) (mirrored here 2026-08-31;
+canonical source is `trading-assistant/AGENT-SYNC/created-by-kavanah/INTENT_AGENT_ROLE_REFERENCE.md`)
+— rather than the current ClaudeCode-as-substitute mode.
+
+**Longer-term aspiration, not yet actionable:** run Augment-native agents (Auggie) and Claude-based
+agents inside Intent *simultaneously* once this is sorted out, with Claude-based agents ideally kept
+scoped to the native-terminal `code/`/`dappu/` worktrees (Alfred/Fortuna's lane) rather than
+competing with Auggie inside Intent workspaces — harnessing both at once. Christopher's own read:
+this becomes easy once the graphify knowledge-graph exports are wired up and something can point to
+them at that stage, giving both agent families a shared reference layer to work from even while
+authenticating differently. Not started; recorded here as a marker for when auth/subscription state
+changes.
+
+**Concrete edge case confirming this, found 2026-09-01:** Intent's Settings surfaced
+`Please authenticate with Augment first (run auggie login)` when Christopher tried to use Intent's
+**GitHub-connect capability** (the same feature behind the create-workspace proposal card's base-branch
+picker — see the `gratitude-token-project_astro` branch-resolution failure logged under Active/Next Up
+in `pending-tasks.md`). This is a strong, concrete data point for the hypothesis above, not just a new
+guess: GitHub-connect is an **Auggie-CLI-backed Intent capability**, and this session is running as
+**Claude Code CLI** under the hood rather than a native `auggie login` session — so the capability
+straightforwardly isn't available here regardless of `ws.app.*` tool reach. In other words, the
+branch-picker bug from the astro workspace attempt and this explicit auth prompt are likely **the same
+root cause** surfacing two different ways: one silent (card just can't resolve a branch), one explicit
+(Settings names the missing `auggie login` outright). A native Auggie-authenticated Chief of Staff
+session would plausibly not hit either failure.
 
 ## Flags worth knowing about
 
@@ -170,6 +259,29 @@ response" hangs) and you need to point a fresh session at the verbatim history i
     conversations found," you're very likely running from a different cwd than the sessions were
     logged under (e.g. shell `cd`'d into `dappu/` instead of the Intent workspace path) — check
     `pwd` first before concluding history was lost.
+  - **`__chief__` (Mystarch, app-level seat)**: `~/.claude/projects/-Users-christopherwilson-intent-workspaces---chief--/` — this seat's own session `.jsonl` files and its `memory/` dir both live there. A session launched instead from `~/code/mystarch_chief-of-staff` (added 2026-09-01, see table above) logs under a *different* projects dir (derived from that cwd), so the two don't share transcript history automatically — the code/ clone is a git-level fallback for getting unstuck when Intent's UI hangs, not a mirror of this seat's chat log. Read the `__chief__`-launched `.jsonl` directly (or point a fresh session's `/resume` at that exact path) if you need this seat's verbatim history from outside Intent.
+  - **`created-by-*` attribution convention for `mystarch_chief-of-staff`'s own `AGENT-SYNC/`
+    (established 2026-09-02):** follows the same surface-decides-authorship rule as everywhere else
+    in this ecosystem, applied explicitly since this repo's content and its usual persona share a
+    name:
+    - Work/handoffs from a session launched at `~/intent/workspaces/__chief__` (through Intent's own
+      UI/ACP) → `created-by-mystarch`
+    - Work/handoffs from a session launched at `~/code/mystarch_chief-of-staff` (native terminal,
+      no Intent UI involved) → `created-by-alfred`
+    - Every *other* Intent workspace (not `__chief__`) → `created-by-kavanah`, unchanged from the
+      existing convention (see `AGENT_IDENTITY_REFERENCE.md`'s Kavanah section)
+    - **Why this matters practically:** the recurring "awaiting tool response" hangs / stream
+      timeouts in Intent's UI (this doc's own Pondering section, and the Auggie-login gap) mean the
+      native-terminal `code/` fallback gets used often enough that its jsonl transcripts and
+      AGENT-SYNC contributions need their own clear lane — otherwise it's easy to lose track of
+      which environment actually produced a given piece of continuity work.
+    - **Engine options for the `code/` fallback session:** plain Anthropic-subscription Claude Code
+      CLI (default), or — when the NVIDIA NIM free-tier proxy (`free-claude-code`, see
+      `sandbox/FREE_MODEL_SETUP.md`) is actually up — Alfred-NIM mode, same as any other repo's
+      free-model-sandbox option. Also worth trying: Intent's own macOS desktop app has a built-in
+      terminal-instance feature that could host this `code/` session without leaving the app, as an
+      alternative to a separate native Terminal.app window — untested as of this writing, noted here
+      as an option to try rather than a settled recommendation.
 - **Augment Intent (the desktop app)**: standard Electron app-support layout at
   `~/Library/Application Support/intent/` — mostly Chromium cache/storage internals, not
   human-readable chat logs. The one plausibly relevant file found is
