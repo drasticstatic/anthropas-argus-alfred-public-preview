@@ -137,24 +137,42 @@ Key version fixes to be aware of when upgrading:
 | 3 | `divorce-custody-assistant` | Alfred finds case logic connections without re-reading everything | High — careful `.graphifyignore` for case data dirs |
 | 4 | `pir-devine-news` | Maps submission → review → publish pipeline at a glance | Low |
 | 5 | `gratitude-token-project` | Kavanah/Claude Code navigates Hardhat contracts ↔ React frontend wiring without reading every component | Low — private capstone repo, key-free setup steps only |
-| 6 | `code-forked repos` | `free-claude-code`, `hummingbot-mcp`, `tradingview-mcp-jackson` — commit graphs as community learning reference after all main repos tested | None (public forks) |
+| 6 | `gratitude-token-project_astro` | Public-preview Astro site — small, low-noise, cheap to keep current | Low — public repo |
+| 7 | `gratitude-token-project_docs` | Large Docusaurus docs site — biggest token win from pruning noise (images, PDFs, `.docusaurus/` cache) | Low — public-facing docs |
+| 8 | `mystarch_chief-of-staff` | Mystarch's own seat (`~/intent/workspaces/__chief__`) — orient across the whole ecosystem without re-reading everything | Medium — app-level coordination repo |
+| 9 | `code-forked repos` | `free-claude-code`, `hummingbot-mcp`, `tradingview-mcp-jackson` — commit graphs as community learning reference after all main repos tested | None (public forks) |
 
-### `gratitude-token-project` setup notes (2026-08-25)
+### `gratitude-token-project` setup notes (2026-08-25, extraction completed 2026-08-27/28)
 
 Key-free steps completed (`.graphifyignore` deployed from the canonical template
 plus repo-specific overrides for `coverage/`, `boilerPlates/`, `.intent/`;
 `graphify claude install` run; `graphify-out/manifest.json` + `cost.json`
-gitignored). `graphify extract .` was **not** run — it needs a real API key in
-the shell, which shouldn't be typed into an agent session per that repo's own
-secrets rules. Christopher needs to run the `! export ANTHROPIC_API_KEY=...`
-step (or the Gemini free-tier equivalent) directly, then `graphify extract .`
-+ `graphify cluster-only .` to produce `GRAPH_REPORT.md`/`graph.html`.
+gitignored). Christopher has since run the keyed extraction himself —
+`graphify-out/graph.json` + `GRAPH_REPORT.md` + `graph.html` are present
+(677 nodes · 1461 edges · 43 communities, 98% EXTRACTED). **Fully done.**
 
 Also worth noting for that repo: `.claude/settings.json` (where the
 PreToolUse hook lives) is gitignored there by existing repo convention — only
 `.claude/skills/` is tracked — so the hook is local per worktree/clone and
 would need `graphify claude install` re-run in `/Users/christopherwilson/dappu/gratitude-token-project`
 separately if that worktree is used for Claude Code sessions too.
+
+### `gratitude-token-project_astro` / `_docs` + `mystarch_chief-of-staff` setup notes (2026-09-02)
+
+Key-free steps completed for all three: `.graphifyignore` deployed from the
+canonical template (`_astro` gets a small `.vscode/` override; `_docs` gets a
+heavier override for `.docusaurus/`, `.intent/`, `whitepaper4print/`,
+`DAPP_frontend-content-export/`, `deployTest/`, and loose root-level
+images/PDFs — this repo carries a lot of raw asset dumps that add no graph
+signal). `graphify claude install` run in all three (`_astro` committed +
+pushed cleanly; `_docs` and `__chief__` had substantial *pre-existing*
+uncommitted work in the tree unrelated to graphify — deleted PDFs, in-progress
+doc edits, an in-progress role-note change — so the graphify files were left
+on disk uncommitted rather than risk bundling someone else's in-flight edits
+into a commit. Christopher should review and commit those two separately).
+`graphify extract .` **not run** in any of the three — needs Christopher's
+Gemini key in-session (`! GEMINI_API_KEY=... graphify extract .`), same
+handling as a PAT.
 
 ### Why It Helps Each Repo
 
