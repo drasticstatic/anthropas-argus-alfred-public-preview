@@ -51,6 +51,9 @@ Adjust `Co-Authored-By` to the actual agent and model:
 - Alfred-Anthropic (Sonnet): `Alfred · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
 - Alfred-Anthropic (Opus): `Alfred · Claude · claude-opus-4-7 <noreply@anthropic.com>`
 - Alfred-NIM: `Alfred · Claude · NVIDIA NIM Z-AI GLM-4.7 <noreply@anthropic.com>`
+- Fortuna (trading-assistant only, same mechanism as Alfred): `Fortuna · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
+- **Mystarch** (app-level Chief of Staff, `mystarch_chief-of-staff`): `Mystarch · Claude · claude-sonnet-4-6 <noreply@anthropic.com>` when the session was launched **through Augment Intent** (the normal `~/intent/workspaces/__chief__` path, or Intent's own desktop-app terminal-instance feature pointed at `~/code/mystarch_chief-of-staff`) — this is "ClaudeMent" mode: Claude Code CLI as the model, running under Intent's UI, not full Augment-native (Auggie) capability. If Alfred reaches *into* `mystarch_chief-of-staff` from a session whose own home is elsewhere (not launched by Intent), use the normal Alfred line above instead — see `sandbox/AGENT_IDENTITY_REFERENCE.md`'s Alfred section and `sandbox/INTENT_WORKTREE_LEGEND.md`'s `created-by-*` convention for the full rule.
+- Kavanah (per-Intent-workspace, everywhere except `__chief__`): `Kavanah · Claude · claude-sonnet-4-6 <noreply@anthropic.com>` — same "ClaudeMent" caveat as Mystarch above when the underlying model is Claude rather than native Auggie.
 
 ---
 

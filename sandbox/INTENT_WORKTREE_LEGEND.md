@@ -261,18 +261,22 @@ response" hangs) and you need to point a fresh session at the verbatim history i
     `pwd` first before concluding history was lost.
   - **`__chief__` (Mystarch, app-level seat)**: `~/.claude/projects/-Users-christopherwilson-intent-workspaces---chief--/` — this seat's own session `.jsonl` files and its `memory/` dir both live there. A session launched instead from `~/code/mystarch_chief-of-staff` (added 2026-09-01, see table above) logs under a *different* projects dir (derived from that cwd), so the two don't share transcript history automatically — the code/ clone is a git-level fallback for getting unstuck when Intent's UI hangs, not a mirror of this seat's chat log. Read the `__chief__`-launched `.jsonl` directly (or point a fresh session's `/resume` at that exact path) if you need this seat's verbatim history from outside Intent.
   - **`created-by-*` attribution convention for `mystarch_chief-of-staff`'s own `AGENT-SYNC/`
-    (established 2026-09-02):** follows the same surface-decides-authorship rule as everywhere else
-    in this ecosystem, applied explicitly since this repo's content and its usual persona share a
-    name:
-    - Work/handoffs from a session launched at `~/intent/workspaces/__chief__` (through Intent's own
-      UI/ACP) → `created-by-mystarch`
-    - Work/handoffs from a session launched at `~/code/mystarch_chief-of-staff` (native terminal,
-      no Intent UI involved) → `created-by-alfred`
+    (established 2026-09-02, corrected same day):** follows the same surface-decides-authorship rule
+    as everywhere else in this ecosystem, applied explicitly since this repo's content and its usual
+    persona share a name. **The deciding factor is which application launched the session, not which
+    path it's pointed at:**
+    - A session launched **through Augment Intent itself** — whether that's the normal
+      `~/intent/workspaces/__chief__` path, or Intent's own desktop-app terminal-instance feature
+      pointed at `~/code/mystarch_chief-of-staff` instead — is still Intent driving it, so it's
+      **Mystarch's** lane, `created-by-mystarch`, regardless of which of the two paths it's using.
+    - A session whose home context is somewhere else entirely (Alfred's own `anthropas-argus-alfred`
+      seat, or any other plain native-terminal session outside Intent) that reaches *into*
+      `__chief__`/`mystarch_chief-of-staff` worktrees as a secondary task → `created-by-alfred`.
     - Every *other* Intent workspace (not `__chief__`) → `created-by-kavanah`, unchanged from the
       existing convention (see `AGENT_IDENTITY_REFERENCE.md`'s Kavanah section)
     - **Why this matters practically:** the recurring "awaiting tool response" hangs / stream
       timeouts in Intent's UI (this doc's own Pondering section, and the Auggie-login gap) mean the
-      native-terminal `code/` fallback gets used often enough that its jsonl transcripts and
+      `~/code/mystarch_chief-of-staff` fallback gets used often enough that its jsonl transcripts and
       AGENT-SYNC contributions need their own clear lane — otherwise it's easy to lose track of
       which environment actually produced a given piece of continuity work.
     - **Engine options for the `code/` fallback session:** plain Anthropic-subscription Claude Code

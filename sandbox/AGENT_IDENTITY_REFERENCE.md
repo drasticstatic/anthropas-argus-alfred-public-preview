@@ -50,15 +50,19 @@ everything **except** `trading-assistant`, which is Fortuna's lane. Alfred was s
 (see below) to take on that broader scope, so Fortuna could stay dedicated to her original
 trading-assistant birth-idea rather than diluting into general-purpose framing.
 
-> **Non-obvious case, worth naming explicitly (2026-09-02):** `~/code/mystarch_chief-of-staff` is a
-> native-terminal `code/` clone, so by the rule above it's **Alfred's** lane, same as any other
-> `code/` repo — even though its *content* is Mystarch's own home. The surface decides authorship,
-> not the subject matter: a session launched from that native terminal clone is Alfred, working on
-> Mystarch's behalf; a session launched through Intent's UI at `~/intent/workspaces/__chief__` is
-> Mystarch. Same underlying Claude Code CLI engine either way — what differs is which surface
-> launched it, exactly like the Kavanah/Alfred split above. See `INTENT_WORKTREE_LEGEND.md`'s
-> "Where session chat logs actually live" section for how this maps to `created-by-*` attribution
-> and separate `.jsonl` transcript locations.
+> **Non-obvious case, worth naming explicitly (2026-09-02, corrected same day):** `~/code/mystarch_chief-of-staff`
+> is a `code/`-pathed clone, but path alone does **not** decide authorship here — which *application*
+> launched the session does, same as everywhere else in this split. If that clone is opened through
+> Augment Intent itself (e.g. via Intent's desktop-app terminal-instance feature, pointed at
+> `~/code/mystarch_chief-of-staff` instead of the usual `~/intent/workspaces/__chief__` path), it's
+> still **Mystarch's** lane — Intent launched it. **Alfred's** authorship applies when a session whose
+> home context is somewhere else entirely (Alfred's own `anthropas-argus-alfred` seat, or any other
+> plain native-terminal session outside Intent) reaches *into* `__chief__`/`mystarch_chief-of-staff`
+> worktrees as a secondary task, rather than that being the session's own dedicated launch point. Same
+> underlying Claude Code CLI engine in every case — what differs is which application process is
+> actually driving the session. See `INTENT_WORKTREE_LEGEND.md`'s "Where session chat logs actually
+> live" section for how this maps to `created-by-*` attribution and separate `.jsonl` transcript
+> locations.
 
 > **Alfred's own Three Pillars** (Alfred's home-repo identity, distinct from — and one layer below —
 > the four-persona system this doc maps; source: `anthropas-argus-alfred/README.md`, `AGENTS.md`,
