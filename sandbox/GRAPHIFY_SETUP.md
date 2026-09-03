@@ -111,6 +111,46 @@ The `!` prefix runs it in the terminal and makes it available to graphify. This 
    ```
    Graphify uses an OpenAI-compatible client for Gemini — the `--with openai` install flag above covers this.
 
+**Persisting the key so you don't re-enter it every session (worked out 2026-09-02):** `export
+GEMINI_API_KEY=...` in `~/.zshrc` only loads for *interactive* shells — a Claude Code session's Bash
+tool runs non-interactive commands, which only source `~/.zshenv`. Add the export to **both** files
+(or just `~/.zshenv`) and it's available in every future session without re-entering it:
+```
+echo 'export GEMINI_API_KEY=your-actual-key' >> ~/.zshenv
+```
+Run that yourself, not through an agent session, same as any other key. Verify from inside a
+session with `echo ${#GEMINI_API_KEY}` (length only — never echo the raw value).
+
+**Real free-tier limits (confirmed 2026-09-02, not just documentation guesswork):** there are
+*two* separate caps, not one:
+- **Per-minute:** ~5 requests/min and ~250k input tokens/min (as documented above)
+- **Per-day:** **20 requests/day per project per model** (`gemini-3-flash`) — this is the one that
+  actually blocks a full day's worth of extraction attempts once hit. Observed directly: three
+  medium/small repos' worth of chunked extraction (a handful of files each, plus one heavier
+  image-laden repo) exhausted the day's 20 requests. The error message names which cap you hit
+  (`GenerateRequestsPerMinutePerProjectPerModel-FreeTier` vs.
+  `GenerateRequestsPerDayPerProjectPerModel-FreeTier`) — read it before assuming a quick retry will
+  help; the daily one won't clear until the next day.
+- **Cheap way to check quota without spending a real extraction attempt:** a minimal direct API
+  call costs one request but negligible tokens:
+  ```bash
+  curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=$GEMINI_API_KEY" \
+    -H "Content-Type: application/json" -d '{"contents":[{"parts":[{"text":"hi"}]}]}'
+  ```
+  A normal response means quota is available; a 429 names which cap and the retry delay. (Listing
+  models via `GET /v1beta/models?key=...` is free and doesn't touch generation quota at all — use
+  it to confirm the key itself works before touching the generation endpoint.)
+- **Image-heavy repos burn the daily cap fast.** Vision extraction on each image counts as
+  meaningful token/request cost — a repo with 20+ images can eat a large chunk of the day's budget
+  in one `extract` call. Exclude images that are pure decoration/branding (logos, hero art) via
+  `.graphifyignore` before extracting; keep images that are actual evidentiary content (e.g. a
+  repo's own screenshots-as-data) since excluding those loses real signal, not noise.
+- **Partial extraction is still useful, not a failure to redo from scratch.** When a chunk fails
+  mid-run, graphify still writes whatever completed — run `graphify cluster-only .` (free, no API
+  call) to regenerate `GRAPH_REPORT.md`/`graph.html` from the partial `graph.json`, commit that, and
+  re-run `graphify extract .` again once quota resets to fill in the rest. It picks up from where
+  the graph already is rather than starting over.
+
 ### .graphifyignore
 
 Each repo gets a `.graphifyignore` to keep the graph focused on business logic only.
@@ -141,6 +181,28 @@ Key version fixes to be aware of when upgrading:
 | 7 | `gratitude-token-project_docs` | Large Docusaurus docs site — biggest token win from pruning noise (images, PDFs, `.docusaurus/` cache) | Low — public-facing docs |
 | 8 | `mystarch_chief-of-staff` | Mystarch's own seat (`~/intent/workspaces/__chief__`) — orient across the whole ecosystem without re-reading everything | Medium — app-level coordination repo |
 | 9 | `code-forked repos` | `free-claude-code`, `hummingbot-mcp`, `tradingview-mcp-jackson` — commit graphs as community learning reference after all main repos tested | None (public forks) |
+
+### Extraction status (as of 2026-09-02)
+
+**Fully extracted:** `anthropas-argus-alfred`, `gratitude-token-project`, `gratitude-token-project_astro`,
+`littlebird-ambassador`, `augment-intent-properties`.
+
+**Keyless setup only (`.graphifyignore` + Claude Code hook, no `extract` run yet):**
+`gratitude-token-project_docs`, `mystarch_chief-of-staff`, `iamoneself`, `findyourfeathers`,
+`david-amaringo`, `wilson-lawn-ai-assist`, `dev-recruitment-safeguards` (see below — partial extract
+done, full run still pending), `pir-devine-news` (partial, see below).
+
+**Partial extraction, worth a full re-run once quota resets:**
+- `pir-devine-news` — 30 nodes/32 edges from what completed before hitting the free-tier rate
+  limit; this repo has 74 logo/brand image files that burned quota fast for zero navigation value —
+  added `imports/` and `dashboard/assets/` to `.graphifyignore`, so a re-run should complete cleanly.
+- `dev-recruitment-safeguards` — 17 nodes/13 edges from chunk 1 of 2; chunk 2 hit the free-tier
+  **daily** request cap (20/day), not just the per-minute one. This repo's images (interview/
+  candidate screenshots) are genuine evidentiary content, not noise — don't exclude them, just
+  re-run once the daily quota resets.
+
+Not yet started: `resume`, `tax-assistant`, everything under "code-forked repos" — lower priority
+per the table above.
 
 ### `gratitude-token-project` setup notes (2026-08-25, extraction completed 2026-08-27/28)
 
