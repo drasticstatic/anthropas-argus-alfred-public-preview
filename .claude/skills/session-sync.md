@@ -42,18 +42,42 @@ Brief description of what was done
 - What changed
 - Why it changed
 
-Co-Authored-By: Alfred · Claude · claude-sonnet-4-6 <noreply@anthropic.com>
+Co-Authored-By: Alfred · ClaudeCodeCLI · Anthropic Sonnet-5
 EOF
 )"
 ```
 
-Adjust `Co-Authored-By` to the actual agent and model:
-- Alfred-Anthropic (Sonnet): `Alfred · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
-- Alfred-Anthropic (Opus): `Alfred · Claude · claude-opus-4-7 <noreply@anthropic.com>`
-- Alfred-NIM: `Alfred · Claude · NVIDIA NIM Z-AI GLM-4.7 <noreply@anthropic.com>`
-- Fortuna (trading-assistant only, same mechanism as Alfred): `Fortuna · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
-- **Mystarch** (app-level Chief of Staff, `mystarch_chief-of-staff`): `Mystarch · Claude · claude-sonnet-4-6 <noreply@anthropic.com>` when the session was launched **through Augment Intent** (the normal `~/intent/workspaces/__chief__` path, or Intent's own desktop-app terminal-instance feature pointed at `~/code/mystarch_chief-of-staff`) — this is "ClaudeMent" mode: Claude Code CLI as the model, running under Intent's UI, not full Augment-native (Auggie) capability. If Alfred reaches *into* `mystarch_chief-of-staff` from a session whose own home is elsewhere (not launched by Intent), use the normal Alfred line above instead — see `sandbox/AGENT_IDENTITY_REFERENCE.md`'s Alfred section and `sandbox/INTENT_WORKTREE_LEGEND.md`'s `created-by-*` convention for the full rule.
-- Kavanah (per-Intent-workspace, everywhere except `__chief__`): `Kavanah · Claude · claude-sonnet-4-6 <noreply@anthropic.com>` — same "ClaudeMent" caveat as Mystarch above when the underlying model is Claude rather than native Auggie.
+Footer format is `Agent · Engine · Model`. Engine names:
+- **ClaudeCodeCLI** — Claude Code CLI running in a plain native terminal, OR a terminal-instance
+  session launched from inside Intent/VSCode. Same engine name either way — what varies is which
+  agent gets credit (see below).
+- **AugmentCLI** — Auggie's own native CLI (currently hibernating, may return).
+- **AugmentIntent** — Augment Intent's own chat UI panel, running on native Auggie login.
+- **ClaudeMent** — Augment Intent's own chat UI panel, running on Anthropic login (Claude as the
+  model instead of native Auggie). Reserved specifically for the chat UI — a terminal-instance
+  session inside Intent is still `ClaudeCodeCLI`, not this.
+
+Adjust `Co-Authored-By` to the actual agent/engine/model:
+- Alfred-Anthropic (Sonnet): `Alfred · ClaudeCodeCLI · Anthropic Sonnet-5`
+- Alfred-Anthropic (Opus): `Alfred · ClaudeCodeCLI · Anthropic Opus-5`
+- Alfred-NIM: `Alfred · ClaudeCodeCLI · NVIDIA NIM Z-AI GLM-5.2`
+- Fortuna (trading-assistant only, same mechanism as Alfred): `Fortuna · ClaudeCodeCLI · Anthropic Sonnet-5`
+- Auggie (rare, hibernating): `Auggie · AugmentCLI · [model]`
+- **Mystarch** (app-level Chief of Staff, `mystarch_chief-of-staff`) — which line applies depends on
+  which *application* launched the session, not which path:
+  - Intent's chat UI, Anthropic login: `Mystarch · ClaudeMent · Anthropic [model]`
+  - Intent's chat UI, native Auggie login: `Mystarch · AugmentIntent · [model]`
+  - A terminal instance (macOS/Intent/VSCode), whether pointed at `~/intent/workspaces/__chief__`
+    or `~/code/mystarch_chief-of-staff`, Anthropic login: `Mystarch · ClaudeCodeCLI · Anthropic [model]`
+  - A session whose own home is elsewhere (Alfred's own seat, or any other native terminal outside
+    Intent) reaching into `mystarch_chief-of-staff` as a secondary task: use the normal Alfred line
+    above instead. See `sandbox/AGENT_IDENTITY_REFERENCE.md`'s Alfred section and
+    `sandbox/INTENT_WORKTREE_LEGEND.md`'s `created-by-*` convention for the full rule.
+- **Kavanah** (per-Intent-workspace, everywhere except `__chief__`): same engine breakdown as
+  Mystarch above, swap the agent name.
+
+The `<noreply@anthropic.com>` tail is no longer part of the documented convention (dropped
+2026-09-02 — didn't carry useful information). Omit it in new commits going forward.
 
 ---
 
