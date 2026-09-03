@@ -6,9 +6,9 @@
 > should link here instead of re-explaining the system locally. If this doc and a repo's own
 > `CLAUDE.md` ever disagree, this doc is the one to trust and the other should be updated to match.
 >
-> **Related:** [`INTENT_WORKTREE_LEGEND.md`](INTENT_WORKTREE_LEGEND.md) (which workspace/clone is
-> which repo), [`FREE_MODEL_SETUP.md`](FREE_MODEL_SETUP.md) (Alfred's Anthropic vs NVIDIA NIM model
-> routing), [`INTENT_AGENT_ROLE_REFERENCE.md`](INTENT_AGENT_ROLE_REFERENCE.md) (which Intent
+> **Related:** [`INTENT_WORKTREE_LEGEND.md`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/INTENT_WORKTREE_LEGEND.md) (which workspace/clone is
+> which repo), [`FREE_MODEL_SETUP.md`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/FREE_MODEL_SETUP.md) (Alfred's Anthropic vs NVIDIA NIM model
+> routing), [`INTENT_AGENT_ROLE_REFERENCE.md`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/INTENT_AGENT_ROLE_REFERENCE.md) (which Intent
 > specialist — Coordinator/UI Designer/Developer/Verifier/Chief of Staff — fits a given task, plus
 > the AugmentIntent login/specialist-factory notes; mirrored here from
 > `trading-assistant/AGENT-SYNC/created-by-kavanah/`, canonical source lives there).

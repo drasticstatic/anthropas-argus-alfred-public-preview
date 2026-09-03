@@ -7,11 +7,14 @@
 > Compiled by direct filesystem/git inspection (not from memory) on the date above — re-verify
 > ahead/behind counts before trusting them if you're reading this more than a few days later.
 >
-> **Related:** [`GRAPHIFY_SETUP.md`](GRAPHIFY_SETUP.md) links back here from its Integration Plan
-> section, since that plan references several of these same repos by name.
-> [`DETACHED_HEAD_GUIDE.md`](../../divorce-custody-assistant/DETACHED_HEAD_GUIDE.md) (in
-> `code/divorce-custody-assistant/`) explains that repo's intentional dual-checkout setup — read it
-> before assuming its detached HEAD is a problem.
+> **Related:** [`GRAPHIFY_SETUP.md`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/GRAPHIFY_SETUP.md)
+> links back here from its Integration Plan section, since that plan references several of these
+> same repos by name.
+> [`DETACHED_HEAD_GUIDE.md`](https://github.com/drasticstatic/divorce-custody-assistant/blob/main/DETACHED_HEAD_GUIDE.md)
+> (in `code/divorce-custody-assistant/`) explains that repo's intentional dual-checkout setup — read
+> it before assuming its detached HEAD is a problem. Note: that repo is private, so this link 404s
+> for public-preview viewers without collaborator access (see the same caveat on the redirect stub
+> at `my-template/workflow-templates/DETACHED_HEAD_GUIDE.md`).
 
 ## How to read this
 
@@ -129,7 +132,7 @@ alternative) explanation for why `__chief__`'s spec note and agent roster are em
 underneath is a substitute for the surface, but it doesn't bring in Augment's own Context Engine /
 shared codebase-understanding layer ("AugmentMagic") the way a native Auggie session would. This is
 a distinct hypothesis from the tool-scope explanation already recorded in
-[`AGENT_IDENTITY_REFERENCE.md`](AGENT_IDENTITY_REFERENCE.md)'s "How the four relate" section
+[`AGENT_IDENTITY_REFERENCE.md`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/AGENT_IDENTITY_REFERENCE.md)'s "How the four relate" section
 (repo-scoped `ws.*` vs. app-level `ws.app.*`, before elevation) — that one is about which *tools*
 were reachable; this one is about which *underlying capability* is powering the session regardless
 of tool reach. Both could be true at once and compound each other.
@@ -138,7 +141,7 @@ of tool reach. Both could be true at once and compound each other.
 test but hasn't been able to under current constraints), the expectation is Mystarch and the
 Kavanah coordinators would resume operating with Intent's full native capability set — the agent
 roles and specialist factory laid out in
-[`INTENT_AGENT_ROLE_REFERENCE.md`](INTENT_AGENT_ROLE_REFERENCE.md) (mirrored here 2026-08-31;
+[`INTENT_AGENT_ROLE_REFERENCE.md`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/INTENT_AGENT_ROLE_REFERENCE.md) (mirrored here 2026-08-31;
 canonical source is `trading-assistant/AGENT-SYNC/created-by-kavanah/INTENT_AGENT_ROLE_REFERENCE.md`)
 — rather than the current ClaudeCode-as-substitute mode.
 
@@ -260,6 +263,17 @@ response" hangs) and you need to point a fresh session at the verbatim history i
     logged under (e.g. shell `cd`'d into `dappu/` instead of the Intent workspace path) — check
     `pwd` first before concluding history was lost.
   - **`__chief__` (Mystarch, app-level seat)**: `~/.claude/projects/-Users-christopherwilson-intent-workspaces---chief--/` — this seat's own session `.jsonl` files and its `memory/` dir both live there. A session launched instead from `~/code/mystarch_chief-of-staff` (added 2026-09-01, see table above) logs under a *different* projects dir (derived from that cwd), so the two don't share transcript history automatically — the code/ clone is a git-level fallback for getting unstuck when Intent's UI hangs, not a mirror of this seat's chat log. Read the `__chief__`-launched `.jsonl` directly (or point a fresh session's `/resume` at that exact path) if you need this seat's verbatim history from outside Intent.
+  - **No `ws.app.*` reach from the `code/` fallback (confirmed 2026-09-03):** a session launched as
+    plain Claude Code CLI in `~/code/mystarch_chief-of-staff` — i.e. *not* through Augment Intent's
+    UI or its desktop-app terminal-instance feature — has **zero** `ws.app.*` tool surface, not a
+    degraded subset of it. It can edit files and run `git`/`gh` exactly like an Intent-launched
+    session, but anything needing `ws.app.workspaces.*` (creating an Intent workspace, navigating
+    Intent's UI) has no code path from that session at all — it has to come back to an
+    Intent-launched session, or wait for Christopher to do it manually. Full detail:
+    `mystarch_chief-of-staff/specs/chief-of-staff-operating-model.md` § 5. This is a sharper,
+    directly-reproducible version of the same Auggie-CLI-vs-Claude-Code-CLI gap already discussed in
+    this doc's 🤔 Pondering section below — logged as source material for
+    `augment-intent-properties/FINDINGS-PLAN.md`.
   - **`created-by-*` attribution convention for `mystarch_chief-of-staff`'s own `AGENT-SYNC/`
     (established 2026-09-02, corrected same day):** follows the same surface-decides-authorship rule
     as everywhere else in this ecosystem, applied explicitly since this repo's content and its usual
