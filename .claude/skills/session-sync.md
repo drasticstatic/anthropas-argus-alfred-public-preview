@@ -150,7 +150,7 @@ Alfred session logs **are committed** to the private alfred repo.
 git add AGENT-SYNC/ HANDOFF.md logs/
 git commit -m "Update agent sync and session log [date]
 
-Co-Authored-By: Alfred · Claude · claude-sonnet-4-6 <noreply@anthropic.com>"
+Co-Authored-By: Alfred · ClaudeCodeCLI · Anthropic Sonnet-5"
 git push origin main
 ```
 
