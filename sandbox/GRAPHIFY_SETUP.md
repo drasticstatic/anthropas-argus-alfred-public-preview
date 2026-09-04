@@ -184,12 +184,14 @@ Key version fixes to be aware of when upgrading:
 
 ### Extraction status (as of 2026-09-04)
 
-**Fully extracted:** `anthropas-argus-alfred`, `gratitude-token-project`, `gratitude-token-project_astro`,
-`littlebird-ambassador`, `augment-intent-properties`, `pir-devine-news` (40 nodes — completed
-2026-09-04 once `imports/`/`dashboard/assets/` were excluded), `dev-recruitment-safeguards` (28
-nodes — completed 2026-09-04 once the daily quota reset), `mystarch_chief-of-staff` (15 nodes),
-`tax-assistant` (22 nodes), `wilson-lawn-ai-assist` (314 nodes — mostly free AST extraction, only 1
-API chunk needed).
+**Fully extracted:** `anthropas-argus-alfred`, `gratitude-token-project`, `littlebird-ambassador`,
+`augment-intent-properties`, `pir-devine-news` (40 nodes — completed 2026-09-04 once
+`imports/`/`dashboard/assets/` were excluded), `dev-recruitment-safeguards` (28 nodes — completed
+2026-09-04 once the daily quota reset), `mystarch_chief-of-staff` (15 nodes), `tax-assistant` (22
+nodes), `wilson-lawn-ai-assist` (314 nodes — mostly free AST extraction, only 1 API chunk needed),
+`gratitude-token-project_astro` (8 nodes — **correction:** an earlier pass of this doc listed this
+one as fully extracted when it had actually only had the keyless setup run, no real `extract` —
+genuinely completed 2026-09-04).
 
 **Keyless setup only (`.graphifyignore` + Claude Code hook, no `extract` run yet):**
 `gratitude-token-project_docs`, `iamoneself`, `findyourfeathers`, `david-amaringo`.
@@ -207,6 +209,15 @@ API chunk needed).
   the write step), so there's nothing to `cluster-only` from yet. Worth trying again on a day where
   the whole extraction can complete in fewer chunks (avoiding the rate-limit-then-merge-partial path
   entirely), or filing upstream if it recurs.
+
+**Fleet-wide `.gitignore` hardening (2026-09-04):** every repo with a graphify `.gitignore` section
+now excludes the newer internal cache files (`.graphify_analysis.json`, `.graphify_labels.json`),
+not just the ones that already had `extract` run — 27 repos total, including a few (`__chief__` and
+its `code/mystarch_chief-of-staff` clone) that had no graphify gitignore section at all before.
+`my-template` and `init-graphify.sh` already had this fixed as of 2026-09-02; this pass caught
+everywhere else. Also caught two more repos (`tax-assistant`, `gratitude-token-project_astro`) with
+the same "`graphify-out` unclassified in the allowlist sync workflow" gap found earlier on
+`littlebird-ambassador`/`augment-intent-properties` — fixed both.
 
 Not yet started: `iamoneself`, `findyourfeathers`, `david-amaringo`, `gratitude-token-project_docs`,
 everything under "code-forked repos" — lower priority per the table above. `iamoneself` and
