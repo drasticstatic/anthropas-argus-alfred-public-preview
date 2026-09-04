@@ -182,27 +182,37 @@ Key version fixes to be aware of when upgrading:
 | 8 | `mystarch_chief-of-staff` | Mystarch's own seat (`~/intent/workspaces/__chief__`) — orient across the whole ecosystem without re-reading everything | Medium — app-level coordination repo |
 | 9 | `code-forked repos` | `free-claude-code`, `hummingbot-mcp`, `tradingview-mcp-jackson` — commit graphs as community learning reference after all main repos tested | None (public forks) |
 
-### Extraction status (as of 2026-09-02)
+### Extraction status (as of 2026-09-04)
 
 **Fully extracted:** `anthropas-argus-alfred`, `gratitude-token-project`, `gratitude-token-project_astro`,
-`littlebird-ambassador`, `augment-intent-properties`.
+`littlebird-ambassador`, `augment-intent-properties`, `pir-devine-news` (40 nodes — completed
+2026-09-04 once `imports/`/`dashboard/assets/` were excluded), `dev-recruitment-safeguards` (28
+nodes — completed 2026-09-04 once the daily quota reset), `mystarch_chief-of-staff` (15 nodes),
+`tax-assistant` (22 nodes), `wilson-lawn-ai-assist` (314 nodes — mostly free AST extraction, only 1
+API chunk needed).
 
 **Keyless setup only (`.graphifyignore` + Claude Code hook, no `extract` run yet):**
-`gratitude-token-project_docs`, `mystarch_chief-of-staff`, `iamoneself`, `findyourfeathers`,
-`david-amaringo`, `wilson-lawn-ai-assist`, `dev-recruitment-safeguards` (see below — partial extract
-done, full run still pending), `pir-devine-news` (partial, see below).
+`gratitude-token-project_docs`, `iamoneself`, `findyourfeathers`, `david-amaringo`.
 
-**Partial extraction, worth a full re-run once quota resets:**
-- `pir-devine-news` — 30 nodes/32 edges from what completed before hitting the free-tier rate
-  limit; this repo has 74 logo/brand image files that burned quota fast for zero navigation value —
-  added `imports/` and `dashboard/assets/` to `.graphifyignore`, so a re-run should complete cleanly.
-- `dev-recruitment-safeguards` — 17 nodes/13 edges from chunk 1 of 2; chunk 2 hit the free-tier
-  **daily** request cap (20/day), not just the per-minute one. This repo's images (interview/
-  candidate screenshots) are genuine evidentiary content, not noise — don't exclude them, just
-  re-run once the daily quota resets.
+**Keyless setup done, `extract` attempted but not completed:**
+- `resume` — hit two separate problems worth knowing about before retrying. First, a vendored
+  FontAwesome icon set (`vendor/fontawesome-free-5.15.4-web/svgs/`, 1611 SVG files) blew through
+  the free-tier quota in one call before `.graphifyignore` existed for this repo — deployed the
+  canonical template now (its default `vendor/` rule covers this), so that specific problem is
+  fixed. Second, and separately: **a real bug in graphify itself** — `KeyError: 'target'` in
+  `graphify/dedup.py` (`deduplicate_entities`, line 237) when merging a partial multi-chunk result
+  after a chunk was rate-limited. Reproduced twice, same crash both times, after the vendor/ fix was
+  already in place — this is not a config issue, it's graphify choking on malformed/incomplete edge
+  data from a partial chunk during dedup. No `graph.json` was ever written (the crash happens before
+  the write step), so there's nothing to `cluster-only` from yet. Worth trying again on a day where
+  the whole extraction can complete in fewer chunks (avoiding the rate-limit-then-merge-partial path
+  entirely), or filing upstream if it recurs.
 
-Not yet started: `resume`, `tax-assistant`, everything under "code-forked repos" — lower priority
-per the table above.
+Not yet started: `iamoneself`, `findyourfeathers`, `david-amaringo`, `gratitude-token-project_docs`,
+everything under "code-forked repos" — lower priority per the table above. `iamoneself` and
+`david-amaringo` are large (1000+ and 750+ files respectively counting vendored/build content) —
+worth checking each for the same kind of vendor/dependency noise `resume` had before running
+`extract`, not just running it blind.
 
 ### `gratitude-token-project` setup notes (2026-08-25, extraction completed 2026-08-27/28)
 
