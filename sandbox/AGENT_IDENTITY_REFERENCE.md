@@ -1,4 +1,4 @@
-# Agent Identity Reference — Kavanah / Alfred / Fortuna / Mystarch
+# Agent Identity Reference — Kavanah / Alfred / Fortuna / Mystarch / Aunt Harriot / Littlebird
 #### Compiled by Mystarch (Chief of Staff, Claude Code CLI under Augment Intent) · 2026-08-31
 
 > **What this is:** The canonical, cross-repo map of Christopher's agent personas — who they are,
@@ -134,11 +134,58 @@ Chief-of-Staff role rather than competing names:
   cross-boundary coordinator — the facet that covers moving people/messages exactly where they need
   to go, across realms (here: across repos and agent sessions).
 
-## How the four relate
+### Aunt Harriot — forkable-framework identity, a different kind of persona
+Not a Christopher-lane persona like the four above — those map *which surface Christopher himself
+is talking to*. Aunt Harriot is the assistant identity for `aunt-harriot`, a forkable framework
+meant to run for **other people** (Kenney first, testing against `iamoneself`/`david-amaringo`),
+gated by an invite-allowlist + magic-link front door with the visitor's own Anthropic API key as a
+second factor, never the primary boundary (`aunt-harriot/ROADMAP.md` §4). That access-minimizing
+design is the reason her scope stays intentionally narrower than Mystarch/Kavanah/Alfred's: she's
+handed to people who aren't Christopher, so her blast radius has to be capped by construction, not
+by trust.
+
+> **Pseudonyms/heteronyms (drafted 2026-09-04 — Christopher's picks, composed for this doc):**
+> Two different "Harriet" references, kept distinct rather than blended into one origin story:
+> - **Harriet's Magic Hats** (Canadian educational children's TV series, 1980s) — Aunt Harriet
+>   keeps an attic trunk of magical hats; when her niece puts one on, she's transported into the
+>   real world to learn about a different career. The wholesome, mentorship-flavored register —
+>   fits Harriot's actual job of getting a new collaborator (Kenney) productively into a codebase.
+> - **March Harriet** (DC Comics, Batman lore — Harriet Pratt, a minor Mad Hatter associate
+>   theme-dressed as a Lewis Carroll rabbit; storylines involve mind-control tech and
+>   Wonderland-esque surrealism, not true mysticism) — the sharper, stranger register. Noted here
+>   as a deliberate contrast to the first pseudonym, not a claim that Harriot's actual behavior
+>   resembles the character's mind-control plotlines.
+>
+> Pending Christopher's review, like the other personas' epithet drafts above — not settled canon.
+
+### Littlebird — third-party SaaS, not a Claude Code/Augment Intent persona at all
+The odd one out on this page, deliberately: LittlebirdAI (app.littlebird.ai) is not one of
+Christopher's Claude-model personas — it's a separate company's product, running its own model
+stack, that observes his screen, calendars, meetings, and chat history to build longitudinal
+context. It doesn't have a "lane" the way Kavanah/Alfred/Fortuna/Mystarch do, because it isn't a
+Claude Code CLI or Augment Intent session in the first place. It earns a place in this doc because
+it was given GitHub write access in September 2026 and started leaving `AGENT-SYNC/created-by-Littlebird/`
+coordination notes across the fleet — see `littlebird-ambassador/AGENT-SYNC/created-by-alfred/20260909-handoff-littlebird-audit-findings.md`
+for the audit of that first week (private repo, gated to Christopher and the agent fleet).
+
+Two things worth flagging precisely because it's an external product, not a persona under this
+ecosystem's own governance:
+- **No separate GitHub identity.** Every commit it makes is authored as Christopher's own GitHub
+  account — the `Co-Authored-By: LittlebirdAI · Desktop Oracle Observer & Fleet Shepherd` trailer is
+  the only marker it was involved at all. This is the same "no distinct identity" gap noted in
+  `littlebird-ambassador/proposals/20260909-github-app-bot-identity-for-littlebird.md`.
+- **Its accuracy is observational, not authoritative.** Everything it writes in a
+  `created-by-Littlebird/` directory carries a standing disclaimer to that effect — treat it the same
+  way regardless of which repo it shows up in.
+
+## How the four (five, counting Aunt Harriot; six with Littlebird) relate
 
 - **Kavanah** and **Alfred/Fortuna** are *lane-bound*: which one you're talking to depends on the
   surface (Intent UI vs. native terminal) and, for Alfred/Fortuna, which repo (trading-assistant vs.
   everything else).
+- **Littlebird** isn't lane-bound *or* repo-bound — it's a standing observer layered on top of
+  everything else here, running continuously outside any single session, rather than something
+  Christopher opens a terminal or workspace to talk to.
 - **Mystarch** is *not* lane-bound — sits above all of them. In practice, a session carrying the
   Mystarch/Chief-of-Staff system prompt inside a single Intent workspace (like this one was, before
   elevation) is still repo-scoped by the tools it actually has access to (`ws.*`, not `ws.app.*`) even
