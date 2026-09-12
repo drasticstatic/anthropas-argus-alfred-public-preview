@@ -42,12 +42,13 @@ Brief description of what was done
 - What changed
 - Why it changed
 
-Co-Authored-By: Alfred · ClaudeCodeCLI · Anthropic Sonnet-5
+Co-Authored-By: Alfred · ClaudeCodeCLI · Anthropic [Sonnet-5]
+Claude-Session: https://claude.ai/code/session_<full session id>
 EOF
 )"
 ```
 
-Footer format is `Agent · Engine · Model`. Engine names:
+Footer format is **four** fields — `Agent · Engine · Provider [Model]` — with the model in square brackets, followed by a **separate** session trailer. Engine names:
 - **ClaudeCodeCLI** — Claude Code CLI running in a plain native terminal, OR a terminal-instance
   session launched from inside Intent/VSCode. Same engine name either way — what varies is which
   agent gets credit (see below).
@@ -150,7 +151,8 @@ Alfred session logs **are committed** to the private alfred repo.
 git add AGENT-SYNC/ HANDOFF.md logs/
 git commit -m "Update agent sync and session log [date]
 
-Co-Authored-By: Alfred · ClaudeCodeCLI · Anthropic Sonnet-5"
+Co-Authored-By: Alfred · ClaudeCodeCLI · Anthropic [Sonnet-5]
+Claude-Session: https://claude.ai/code/session_<full session id>"
 git push origin main
 ```
 
@@ -169,3 +171,17 @@ Alfred-NIM reads `HANDOFF.md` first (compact, ~40 lines) as the primary pickup d
 - Never commit `.env` files, credentials, or wallet/key files
 - Don't skip HANDOFF.md — it's how Alfred-NIM picks up without re-reading the full session
 - Don't skip AGENT_SYNC.md — it's how all agents stay aligned between sessions
+
+> **Corrected 2026-09-11.** This section previously documented a three-field footer
+> (`Agent · Engine · Model`), a near-miss of the canonical four-field
+> `Agent · Engine · Provider [Model]`. A fleet audit found 36/204 commits in
+> `anthropas-argus-alfred` and 183/856 in `trading-assistant` with no attribution trailer at all,
+> plus 15+ competing variants — the skills were a real source of that drift, so correcting
+> `CLAUDE.md` alone would not have held. Canonical form:
+> [`my-template/AGENT-SYNC/README.md`](https://github.com/drasticstatic/my-template/blob/main/AGENT-SYNC/README.md).
+> `.githooks/commit-msg` now rejects non-conforming commits — activate once per clone with
+> `sh scripts/install-hooks.sh`.
+>
+> The session trailer is a **separate** line (`Claude-Session:` / `Cosmos-Session:`). Never fold it
+> onto the `Co-Authored-By:` line — git parses one `Key: Value` trailer per line. Use the full
+> session URL, never a truncated prefix.
