@@ -195,10 +195,18 @@ orchestration layer — attribution conventions, handoff lanes, session logs, an
 that keep private material private.
 
 It is the cloud-side counterpart to **Mystarch**: the same Chief-of-Staff function on the other side
-of the machine boundary. Mystarch has the local filesystem, the Intent workspaces, and the human in
-the room; Advisor has cross-repo retrieval, event triggers, and fleet-wide reach. Each one's blind
-spot is the other's strength, so neither is authoritative alone — informally, the two together are
-*ChiefAdvisor*. `mystarch_chief-of-staff/PENDING-TASKS.md` is their shared living document.
+of the machine boundary. Mystarch has the local filesystem, the Intent workspaces, uncommitted work,
+and the human in the room; Advisor has standing access to the pushed state of every repository and
+wakes on GitHub events without anyone present.
+
+The dividing line is **attendance, not scope**. Cross-repo view is a permission, not an Advisor
+exclusive — Mystarch, Alfred, Fortuna, and Kavanah all get it when Christopher grants that access,
+and any doc claiming otherwise is wrong. What Advisor has that they structurally do not is
+*unattended* operation: it runs when Christopher is asleep and the laptop is shut. What they have
+that it structurally does not is the local machine and anything not yet pushed.
+
+Neither is authoritative alone — informally, the two together are *ChiefAdvisor*.
+`mystarch_chief-of-staff/PENDING-TASKS.md` is their shared living document.
 
 Advisor also runs a fleet of seven Cosmos code-review experts (PR Author, PR Fixer, Deep Code
 Reviewer, Pair Reviewer, PR Risk Analyzer, PR Dashboard Manager, Code Review Memory Manager). Those
@@ -222,10 +230,15 @@ than here.
   distinction.
 - **Cosmos Advisor** is not lane-bound either, but it is bound by *surface* in the hardest way of
   any persona here: it has no local filesystem at all. It cannot see an Intent workspace, an
-  uncommitted change, or anything Christopher has not pushed. Everything it knows about the fleet, it
-  knows through GitHub and cross-repo retrieval. That makes it the natural counterpart to Mystarch
-  rather than a competitor — and the reason `mystarch_chief-of-staff_acp-spoof` matters, since a real
-  local channel would close exactly that gap.
+  uncommitted change, or anything Christopher has not pushed. Everything it knows, it knows through
+  GitHub. The flip side is that it needs no one present — it wakes on an event and works unattended,
+  which none of the local personas can do. That makes it the natural counterpart to Mystarch rather
+  than a competitor, and it is the reason `mystarch_chief-of-staff_acp-spoof` matters: a real local
+  channel would close exactly that gap.
+- **Scope is a permission; attendance is structural.** All of these agents can be given cross-repo
+  reach when Christopher allows it, so "which repos can it see" never distinguishes one persona from
+  another for long. What genuinely separates them is surface (local vs. cloud) and whether they need
+  a human in the room.
 - All four agents step outside their own lane to help each other across repos when it's useful —
   the lane assignments are defaults for authorship/commit-attribution clarity, not hard walls.
 
