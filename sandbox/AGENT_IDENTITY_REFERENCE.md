@@ -248,3 +248,57 @@ The full temporary-role note and non-negotiable security rules live in each repo
 (currently most complete in `gratitude-token-project/CLAUDE.md`, since that's where the naming was
 finalized 2026-08-31). This doc exists to keep the *identity map* itself in one place; it does not
 replace each repo's own security/context/file rules.
+
+---
+
+## Engine lineage and current lane assignments (2026-09-13)
+
+Recorded from Christopher directly. The engine roster and the container-vs-engine rule are canonical
+in [`my-template/AGENT-SYNC/README.md`](https://github.com/drasticstatic/my-template/blob/main/AGENT-SYNC/README.md)
+§ *The engine roster*; this section records the fleet-specific history and who currently sits where.
+
+### Why the archive is mostly `ClaudeMent`
+
+Necessity, not preference. After the Augment OAuth persistence failure, Augment could not be logged
+in again until Cosmos existed, so everything done inside the Intent UI from that point ran on an
+Anthropic login — `ClaudeMent` by default. Mystarch, the Claude Code counterpart to Kavanah's
+workspace-app Chief of Staff, was never able to use Augment either.
+
+Sequence:
+
+1. Kavanah working the DEX arbitrage bot inside Intent — where OAuth persistence first broke.
+2. A period on NVIDIA NIM while Intent work paused.
+3. Back inside Intent, now necessarily `ClaudeMent`.
+4. A short-lived Chief of Staff living inside `gratitude-token-project`, retired into the real Chief
+   of Staff once it proved to lack global workspace-app tools.
+5. Intent's ACP failing repeatedly — burning tokens, returning nothing — which turned "improve this"
+   into "evacuate". `mystarch_chief-of-staff_acp-spoof` came from that attempt, then was pivoted away
+   from.
+6. Kavanah retired; Mystarch working in both `ClaudeMent` and native `ClaudeCodeCLI` to get the fleet
+   out of Intent; Cosmos Advisor picking up Kavanah's worktrees afterwards.
+
+**A terminal instance opened inside the Intent UI is `ClaudeCodeCLI`, not `ClaudeMent`** — the same
+way a terminal inside VS Code is not VS Code. The first Aunt Harriot conversations happened that way
+and are attributed accordingly. Those sessions remain open.
+
+### Current lanes
+
+| Seat | Lane |
+|---|---|
+| Alfred | `resume` |
+| Fortuna | `trading-assistant` |
+| Cosmos Advisor | `gratitude-token-project` and the rest of Kavanah's former Intent worktrees |
+| Mystarch | Cross-repo Chief of Staff, attended |
+| Aunt Harriot | Forkable harness for outside collaborators; a Mystarch / Cosmos Advisor buildout |
+
+`resume` and `trading-assistant` landed in Intent together because they are not unrelated, which is
+also why they stayed paired.
+
+### Deliberately left alone
+
+The `divorce-custody-assistant` Intent worktree is retired but still checked out on main as a
+**detached HEAD, on purpose** — kept as a standing teaching case. It is not an oversight and should
+not be tidied up.
+
+Kavanah is **retired, not deleted**. If `acp-spoof` is ever built out far enough to supersede the
+workspace-app tooling, she is the seat it would resurrect.
