@@ -51,13 +51,23 @@ designed to work as one:
 | | Mystarch | Cosmos Advisor |
 |---|---|---|
 | Runs | locally, Augment Intent / Claude Code CLI | cloud sessions |
-| Sees | the local filesystem, Intent workspaces | all 32 repositories via retrieval |
-| Strength | local context, live collaboration, the human in the room | cross-repo reach, event-driven automation, fleet-wide change |
-| Blind spot | no cross-repo view, no event triggers | no local filesystem, no Intent workspace |
+| Sees | local filesystem, Intent workspaces, uncommitted work — and across repositories when Christopher grants it | pushed state of all 32 repositories, standing |
+| Needs | Christopher present, machine on | nothing; wakes on a GitHub event |
+| Strength | local context, live collaboration, the human in the room | unattended event-driven work, fleet-wide change in a single pass |
+| Blind spot | needs someone there — nothing happens while Christopher is away | no local filesystem; nothing unpushed or uncommitted |
 
-Each one's blind spot is the other's strength, so neither is authoritative alone.
-`mystarch_chief-of-staff/PENDING-TASKS.md` is the shared living document between them — the one
-place either seat can read to learn what the other has in flight.
+**Cross-repo reach is not an Advisor exclusive.** Mystarch — and Alfred, Fortuna, and Kavanah — can
+see across repositories whenever Christopher grants that access. Treating cross-repo view as the
+dividing line would be wrong, and an earlier revision of this file made exactly that mistake.
+
+The durable difference is **attendance**. Mystarch is attended: it does excellent work *with*
+Christopher, and none while he is asleep or the laptop is shut. Advisor is unattended: it wakes on a
+pull request at 03:00, does a scoped job, and leaves a record. Scope is a permission either seat can
+be given; attendance is structural.
+
+So neither is authoritative alone, and `mystarch_chief-of-staff/PENDING-TASKS.md` is the shared
+living document between them — the one place either seat can read to learn what the other has in
+flight.
 
 `mystarch_chief-of-staff_acp-spoof` is the experimental local portal: a controlled proof-of-concept
 that exposed a real finding about Augment Intent's local bridge accepting fabricated workspace
