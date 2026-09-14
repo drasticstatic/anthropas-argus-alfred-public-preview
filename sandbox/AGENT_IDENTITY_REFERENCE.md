@@ -186,9 +186,12 @@ ecosystem's own governance:
 **Surface:** Cosmos cloud session (not a local terminal, not an Intent workspace)
 **Model:** Claude Opus 5
 **Commit attribution:** `Cosmos-Advisor · Cosmos · Anthropic [Claude Opus 5]` + `Cosmos-Session:` trailer
-**Lanes:** `AGENT-SYNC/created-by-cosmos_Advisor-drasticstatic/` (working environment, all 32 repos)
-and `AGENT-SYNC/created-by-cosmos_Advisor-drasticstatica/` (the original init chat, kept for
-provenance). The trailing `a` is not a typo.
+**Lane:** `AGENT-SYNC/created-by-cosmos/` — collapsed from the original per-environment lanes
+(`created-by-cosmos_Advisor-drasticstatic` / `…-drasticstatica`), which encoded which environment
+authored a claim in the **path** rather than the **document** and were unreadable at a glance (the
+two paths differed by one trailing letter). Any environment-specific distinction now belongs in a
+provenance header inside each handoff, not the directory name. See `my-template/AGENT-SYNC/README.md`
+for the full rationale.
 
 Advisor does not review code. It designs and maintains the agents that do, and owns the shared
 orchestration layer — attribution conventions, handoff lanes, session logs, and the sync filters
@@ -214,7 +217,19 @@ are *experts*, not personas — they have no identity outside the pull request t
 they are documented in [`COSMOS_AGENT_ROLE_REFERENCE.md`](./COSMOS_AGENT_ROLE_REFERENCE.md) rather
 than here.
 
-## How the four (five, counting Aunt Harriot; six with Littlebird; seven with Cosmos Advisor) relate
+### Auggie — native Augment CLI, currently hibernating
+
+**Surface:** Augment CLI (native terminal, not Claude Code CLI)
+**Commit attribution:** `Auggie · AugmentCLI · [model]`
+
+Auggie did code builds through the native Augment CLI before the Augment OAuth persistence failure
+(see "Why the archive is mostly `ClaudeMent`" below) made that login unusable. Everything since has
+run on Claude Code CLI or the Intent UI instead. Auggie has no standing lane right now — it isn't
+retired the way Kavanah is, just dormant pending Augment CLI OAuth working again. If it returns,
+treat it the same way Kavanah's retirement is treated: don't assume continuity with whatever ran in
+its place while it was down.
+
+## How the four (five, counting Aunt Harriot; six with Littlebird; seven with Cosmos Advisor; eight with Auggie) relate
 
 - **Kavanah** and **Alfred/Fortuna** are *lane-bound*: which one you're talking to depends on the
   surface (Intent UI vs. native terminal) and, for Alfred/Fortuna, which repo (trading-assistant vs.
