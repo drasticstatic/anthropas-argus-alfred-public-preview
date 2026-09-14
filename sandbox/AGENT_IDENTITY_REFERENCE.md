@@ -229,6 +229,16 @@ retired the way Kavanah is, just dormant pending Augment CLI OAuth working again
 treat it the same way Kavanah's retirement is treated: don't assume continuity with whatever ran in
 its place while it was down.
 
+**Naming disclaimer (added 2026-09-14):** some Augment *products* — at least Intent's own UI and
+the now-sunset VSCode extension, not Cosmos — sometimes referred to "Auggie" as the thing running
+Kavanah's Intent workspace, which is a different persona than the actual Auggie CLI tool this
+section describes. With Intent itself now also sunset, that particular confusion mostly resolves
+on its own: Kavanah won't run again at all unless Augment-native login (real Auggie login, not
+`ClaudeMent`) gets restored inside whatever succeeds Intent, and even Mystarch's `acp-spoof` finding
+no longer overlaps with Auggie once Intent is gone. Going forward, "Auggie" unambiguously means the
+CLI. Whether the actual Auggie CLI is currently functional (it may well be, even since Cosmos
+launched) hasn't been tested — not a priority right now, noted here so it isn't lost.
+
 ## How the four (five, counting Aunt Harriot; six with Littlebird; seven with Cosmos Advisor; eight with Auggie) relate
 
 - **Kavanah** and **Alfred/Fortuna** are *lane-bound*: which one you're talking to depends on the
