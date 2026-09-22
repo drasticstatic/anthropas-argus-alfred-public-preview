@@ -16,6 +16,15 @@
 > [`COSMOS_AGENT_ROLE_REFERENCE.md`](./COSMOS_AGENT_ROLE_REFERENCE.md) (the Cosmos side — Advisor
 > plus the seven-expert code-review fleet, and how a change moves through it).
 
+## Agents with a live front end
+
+Most of this doc is internal reference. Two of these personas also have a public-facing site:
+- [**Argus Alfred**](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/index.html) — public preview of this repo's own front end.
+- [**Fortuna / Trading Assistant**](https://drasticstatic.github.io/trading-assistant-public-preview/) — public preview of the trading-assistant front end.
+
+(Added 2026-09-21, linked from the Littlebird Ambassador site's homepage — see
+`littlebird-ambassador/astro/src/pages/index.astro`, "The fleet" section.)
+
 ## The four personas
 
 ### Kavanah — per-workspace Intent identity
