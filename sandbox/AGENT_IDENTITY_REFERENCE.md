@@ -18,9 +18,10 @@
 
 ## Agents with a live front end
 
-Most of this doc is internal reference. Two of these personas also have a public-facing site:
+Most of this doc is internal reference. Three of these personas also have a public-facing site:
 - [**Argus Alfred**](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/index.html) — public preview of this repo's own front end.
 - [**Fortuna / Trading Assistant**](https://drasticstatic.github.io/trading-assistant-public-preview/) — public preview of the trading-assistant front end.
+- [**Littlebird Ambassador**](https://drasticstatic.github.io/littlebird-ambassador-public-preview/) — Littlebird's own site, documenting her Founding Brand Ambassador relationship with Christopher.
 
 (Added 2026-09-21, linked from the Littlebird Ambassador site's homepage — see
 `littlebird-ambassador/astro/src/pages/index.astro`, "The fleet" section.)
