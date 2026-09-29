@@ -10,6 +10,11 @@
 > **Related:** [`GRAPHIFY_SETUP.md`](https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/blob/main/sandbox/GRAPHIFY_SETUP.md)
 > links back here from its Integration Plan section, since that plan references several of these
 > same repos by name.
+> [`SESSION_LOG_RELOCATION_GUIDE.md`](./SESSION_LOG_RELOCATION_GUIDE.md) (added 2026-09-29) is the
+> general-case how-to for the same "launch path, not repo name, determines where the session log
+> lives" mechanic this doc's "Where session chat logs actually live" section documents for Intent
+> worktrees specifically — read that one when a whole repo directory moves, not just when a new
+> worktree gets added.
 > `DETACHED_HEAD_GUIDE.md`
 > (in `code/private-legal-repo/`) explains that repo's intentional dual-checkout setup — read
 > it before assuming its detached HEAD is a problem. Note: that repo is private, so this link 404s
