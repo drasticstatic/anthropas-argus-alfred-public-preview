@@ -78,6 +78,29 @@ pattern in this doc isn't a one-off cleanup, it's the durable housekeeping habit
 once multi-worktree, multi-agent scale is real — treat this doc as the template to reapply, not a
 closed incident.
 
+## Second mechanism, same root cause: MCP server registrations (found 2026-09-29, same day)
+
+`~/.claude/projects/` isn't the only place Claude Code keys state by project path. MCP server
+registrations added via `claude mcp add` (without `-s user`) also live per-project, inside
+`~/.claude.json` under `projects["<absolute-path>"].mcpServers`. Same failure shape: two WordPress
+MCP servers (`emcp-psychedelicsinrecovery-org`, `emcp-service-psychedelicsinrecovery-org`) were
+registered under the old `/Users/christopherwilson/pir` project entry and simply never existed
+under `/Users/christopherwilson/code/pir` — they weren't broken or disconnected, they were never
+configured for the path this session actually runs from, so they showed up as unavailable with no
+obvious link back to the move.
+
+**Fix, same shape as the session-log one:** find the old project's config
+(`python3 -c "import json; d=json.load(open('~/.claude.json')); print(d['projects']['<old-path>']['mcpServers'])"`
+or equivalent), then re-add each server under the new path with `claude mcp add --transport http
+<name> <url> -H "Authorization: ..." -s local` (local scope defaults to the current project path).
+Verify with `claude mcp get <name>` — look for `Status: ✔ Connected`.
+
+**Checklist for any future repo move:** don't just archive the old session-log folder — also check
+`~/.claude.json`'s `projects["<old-path>"]` entry for an `mcpServers` block before considering the
+move fully reconciled. A repo that used any project-scoped MCP server (not just WordPress — this
+applies to any `claude mcp add` done without `-s user`) will silently lose access to it the same
+way.
+
 ## Handoffs
 
 See `agent-notes-pir/by-alfred/20260929-handoff-session-log-relocation-cleanup.md` and
