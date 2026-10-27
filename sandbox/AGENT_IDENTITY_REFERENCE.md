@@ -240,7 +240,8 @@ treat it the same way Kavanah's retirement is treated: don't assume continuity w
 its place while it was down.
 
 **Naming disclaimer (added 2026-09-14):** some Augment *products* — at least Intent's own UI and
-the now-sunset VSCode extension, not Cosmos — sometimes referred to "Auggie" as the thing running
+the VSCode extension (the fleet stopped using it; Augment still ships it: 0.904.1 on 2026-10-07, so
+"sunset" was ours, not Augment's — corrected 2026-10-26), not Cosmos — sometimes referred to "Auggie" as the thing running
 Kavanah's Intent workspace, which is a different persona than the actual Auggie CLI tool this
 section describes. With Intent itself now also sunset, that particular confusion mostly resolves
 on its own: Kavanah won't run again at all unless Augment-native login (real Auggie login, not
