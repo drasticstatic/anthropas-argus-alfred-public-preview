@@ -1,9 +1,24 @@
+<!-- readme-standard: 2026-11-02 -->
+<div align="center">
+
+<img src="sandbox/assets/banner.svg" width="100%" alt="Anthropas-Argus-Alfred: many small lights open across a dark field, Argus's hundred eyes watching one house.">
+
 # 🤖 Anthropas-Argus-Alfred — System Coordinator & Free-Model Sandbox
 
-> *Wise Counselor · All-Seeing Guardian · Human-Centric Intelligence*
+*Wise Counselor · All-Seeing Guardian · Human-Centric Intelligence*
 
 [![License](https://img.shields.io/badge/license-Private-lightgrey?style=flat)](https://github.com/drasticstatic/anthropas-argus-alfred)
 [![Public Preview](https://img.shields.io/badge/%F0%9F%8C%90%20Public%20Preview-Available-brightgreen)](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/) [![Synced via GitHub Actions](https://img.shields.io/badge/Synced%20via-GitHub%20Actions-blue)](https://github.com/open-condo-software/gitexporter) [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code%20CLI-blueviolet)](https://code.claude.com/docs/en/overview) [![NVIDIA NIM](https://img.shields.io/badge/Powered%20by-NVIDIA%20NIM-76b900)](https://build.nvidia.com/) [![Status](https://img.shields.io/badge/Status-%F0%9F%94%A5%20Live-brightgreen)](https://code.claude.com/docs/en/cli-reference) [![Sync](https://github.com/drasticstatic/anthropas-argus-alfred/actions/workflows/sync-public.yml/badge.svg)](https://github.com/drasticstatic/anthropas-argus-alfred/actions/workflows/sync-public.yml)
+
+<img src="sandbox/assets/icons/map-pin.svg" width="16" height="16" alt=""> **You are here:** drasticstatic lab › source `anthropas-argus-alfred` (private) → twin `anthropas-argus-alfred-public-preview` (public) · `main` is the working branch
+
+</div>
+
+## <img src="sandbox/assets/icons/compass.svg" width="24" height="24" alt=""> TL;DR
+
+1. <img src="sandbox/assets/icons/bot.svg" width="16" height="16" alt=""> **What this is.** Alfred: Christopher Wilson's system-level AI assistant, on Claude Code CLI with NVIDIA NIM for free-model routing.
+2. <img src="sandbox/assets/icons/users-round.svg" width="16" height="16" alt=""> **Who it is for.** Christopher, the other agents who work beside Alfred, and anyone curious how a coordinator seat is set up.
+3. <img src="sandbox/assets/icons/footprints.svg" width="16" height="16" alt=""> **Do this first.** [Explore the public preview](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/), or read [the free-model setup](sandbox/FREE_MODEL_SETUP.md).
 
 ---
 
@@ -277,3 +292,9 @@ is available under the [MIT License](https://github.com/drasticstatic/anthropas-
 *Built by [drasticstatic](https://github.com/drasticstatic) · Powered by Anthropic's Claude + NVIDIA NIM · "Elf counsel meets all-seeing guardian."*
 
 *🗺️ Still feeling lost? Looking for something specific? 🧭 → Click [HERE](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/404.html) 🔍*
+
+## <img src="sandbox/assets/icons/git-pull-request.svg" width="24" height="24" alt=""> Suggest a change
+
+Noticed something? Open an [issue](../../issues) or a pull request against `main`; Christopher reads them and a person with the role merges. Not on GitHub? Reach him through any channel on [his profile](https://github.com/drasticstatic). On the public preview, please open an issue rather than a pull request: its files are synced from the private source, so a change made only there would be overwritten.
+
+<sub>The front door follows the living [README standard](https://github.com/drasticstatic/my-template/blob/main/README-STANDARD.md). Copy it, improve it.</sub>
