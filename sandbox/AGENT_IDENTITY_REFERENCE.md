@@ -244,8 +244,9 @@ the VSCode extension (the fleet stopped using it; Augment still ships it: 0.904.
 "sunset" was ours, not Augment's — corrected 2026-10-26), not Cosmos — sometimes referred to "Auggie" as the thing running
 Kavanah's Intent workspace, which is a different persona than the actual Auggie CLI tool this
 section describes. With Intent itself now also sunset, that particular confusion mostly resolves
-on its own: Kavanah won't run again at all unless Augment-native login (real Auggie login, not
-`ClaudeMent`) gets restored inside whatever succeeds Intent, and even Mystarch's `acp-spoof` finding
+on its own: Kavanah won't run again inside Intent unless Augment-native login (real Auggie login, not
+`ClaudeMent`) gets restored inside whatever succeeds Intent (her other door, a local layer of our own,
+is in "Deliberately left alone" below), and even Mystarch's `acp-spoof` finding
 no longer overlaps with Auggie once Intent is gone. Going forward, "Auggie" unambiguously means the
 CLI. Whether the actual Auggie CLI is currently functional (it may well be, even since Cosmos
 launched) hasn't been tested — not a priority right now, noted here so it isn't lost.
@@ -336,5 +337,10 @@ The `private-legal-repo` Intent worktree is retired but still checked out on mai
 **detached HEAD, on purpose** — kept as a standing teaching case. It is not an oversight and should
 not be tidied up.
 
-Kavanah is **retired, not deleted**. If `acp-spoof` is ever built out far enough to supersede the
-workspace-app tooling, she is the seat it would resurrect.
+Kavanah is **sunset, not deleted** (Christopher, Nov 3, 2026: Auggie never regained its Intent login,
+so the seat went quiet). Sunset keeps the door open on purpose. Two ways she may resurface: Mystarch's
+ACP liaison work (`mystarch_chief-of-staff_acp-spoof`, and the *Drasticstatic's Intent* roadmap in
+`mystarch_chief-of-staff/specs/`) building a local orchestration layer of our own, or a Harness/Cosmos
+endpoint that gives Intent-style delegation back. Until then Mystarch is her Chief of Staff and the
+local stand-in for Cosmos Advisor while no subscription is active. Her attribution lines stay in
+every CLAUDE.md so a returning Kavanah commits under her own name.
