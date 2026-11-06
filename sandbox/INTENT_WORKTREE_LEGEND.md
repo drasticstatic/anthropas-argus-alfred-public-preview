@@ -21,6 +21,27 @@
 > for public-preview viewers without collaborator access (see the same caveat on the redirect stub
 > at `my-template/workflow-templates/DETACHED_HEAD_GUIDE.md`).
 
+> **Nov 6, 2026: every Intent tree below is retired (history only).** See [Retired Nov 6, 2026](#retired-nov-6-2026) first; the rest of this page is the August record.
+
+## Retired Nov 6, 2026
+
+**Christopher, Nov 6:** Cosmos, Mystarch and the Intent Chief of Staff already merge-reconciled these trees into the live clones. They are history now, kept as the **fossil record of the ACP structure** for the REA plan (*what fossils of an ACP structure are left standing*; tracked in `mystarch_chief-of-staff/PENDING-TASKS.md`). Nothing was deleted, moved or cleaned to retire them.
+
+**Linked worktrees, locked** with `git worktree lock` from each main repo, so `git worktree prune` can never drop them. Reason on each: *retired Nov 6, 2026: history only (Intent fossils for the REA study); do not commit here* (ARB's adds *: it predates the per-day logs*). Locking changes no file. Read Nov 6, ~08:45 ET:
+
+| Intent tree | Main repo (ran the lock) | Branch | Last commit there | Uncommitted entries (`git status --porcelain`) |
+|---|---|---|---|---|
+| `specs-sync/resume` | `dappu/resume` | `ground-repo-context` | `5a3061b` 2026-09-01 | 1 |
+| `tests-config/gratitude-token-project` | `dappu/gratitude-token-project` | `ground-repo-context` | `eee7c2e` 2026-08-31 | 6 |
+| `out-build/gratitude-token-project-astro` | `dappu/gratitude-token-project_astro` | `gratitude-token-astro-site-build` | `f429880` 2026-09-01 | 0 |
+| `react-config/gratitude-token-project-docs` | `dappu/gratitude-token-project_docs` | `ground-docs-repo` | `4fa860ff` 2026-08-31 | 17 |
+| `specs-sync-2/trading-bot-arbitrage-dappuv3-hardhat-uni-cake` | `dappu/trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE` | **`main`, shared with the live clone** | moves with every live commit (`ee715b8` at the lock) | 281 |
+
+- **The ARB tree is the dangerous one.** It has `main` checked out alongside the live clone, so its `HEAD` follows every commit made in `~/dappu/…` while its files stay where Intent left them. Its 281 "changes" are the live work seen backwards; a commit there would undo it. This is how stale trees were committed twice before (May 2, Sep 10). Never commit, stash or check out there.
+- **The private family-matters repo's tree** (`end-update/…`) is a linked worktree too and was **not** locked: that repository is outside this session's reach. Christopher can lock it himself from its main clone with the same command.
+- **Not linked worktrees, so nothing to lock:** `__chief__` (a repository initialised in place, last commit `e47eb5f` 2026-09-04; `code/mystarch_chief-of-staff` is the live one) and `md-sync/trading-assistant` (an independent clone, last commit `c7e57dc` 2026-08-31; `code/trading-assistant` is the live one). `background-request/` is still empty.
+- **To read a fossil:** `git -C ~/intent/workspaces/<slug>/<repo> log --oneline -5`, `git … status --short`, and the spec note at `<slug>/.workspace/notes/spec.md`. To see the locks: `git -C <main repo> worktree list` (each ends `locked`). To undo one, deliberately: `git -C <main repo> worktree unlock <path>`.
+
 ## How to read this
 
 - **Intent workspace clone**: lives at `~/intent/workspaces/<slug>/<repo-name>/`. Its spec note
