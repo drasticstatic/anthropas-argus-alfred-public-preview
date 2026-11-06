@@ -1,10 +1,10 @@
 # Session Log Relocation — What Happens When a Project Directory Moves
-#### Compiled by Alfred (Claude Code CLI, native `code/pir` session, now `code/pir-lab`) · 2026-09-29
+#### Compiled by Alfred (Claude Code CLI, native `code/pir` session, now `~/drasticstaticLabs/pir-lab`) · 2026-09-29
 
 > **Newer procedure (Nov 6, 2026):** renaming a folder on purpose now follows `SOP-IT-006` in
 > `my-template/sop-template/repo/IT/` and `my-template/scripts/rename-local-repo.py`, which moves the Claude
 > project entries with the folder. Its worked example is the lab's Nov 6 renames (`code/pir` to `code/pir-lab` and
-> six more). This guide stays as the history of the September moves, with their paths as they were.
+> six more), then the same day's move of ten `-lab` folders from `~/code` to `~/drasticstaticLabs`. This guide stays as the history of the September moves, with their paths as they were.
 
 > **What this is:** A how-to for a real, recurring gotcha — moving a repo's working directory
 > orphans its Claude Code session log under the old path, and `/resume` won't find it there because
