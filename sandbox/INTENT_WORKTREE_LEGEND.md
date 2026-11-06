@@ -345,3 +345,5 @@ response" hangs) and you need to point a fresh session at the verbatim history i
 *If this doc drifts out of date, regenerate the table with a fresh pass of `git branch
 --show-current` / `git remote get-url origin` / `git rev-list --left-right --count
 origin/main...HEAD` across each path above rather than trusting the numbers here.*
+
+**Later on Nov 6: the lock gained a guard.** A `git worktree lock` only stops prune, move and remove; a commit made in a locked worktree still lands, and the ARB one shares `main` with the live clone. Each of the five now runs `~/code/my-template/scripts/retired-worktree-hooks/` for that worktree only (`scripts/retire-worktree.sh`: `extensions.worktreeConfig` plus a per-worktree `core.hooksPath`), which refuses every ref update made from it (commit, reset, merge, rebase, pull, fetch), even with `--no-verify`. Reading is untouched, so the REA study can go on with Intent open. The live clones were probed after and accept ref updates as before. The private family-matters repo's worktree is Christopher's to retire the same way (board row 28). Undo: `sh ~/code/my-template/scripts/retire-worktree.sh --undo <worktree>`.
